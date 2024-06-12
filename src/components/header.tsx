@@ -12,7 +12,7 @@ export default function Header() {
 	return (
 		<header className="relative z-[999]">
 			<motion.div
-				className="fixed left-1/2 top-0 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-70 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] dark:border-gray-600/40 dark:bg-gray-950 dark:bg-opacity-65 sm:top-6 sm:h-[3.25rem] sm:w-[35rem] sm:rounded-full"
+				className="fixed left-1/2 top-0 h-[4.5rem] w-full rounded-none border border-white border-opacity-10 bg-white bg-opacity-70 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] dark:border-gray-600/30 dark:bg-black dark:bg-opacity-35 sm:top-6 sm:w-[35rem] sm:rounded-full lg:h-[3.25rem]"
 				initial={{ y: -100, x: '-50%', opacity: 0 }}
 				animate={{ y: 0, x: '-50%', opacity: 1 }}
 			></motion.div>
@@ -28,7 +28,7 @@ export default function Header() {
 						>
 							<Link
 								className={cn(
-									'flex w-full items-center justify-center px-3 py-3 transition hover:text-gray-950 dark:text-gray-500 dark:hover:text-gray-300',
+									'flex w-full items-center justify-center px-3 py-3 text-center transition hover:text-gray-950 dark:text-gray-500 dark:hover:text-gray-300',
 									{
 										'text-gray-950 dark:text-gray-200': pathname === link.href
 									}
