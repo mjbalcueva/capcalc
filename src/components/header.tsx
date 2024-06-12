@@ -28,10 +28,8 @@ export default function Header() {
 						>
 							<Link
 								className={cn(
-									'flex w-full items-center justify-center px-3 py-3 text-center transition hover:text-gray-950 dark:text-gray-500 dark:hover:text-gray-300',
-									{
-										'text-gray-950 dark:text-gray-200': pathname === link.href
-									}
+									'flex w-full items-center justify-center px-3 py-3 text-center transition hover:text-gray-950 dark:hover:text-gray-300',
+									`${pathname === link.href ? 'text-gray-950 dark:text-gray-200' : 'text-gray-500 dark:text-gray-500'}`
 								)}
 								href={link.href}
 							>
@@ -39,7 +37,7 @@ export default function Header() {
 
 								{link.href === pathname && (
 									<motion.span
-										className="absolute inset-0 -z-10 rounded-full bg-gray-200 bg-opacity-55 dark:bg-gray-700 dark:bg-opacity-45"
+										className="absolute inset-0 -z-10 rounded-full bg-gray-200 bg-opacity-55 dark:bg-gray-700 dark:bg-opacity-30"
 										layoutId="activeSection"
 										transition={{
 											type: 'spring',
