@@ -12,7 +12,7 @@ export const links = [
 		href: '/welded-connections'
 	},
 	{
-		name: 'Columns',
-		href: '/columns'
+		name: 'Non-Built Up Columns',
+		href: '/non-built-up-columns'
 	}
 ] as const
