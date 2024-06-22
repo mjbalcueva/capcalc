@@ -3,7 +3,7 @@ import '@/styles/globals.css'
 import { GeistSans } from 'geist/font/sans'
 
 import { Header } from '@/components/header'
-import { TailwindIndicator } from '@/components/tailwind-indicator'
+import { TailwindIndicator } from '@/components/shared/tailwind-indicator'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { ActiveSectionProvider } from '@/providers/active-section-provider'
 import { ThemeProvider } from '@/providers/theme-provider'

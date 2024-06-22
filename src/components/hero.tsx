@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-const HeroSection = ({ className }: { className?: string }) => {
+const Hero = ({ className }: { className?: string }) => {
 	return (
 		<motion.div
 			initial={{ opacity: 0.0, y: 40 }}
@@ -28,4 +28,4 @@ const HeroSection = ({ className }: { className?: string }) => {
 	)
 }
 
-export { HeroSection }
+export { Hero }
