@@ -19,9 +19,7 @@ const ActiveSectionContext = createContext<ActiveSectionProviderType | null>(
 	null
 )
 
-const ActiveSectionContextProvider = ({
-	children
-}: ActiveSectionProviderProps) => {
+const ActiveSectionProvider = ({ children }: ActiveSectionProviderProps) => {
 	const [activeSection, setActiveSection] = useState<SectionHash>('#home')
 	const [timeOfLastClick, setTimeOfLastClick] = useState(0) // we need to keep track of this to disable the observer temporarily when user clicks on a link
 
@@ -50,8 +48,4 @@ const useActiveSectionContext = () => {
 
 	return context
 }
-export {
-	ActiveSectionContext,
-	ActiveSectionContextProvider,
-	useActiveSectionContext
-}
+export { ActiveSectionContext, ActiveSectionProvider, useActiveSectionContext }
