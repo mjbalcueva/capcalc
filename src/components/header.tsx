@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import { links } from '@/lib/links'
 import { cn } from '@/lib/utils'
 
-export default function Header() {
+const Header = () => {
 	const pathname = usePathname()
 
 	return (
@@ -53,3 +53,5 @@ export default function Header() {
 		</header>
 	)
 }
+
+export { Header }
