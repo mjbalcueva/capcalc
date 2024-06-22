@@ -12,7 +12,7 @@ const IntroSection = () => {
 		<section
 			ref={ref}
 			id="home"
-			className="relative flex h-screen w-full scroll-mt-[100rem] flex-col items-center justify-center overflow-hidden"
+			className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
 		>
 			<HeroSection className="flex flex-col items-center justify-center" />
 			<Meteors number={14} />
