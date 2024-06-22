@@ -1,18 +1,20 @@
-export const links = [
+const menuItems = [
 	{
 		name: 'Home',
-		href: '/'
+		hash: '#home'
 	},
 	{
 		name: 'Bolted Connections',
-		href: '/bolted-connections'
+		hash: '#bolted-connections'
 	},
 	{
 		name: 'Welded Connections',
-		href: '/welded-connections'
+		hash: '#welded-connections'
 	},
 	{
 		name: 'Non-Built Up Columns',
-		href: '/non-built-up-columns'
+		hash: '#non-built-up-columns'
 	}
 ] as const
+
+export { menuItems }

@@ -5,6 +5,7 @@ import { GeistSans } from 'geist/font/sans'
 import { Header } from '@/components/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { ActiveSectionContextProvider } from '@/provider/active-section-provider'
 import { ThemeProvider } from '@/provider/theme-provider'
 
 export const metadata = {
@@ -22,10 +23,12 @@ export default function RootLayout({
 		<html lang="en" className={`${GeistSans.variable}`}>
 			<body>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-					<Header />
-					{children}
-					<TailwindIndicator />
-					<ThemeToggle />
+					<ActiveSectionContextProvider>
+						<Header />
+						{children}
+						<TailwindIndicator />
+						<ThemeToggle />
+					</ActiveSectionContextProvider>
 				</ThemeProvider>
 			</body>
 		</html>
