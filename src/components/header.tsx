@@ -39,7 +39,7 @@ const Header = () => {
 									setTimeOfLastClick(Date.now())
 								}}
 							>
-								{menuItem.name}
+								{menuItem.content}
 								{menuItem.hash === activeSection && (
 									<motion.span
 										className="absolute inset-0 -z-10 rounded-full bg-gray-200 bg-opacity-55 dark:bg-gray-700 dark:bg-opacity-30"
