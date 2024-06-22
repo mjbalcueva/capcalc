@@ -1,8 +1,16 @@
+import { useSectionInView } from '@/lib/hooks'
+
 const NonBuiltUpColumnsSection = () => {
+	// const { ref } = useSectionInView('#non-built-up-columns')
+
 	return (
-		<div id="non-built-up-columns" className="h-screen bg-[#050506]">
+		<section
+			// ref={ref}
+			id="non-built-up-columns"
+			className="h-screen bg-[#050506]"
+		>
 			<h1>Non-Built Up Section</h1>
-		</div>
+		</section>
 	)
 }
 

@@ -2,17 +2,15 @@
 
 import React, { createContext, useContext, useState } from 'react'
 
-import { menuItems } from '@/lib/links'
-
-type SectionName = (typeof menuItems)[number]['hash']
+import { SectionHash } from '@/lib/types'
 
 type ActiveSectionProviderProps = {
 	children: React.ReactNode
 }
 
 type ActiveSectionProviderType = {
-	activeSection: SectionName
-	setActiveSection: React.Dispatch<React.SetStateAction<SectionName>>
+	activeSection: SectionHash
+	setActiveSection: React.Dispatch<React.SetStateAction<SectionHash>>
 	timeOfLastClick: number
 	setTimeOfLastClick: React.Dispatch<React.SetStateAction<number>>
 }
@@ -24,7 +22,7 @@ const ActiveSectionContext = createContext<ActiveSectionProviderType | null>(
 const ActiveSectionContextProvider = ({
 	children
 }: ActiveSectionProviderProps) => {
-	const [activeSection, setActiveSection] = useState<SectionName>('#home')
+	const [activeSection, setActiveSection] = useState<SectionHash>('#home')
 	const [timeOfLastClick, setTimeOfLastClick] = useState(0) // we need to keep track of this to disable the observer temporarily when user clicks on a link
 
 	return (
