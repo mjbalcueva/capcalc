@@ -7,7 +7,7 @@ const NonBuiltUpColumnsSection = () => {
 		<section
 			// ref={ref}
 			id="non-built-up-columns"
-			className="h-screen bg-[#050506]"
+			className="h-screen bg-background"
 		>
 			<h1>Non-Built Up Section</h1>
 		</section>

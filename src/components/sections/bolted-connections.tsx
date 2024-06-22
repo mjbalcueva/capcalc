@@ -7,7 +7,7 @@ const BoltedConnectionsSection = () => {
 		<section
 			// ref={ref}
 			id="bolted-connections"
-			className="h-screen bg-[#050506]"
+			className="h-screen bg-background"
 		>
 			<h1>Bolted Connections Section</h1>
 		</section>

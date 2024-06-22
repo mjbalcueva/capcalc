@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState } from 'react'
 
-import { SectionHash } from '@/lib/types'
+import type { SectionHash } from '@/lib/types'
 
 type ActiveSectionProviderProps = {
 	children: React.ReactNode
