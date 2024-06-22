@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-export const Meteors = ({
+const Meteors = ({
 	number,
 	className
 }: {
@@ -29,3 +29,5 @@ export const Meteors = ({
 		</>
 	)
 }
+
+export { Meteors }

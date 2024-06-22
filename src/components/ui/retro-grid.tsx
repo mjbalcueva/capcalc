@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-export default function RetroGrid({ className }: { className?: string }) {
+const RetroGrid = ({ className }: { className?: string }) => {
 	return (
 		<div
 			className={cn(
@@ -30,3 +30,5 @@ export default function RetroGrid({ className }: { className?: string }) {
 		</div>
 	)
 }
+
+export { RetroGrid }
