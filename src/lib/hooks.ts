@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { SectionHash } from '@/lib/types'
-import { useActiveSectionContext } from '@/provider/active-section-provider'
+import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const useSectionInView = (sectionHash: SectionHash, threshold = 0.75) => {
 	const { ref, inView } = useInView({ threshold })

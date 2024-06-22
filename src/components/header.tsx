@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 import { menuItems } from '@/lib/links'
 import { cn } from '@/lib/utils'
-import { useActiveSectionContext } from '@/provider/active-section-provider'
+import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const Header = () => {
 	const { activeSection, setActiveSection, setTimeOfLastClick } =

@@ -5,8 +5,8 @@ import { GeistSans } from 'geist/font/sans'
 import { Header } from '@/components/header'
 import { TailwindIndicator } from '@/components/tailwind-indicator'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { ActiveSectionProvider } from '@/provider/active-section-provider'
-import { ThemeProvider } from '@/provider/theme-provider'
+import { ActiveSectionProvider } from '@/providers/active-section-provider'
+import { ThemeProvider } from '@/providers/theme-provider'
 
 export const metadata = {
 	title: 'CapCalc',
