@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 import { cn } from '@/lib/utils'
 
 const Meteors = ({
@@ -7,10 +9,15 @@ const Meteors = ({
 	number?: number
 	className?: string
 }) => {
-	const meteors = new Array(number ?? 20).fill(true)
-	return (
-		<>
-			{meteors.map((el, idx) => (
+	const [meteors, setMeteors] = useState<Array<JSX.Element>>([])
+
+	useEffect(() => {
+		const newMeteors = new Array(number ?? 20).fill(null).map((_, idx) => {
+			const left = Math.floor(Math.random() * (400 - -400) + -400) + 'px'
+			const animationDelay = Math.random() * (0.8 - 0.2) + 0.2 + 's'
+			const animationDuration = Math.floor(Math.random() * (10 - 2) + 2) + 's'
+
+			return (
 				<span
 					key={'meteor' + idx}
 					className={cn(
@@ -20,14 +27,18 @@ const Meteors = ({
 					)}
 					style={{
 						top: 0,
-						left: Math.floor(Math.random() * (400 - -400) + -400) + 'px',
-						animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + 's',
-						animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + 's'
+						left: left,
+						animationDelay: animationDelay,
+						animationDuration: animationDuration
 					}}
 				></span>
-			))}
-		</>
-	)
+			)
+		})
+		setMeteors(newMeteors)
+		// This effect should run once on mount, hence the empty dependency array
+	}, [number, className])
+
+	return <>{meteors}</>
 }
 
 export { Meteors }
