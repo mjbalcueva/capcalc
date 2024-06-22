@@ -1,11 +1,13 @@
+'use client'
+
 import { useSectionInView } from '@/lib/hooks'
 
 const BoltedConnectionsSection = () => {
-	// const { ref } = useSectionInView('#bolted-connections')
+	const { ref } = useSectionInView('#bolted-connections')
 
 	return (
 		<section
-			// ref={ref}
+			ref={ref}
 			id="bolted-connections"
 			className="h-screen bg-background"
 		>

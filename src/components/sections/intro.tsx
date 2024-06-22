@@ -1,14 +1,16 @@
+'use client'
+
 import { HeroSection } from '@/components/hero-section'
 import { Meteors } from '@/components/ui/meteors'
 import { RetroGrid } from '@/components/ui/retro-grid'
 import { useSectionInView } from '@/lib/hooks'
 
 const IntroSection = () => {
-	// const { ref } = useSectionInView('#home')
+	const { ref } = useSectionInView('#home')
 
 	return (
 		<section
-			// ref={ref}
+			ref={ref}
 			id="home"
 			className="relative flex h-screen w-full scroll-mt-[100rem] flex-col items-center justify-center overflow-hidden"
 		>

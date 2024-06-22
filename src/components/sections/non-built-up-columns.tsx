@@ -1,11 +1,13 @@
+'use client'
+
 import { useSectionInView } from '@/lib/hooks'
 
 const NonBuiltUpColumnsSection = () => {
-	// const { ref } = useSectionInView('#non-built-up-columns')
+	const { ref } = useSectionInView('#non-built-up-columns')
 
 	return (
 		<section
-			// ref={ref}
+			ref={ref}
 			id="non-built-up-columns"
 			className="h-screen bg-background"
 		>
