@@ -1,12 +1,12 @@
-import { BoltedConnectionsSection } from '@/components/sections/bolted-connections'
-import { IntroSection } from '@/components/sections/intro'
-import { NonBuiltUpColumnsSection } from '@/components/sections/non-built-up-columns'
-import { WeldedConnectionsSection } from '@/components/sections/welded-connections'
+import { BoltedConnectionsSection } from '@/components/sections/bolted-connections-section'
+import { HeroSection } from '@/components/sections/hero-section'
+import { NonBuiltUpColumnsSection } from '@/components/sections/non-built-up-columns-section'
+import { WeldedConnectionsSection } from '@/components/sections/welded-connections-section'
 
 export default function HomePage() {
 	return (
 		<main>
-			<IntroSection />
+			<HeroSection />
 			<BoltedConnectionsSection />
 			<WeldedConnectionsSection />
 			<NonBuiltUpColumnsSection />
