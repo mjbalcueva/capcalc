@@ -11,9 +11,9 @@ const NonBuiltUpColumnsSection = () => {
 		<section
 			ref={ref}
 			id="non-built-up-columns"
-			className="flex h-screen items-center justify-center bg-white dark:bg-[#050506]"
+			className="bg-white dark:bg-[#050506]"
 		>
-			<div className="container grid w-full gap-4 lg:grid-cols-2">
+			<div className="grid w-full items-center gap-4 sm:container lg:grid-cols-2">
 				<div className="">
 					<h1>Non-Built Up Section</h1>
 				</div>

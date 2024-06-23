@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { type NonBuiltUpColumnsItemsType } from '@/lib/types'
-import { cn } from '@/lib/utils'
+import { cn, truncateText } from '@/lib/utils'
 
 const HoverEffect = ({
 	items,
@@ -48,7 +48,9 @@ const HoverEffect = ({
 					</AnimatePresence>
 					<Card>
 						<CardTitle>{item.title}</CardTitle>
-						<CardDescription>{item.description}</CardDescription>
+						<CardDescription>
+							{truncateText(item.description, 180)}
+						</CardDescription>
 					</Card>
 				</Link>
 			))}
