@@ -2,15 +2,15 @@
 
 import React, { createContext, useContext, useState } from 'react'
 
-import type { SectionHash } from '@/lib/types'
+import type { SectionHashType } from '@/lib/types'
 
 type ActiveSectionProviderProps = {
 	children: React.ReactNode
 }
 
 type ActiveSectionProviderType = {
-	activeSection: SectionHash
-	setActiveSection: React.Dispatch<React.SetStateAction<SectionHash>>
+	activeSection: SectionHashType
+	setActiveSection: React.Dispatch<React.SetStateAction<SectionHashType>>
 	timeOfLastClick: number
 	setTimeOfLastClick: React.Dispatch<React.SetStateAction<number>>
 }
@@ -20,7 +20,7 @@ const ActiveSectionContext = createContext<ActiveSectionProviderType | null>(
 )
 
 const ActiveSectionProvider = ({ children }: ActiveSectionProviderProps) => {
-	const [activeSection, setActiveSection] = useState<SectionHash>('#home')
+	const [activeSection, setActiveSection] = useState<SectionHashType>('#home')
 	const [timeOfLastClick, setTimeOfLastClick] = useState(0) // we need to keep track of this to disable the observer temporarily when user clicks on a link
 
 	return (

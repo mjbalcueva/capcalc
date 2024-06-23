@@ -3,10 +3,10 @@
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { SectionHash } from '@/lib/types'
+import { type SectionHashType } from '@/lib/types'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
-const useSectionInView = (sectionHash: SectionHash, threshold = 0.75) => {
+const useSectionInView = (sectionHash: SectionHashType, threshold = 0.75) => {
 	const { ref, inView } = useInView({ threshold })
 	const { setActiveSection, timeOfLastClick } = useActiveSectionContext()
 

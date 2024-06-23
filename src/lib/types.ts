@@ -1,6 +1,6 @@
-import { menuItems } from '@/lib/links'
+import { type menuItems } from '@/lib/links'
 
-type SectionHash = (typeof menuItems)[number]['hash']
+type SectionHashType = (typeof menuItems)[number]['hash']
 
 type NonBuiltUpColumnsItemsType = {
 	title: string
@@ -8,4 +8,4 @@ type NonBuiltUpColumnsItemsType = {
 	link: string
 }[]
 
-export type { SectionHash, NonBuiltUpColumnsItemsType }
+export type { SectionHashType, NonBuiltUpColumnsItemsType }

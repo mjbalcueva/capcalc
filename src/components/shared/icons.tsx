@@ -1,4 +1,4 @@
-import { LucideProps, Moon, Sun } from 'lucide-react'
+import { Moon, Sun, type LucideProps } from 'lucide-react'
 
 const Icons = {
 	moon: Moon,
