@@ -2,21 +2,18 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-import { SectionHashType, type CalculatorItemType } from '@/lib/types'
+import { type CalculatorItemType } from '@/lib/types'
 import { cn, truncateText } from '@/lib/utils'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const HoverEffect = ({
-	activeSection,
 	items,
 	className
 }: {
-	activeSection: SectionHashType
 	items: CalculatorItemType[]
 	className?: string
 }) => {
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-	const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext()
 
 	return (
 		<div
@@ -32,10 +29,6 @@ const HoverEffect = ({
 					className="group relative block h-full w-full p-2"
 					onMouseEnter={() => setHoveredIndex(idx)}
 					onMouseLeave={() => setHoveredIndex(null)}
-					onClick={() => {
-						setActiveSection(activeSection)
-						setTimeOfLastClick(Date.now())
-					}}
 				>
 					<AnimatePresence>
 						{hoveredIndex === idx && (
