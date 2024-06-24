@@ -33,7 +33,7 @@ const Header = () => {
 									'flex w-full items-center justify-center px-3 py-3 text-center transition hover:text-gray-950 dark:hover:text-gray-300',
 									`${menuItem.hash === activeSection ? 'text-gray-950 dark:text-gray-200' : 'text-gray-500 dark:text-gray-500'}`
 								)}
-								href={menuItem.hash}
+								href={`/${menuItem.hash}`}
 								onClick={() => {
 									setActiveSection(menuItem.hash)
 									setTimeOfLastClick(Date.now())
