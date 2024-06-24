@@ -17,7 +17,7 @@ const HoverEffect = ({
 	return (
 		<div
 			className={cn(
-				'grid grid-cols-1 py-10 md:grid-cols-2 lg:grid-cols-1',
+				'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1',
 				className
 			)}
 		>
@@ -89,7 +89,7 @@ const CardTitle = ({
 	return (
 		<h4
 			className={cn(
-				'mt-4 font-bold tracking-wide text-card-foreground/75',
+				'mt-4 text-lg font-bold tracking-wide text-card-foreground/75',
 				className
 			)}
 		>
@@ -108,7 +108,7 @@ const CardDescription = ({
 	return (
 		<p
 			className={cn(
-				'mt-8 text-sm leading-relaxed tracking-wide text-muted-foreground/90',
+				'mt-6 text-sm leading-relaxed tracking-wide text-muted-foreground/90',
 				className
 			)}
 		>
