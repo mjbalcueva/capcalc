@@ -2,14 +2,14 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-import { type NonBuiltUpColumnsItemsType } from '@/lib/types'
+import { type CalculatorItemType } from '@/lib/types'
 import { cn, truncateText } from '@/lib/utils'
 
 const HoverEffect = ({
 	items,
 	className
 }: {
-	items: NonBuiltUpColumnsItemsType
+	items: CalculatorItemType[]
 	className?: string
 }) => {
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
