@@ -19,6 +19,7 @@ export default function Layout({ children }: Props) {
 
 	return (
 		<main>
+			<BackgroundBeams />
 			<motion.div
 				initial={{ opacity: 0.0, y: 40 }}
 				whileInView={{ opacity: 1, y: 0 }}
@@ -26,11 +27,10 @@ export default function Layout({ children }: Props) {
 					duration: 0.8,
 					ease: 'easeInOut'
 				}}
-				className="flex min-h-screen items-center justify-center"
+				className="pt-24"
 			>
 				{children}
 			</motion.div>
-			<BackgroundBeams />
 		</main>
 	)
 }
