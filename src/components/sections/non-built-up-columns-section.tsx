@@ -11,10 +11,10 @@ const NonBuiltUpColumnsSection = () => {
 		<section
 			ref={ref}
 			id="non-built-up-columns"
-			className="relative z-[1] flex min-h-screen items-center justify-center bg-white py-4 dark:bg-[#050506]"
+			className="relative z-[1] flex min-h-screen items-center justify-center bg-white py-10 dark:bg-[#050506]"
 		>
-			<div className="grid w-full items-center sm:container lg:grid-cols-2">
-				<div className="mx-2.5 flex h-[38.4rem] flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white text-center dark:border-white/[0.2] dark:bg-black">
+			<div className="grid w-full items-center gap-y-2 sm:container lg:grid-cols-2">
+				<div className="mx-2.5 flex h-[97.4%] min-h-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white text-center dark:border-white/[0.2] dark:bg-black">
 					<h2 className="text-xl font-bold text-card-foreground/75 md:text-4xl">
 						Non-Built Up Columns Calculators
 					</h2>
