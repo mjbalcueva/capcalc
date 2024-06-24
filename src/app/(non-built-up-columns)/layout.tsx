@@ -18,8 +18,8 @@ export default function Layout({ children }: Props) {
 	}, [setActiveSection])
 
 	return (
-		<main>
-			<BackgroundBeams />
+		<main className="relative min-h-screen overflow-hidden">
+			<BackgroundBeams className="min-w-[1280px]" />
 			<motion.div
 				initial={{ opacity: 0.0, y: 40 }}
 				whileInView={{ opacity: 1, y: 0 }}
