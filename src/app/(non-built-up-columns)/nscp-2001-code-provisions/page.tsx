@@ -1,13 +1,11 @@
-import { Button } from '@/components/ui/button'
+import { NSCPInputForm } from '@/components/forms/nscp-2001-code-provisions-input-form'
 import {
 	Card,
 	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
-import { ReactHookForm } from './_components/input-form'
 
 export default function NSCP_2001_CodeProvisionsPage() {
 	return (
@@ -27,7 +25,7 @@ const InputSection = () => {
 					<CardDescription>Input Description</CardDescription>
 				</CardHeader>
 				<CardContent className="flex flex-col gap-4">
-					<ReactHookForm />
+					<NSCPInputForm />
 				</CardContent>
 			</Card>
 		</section>

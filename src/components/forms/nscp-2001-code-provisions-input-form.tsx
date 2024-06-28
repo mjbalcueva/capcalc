@@ -18,10 +18,8 @@ import {
 import { Input } from '@/components/ui/input'
 import { produceNewMessageSchema } from '@/schemas/non-built-up-column-schemas'
 
-const ReactHookForm = () => {
-	const { isPending, execute, data, error } = useServerAction(
-		produceNewMessageAction
-	)
+const NSCPInputForm = () => {
+	const { isPending, execute, data } = useServerAction(produceNewMessageAction)
 
 	const form = useForm<z.infer<typeof produceNewMessageSchema>>({
 		resolver: zodResolver(produceNewMessageSchema),
@@ -32,10 +30,9 @@ const ReactHookForm = () => {
 
 	async function onSubmit(values: z.infer<typeof produceNewMessageSchema>) {
 		const [data, err] = await execute(values)
+
 		if (err) {
 			// show a toast or something
-			console.log('Error:', err)
-
 			return
 		}
 
@@ -54,7 +51,7 @@ const ReactHookForm = () => {
 							<FormItem>
 								<FormLabel>Name</FormLabel>
 								<FormControl>
-									<Input placeholder="shadcn" {...field} />
+									<Input placeholder="name" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -68,9 +65,8 @@ const ReactHookForm = () => {
 				</form>
 			</Form>
 			{data && <div>Message: {data}</div>}
-			{error && <div>Error: {JSON.stringify(error.fieldErrors)}</div>}
 		</>
 	)
 }
 
-export { ReactHookForm }
+export { NSCPInputForm }
