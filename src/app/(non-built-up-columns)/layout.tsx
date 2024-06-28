@@ -30,7 +30,7 @@ export default function Layout({ children }: Props) {
 				<div className="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent to-30% dark:from-[#09090b] dark:to-transparent" />
 				<div className="absolute inset-0 bg-gradient-to-r from-white/50 via-transparent to-white/50 dark:from-[#09090b] dark:via-transparent dark:to-[#09090b]" />
 			</div>
-			<motion.main
+			<motion.div
 				className="relative px-4 pt-24 sm:container sm:pt-32 md:px-16 md:pt-40"
 				initial={{ opacity: 0.0, y: 40 }}
 				whileInView={{ opacity: 1, y: 0 }}
@@ -39,17 +39,17 @@ export default function Layout({ children }: Props) {
 					ease: 'easeInOut'
 				}}
 			>
-				<div className="flex flex-col gap-4 text-center sm:gap-6 sm:text-start md:gap-8">
+				<section className="flex flex-col gap-4 text-center sm:gap-6 sm:text-start md:gap-8">
 					<h1 className="bg-opacity-50 bg-gradient-to-b from-muted-foreground/90 to-foreground/90 bg-clip-text text-3xl font-bold text-transparent dark:from-muted-foreground/90 dark:to-foreground/90 sm:text-4xl md:text-5xl">
 						{page!.title}
 					</h1>
 					<p className="max-w-5xl text-muted-foreground sm:text-lg">
 						{page!.description}
 					</p>
-				</div>
+				</section>
 				<Separator className="mb-8 mt-8 sm:mb-12 sm:mt-14 lg:mb-14 lg:mt-20" />
 				{children}
-			</motion.main>
+			</motion.div>
 		</div>
 	)
 }
