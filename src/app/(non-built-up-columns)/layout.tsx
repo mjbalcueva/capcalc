@@ -27,11 +27,11 @@ export default function Layout({ children }: Props) {
 	return (
 		<div className="relative min-h-screen bg-white antialiased dark:bg-[#09090b]">
 			<div className="absolute min-h-[40vh] w-screen bg-white bg-grid-[#f0f1f3] dark:bg-[#09090b] dark:bg-grid-[#171a1e]">
-				<div className="absolute inset-0 bg-gradient-to-t from-white to-transparent dark:from-[#09090b] dark:to-transparent" />
-				<div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white dark:from-[#09090b] dark:via-transparent dark:to-[#09090b]" />
+				<div className="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent to-30% dark:from-[#09090b] dark:to-transparent" />
+				<div className="absolute inset-0 bg-gradient-to-r from-white/50 via-transparent to-white/50 dark:from-[#09090b] dark:via-transparent dark:to-[#09090b]" />
 			</div>
 			<motion.main
-				className="relative px-4 pt-24 sm:container"
+				className="relative px-4 pt-24 sm:container sm:pt-32 md:px-16 md:pt-40"
 				initial={{ opacity: 0.0, y: 40 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				transition={{
@@ -39,11 +39,15 @@ export default function Layout({ children }: Props) {
 					ease: 'easeInOut'
 				}}
 			>
-				<div className="flex flex-col gap-4">
-					<h1 className="text-3xl font-bold">{page!.title}</h1>
-					<p className="text-muted-foreground">{page!.description}</p>
+				<div className="flex flex-col gap-4 text-center sm:gap-6 sm:text-start md:gap-8">
+					<h1 className="bg-opacity-50 bg-gradient-to-b from-muted-foreground/90 to-foreground/90 bg-clip-text text-3xl font-bold text-transparent dark:from-muted-foreground/90 dark:to-foreground/90 sm:text-4xl md:text-5xl">
+						{page!.title}
+					</h1>
+					<p className="max-w-5xl text-muted-foreground sm:text-lg">
+						{page!.description}
+					</p>
 				</div>
-				<Separator className="mb-8 mt-8 sm:mb-12 lg:mb-14 lg:mt-10" />
+				<Separator className="mb-8 mt-8 sm:mb-12 sm:mt-14 lg:mb-14 lg:mt-20" />
 				{children}
 			</motion.main>
 		</div>
