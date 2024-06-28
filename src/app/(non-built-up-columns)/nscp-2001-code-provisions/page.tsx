@@ -1,11 +1,13 @@
 import { Button } from '@/components/ui/button'
 import {
 	Card,
+	CardContent,
 	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
+import { ReactHookForm } from './_components/input-form'
 
 export default function NSCP_2001_CodeProvisionsPage() {
 	return (
@@ -24,9 +26,9 @@ const InputSection = () => {
 					<CardTitle>Input Variables</CardTitle>
 					<CardDescription>Input Description</CardDescription>
 				</CardHeader>
-				<CardFooter className="flex flex-row-reverse">
-					<Button variant="destructive">Clear</Button>
-				</CardFooter>
+				<CardContent className="flex flex-col gap-4">
+					<ReactHookForm />
+				</CardContent>
 			</Card>
 		</section>
 	)
