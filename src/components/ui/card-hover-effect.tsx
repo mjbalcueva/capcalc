@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import { type CalculatorItemType } from '@/lib/types'
 import { cn, truncateText } from '@/lib/utils'
-import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const HoverEffect = ({
 	items,
