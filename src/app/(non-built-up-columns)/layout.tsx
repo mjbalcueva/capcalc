@@ -22,11 +22,11 @@ export default function Layout({ children }: Props) {
 
 	useEffect(() => {
 		setActiveSection('#non-built-up-columns')
-	}, [setActiveSection])
+	}, [])
 
 	return (
 		<div className="relative min-h-screen bg-white antialiased dark:bg-[#09090b]">
-			<div className="absolute min-h-[40vh] w-screen bg-white bg-grid-[#f0f1f3] dark:bg-[#09090b] dark:bg-grid-[#171a1e]">
+			<div className="absolute min-h-[50vh] w-screen bg-white bg-grid-[#f0f1f3] dark:bg-[#09090b] dark:bg-grid-[#171a1e]">
 				<div className="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent to-30% dark:from-[#09090b] dark:to-transparent" />
 				<div className="absolute inset-0 bg-gradient-to-r from-white/50 via-transparent to-white/50 dark:from-[#09090b] dark:via-transparent dark:to-[#09090b]" />
 			</div>

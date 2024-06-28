@@ -1,5 +1,3 @@
-import '@/styles/globals.css'
-
 import { GeistSans } from 'geist/font/sans'
 
 import { Header } from '@/components/header'
@@ -7,6 +5,8 @@ import { TailwindIndicator } from '@/components/shared/tailwind-indicator'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { ActiveSectionProvider } from '@/providers/active-section-provider'
 import { ThemeProvider } from '@/providers/theme-provider'
+
+import '@/styles/globals.css'
 
 export const metadata = {
 	title: 'CapCalc',
@@ -20,7 +20,11 @@ export default function RootLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<html lang="en" className={`${GeistSans.variable} scroll-smooth`}>
+		<html
+			lang="en"
+			className={`${GeistSans.variable} !scroll-smooth`}
+			suppressHydrationWarning={true}
+		>
 			<body>
 				<ThemeProvider attribute="class" defaultTheme="dark">
 					<ActiveSectionProvider>
