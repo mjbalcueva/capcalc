@@ -5,6 +5,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { Button } from '@/components/ui/button'
 import {
 	Form,
 	FormControl,
@@ -129,7 +130,7 @@ const InputForm = () => {
 								>
 									<FormControl>
 										<SelectTrigger>
-											<SelectValue placeholder="Recommended or Theoretical" />
+											<SelectValue placeholder="Choose Recommended or Theoretical" />
 										</SelectTrigger>
 									</FormControl>
 									<SelectContent>
@@ -157,7 +158,7 @@ const InputForm = () => {
 								>
 									<FormControl>
 										<SelectTrigger>
-											<SelectValue placeholder="Effective Length Factor" />
+											<SelectValue placeholder="Choose Effective Length Factor" />
 										</SelectTrigger>
 									</FormControl>
 									<SelectContent>
@@ -199,6 +200,9 @@ const InputForm = () => {
 							</FormItem>
 						)}
 					/>
+					<Button type="submit" className="w-full">
+						Compute
+					</Button>
 				</form>
 			</Form>
 		</>

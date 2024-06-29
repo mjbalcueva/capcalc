@@ -1,12 +1,5 @@
-import { Button } from '@/components/ui/button'
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle
-} from '@/components/ui/card'
-import { InputForm } from './_components/input-form'
+import { InputSection } from './_components/input-section'
+import { OutputSection } from './_components/output-section'
 
 export default function NSCP_2001_CodeProvisionsPage() {
 	return (
@@ -14,43 +7,5 @@ export default function NSCP_2001_CodeProvisionsPage() {
 			<InputSection />
 			<OutputSection />
 		</main>
-	)
-}
-
-const InputSection = () => {
-	return (
-		<section className="flex flex-col">
-			<Card>
-				<CardHeader>
-					<CardTitle>Input Variables</CardTitle>
-					<CardDescription>Input Description</CardDescription>
-				</CardHeader>
-				<CardContent className="flex flex-col gap-4">
-					<InputForm />
-				</CardContent>
-				<Button type="submit" className="w-full">
-					Compute
-				</Button>
-			</Card>
-		</section>
-	)
-}
-
-const OutputSection = () => {
-	return (
-		<section className="flex flex-col gap-4">
-			<Card>
-				<CardHeader>
-					<CardTitle>Result</CardTitle>
-					<CardDescription>Result Description</CardDescription>
-				</CardHeader>
-			</Card>
-			<Card>
-				<CardHeader>
-					<CardTitle>Computation Variables</CardTitle>
-					<CardDescription>Computation Description</CardDescription>
-				</CardHeader>
-			</Card>
-		</section>
 	)
 }
