@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 
+import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
 import { nonBuiltUpColumns } from '@/lib/links'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
@@ -31,7 +32,7 @@ export default function Layout({ children }: Props) {
 				<div className="absolute inset-0 bg-gradient-to-r from-white/50 via-transparent to-white/50 dark:from-[#09090b] dark:via-transparent dark:to-[#09090b]" />
 			</div>
 			<motion.div
-				className="relative px-4 pt-24 sm:container sm:pt-32 md:px-16 md:pt-40"
+				className="relative min-h-[87vh] px-4 pt-24 sm:container sm:pt-32 md:px-16 md:pt-40"
 				initial={{ opacity: 0.0, y: 40 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				transition={{
@@ -50,6 +51,7 @@ export default function Layout({ children }: Props) {
 				<Separator className="mb-8 mt-8 sm:mb-12 sm:mt-14 lg:mb-14 lg:mt-20" />
 				{children}
 			</motion.div>
+			<FooterSection className="!bg-[#09090b]" />
 		</div>
 	)
 }
