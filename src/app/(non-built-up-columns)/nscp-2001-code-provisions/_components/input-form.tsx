@@ -64,148 +64,137 @@ const InputForm = () => {
 	}
 
 	return (
-		<>
-			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-					<FormField
-						control={form.control}
-						name="Fy"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Yield Strength</FormLabel>
+		<Form {...form}>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+				<FormField
+					control={form.control}
+					name="Fy"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Yield Strength</FormLabel>
+							<FormControl>
+								<Input placeholder="MPa" type="number" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="A"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Area</FormLabel>
+							<FormControl>
+								<Input placeholder="mm²" type="number" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="Lx"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Length X</FormLabel>
+							<FormControl>
+								<Input placeholder="mm" type="number" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="Ly"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Length Y</FormLabel>
+							<FormControl>
+								<Input placeholder="mm" type="number" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="recommendedOrTheoretical"
+					render={({ field }) => (
+						<FormItem>
+							<Select onValueChange={field.onChange} defaultValue={field.value}>
 								<FormControl>
-									<Input placeholder="MPa" type="number" {...field} />
+									<SelectTrigger>
+										<SelectValue placeholder="Choose Recommended or Theoretical" />
+									</SelectTrigger>
 								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="A"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Area</FormLabel>
+								<SelectContent>
+									{Object.entries(recommendedOrTheoreticalChoices).map(
+										([key, value]) => (
+											<SelectItem key={key} value={key}>
+												{value}
+											</SelectItem>
+										)
+									)}
+								</SelectContent>
+							</Select>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="effectiveLengthFactor"
+					render={({ field }) => (
+						<FormItem>
+							<Select onValueChange={field.onChange} defaultValue={field.value}>
 								<FormControl>
-									<Input placeholder="mm²" type="number" {...field} />
+									<SelectTrigger>
+										<SelectValue placeholder="Choose Effective Length Factor" />
+									</SelectTrigger>
 								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="Lx"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Length X</FormLabel>
-								<FormControl>
-									<Input placeholder="mm" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="Ly"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Length Y</FormLabel>
-								<FormControl>
-									<Input placeholder="mm" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="recommendedOrTheoretical"
-						render={({ field }) => (
-							<FormItem>
-								<Select
-									onValueChange={field.onChange}
-									defaultValue={field.value}
-								>
-									<FormControl>
-										<SelectTrigger>
-											<SelectValue placeholder="Choose Recommended or Theoretical" />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent>
-										{Object.entries(recommendedOrTheoreticalChoices).map(
-											([key, value]) => (
-												<SelectItem key={key} value={key}>
-													{value}
-												</SelectItem>
-											)
-										)}
-									</SelectContent>
-								</Select>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="effectiveLengthFactor"
-						render={({ field }) => (
-							<FormItem>
-								<Select
-									onValueChange={field.onChange}
-									defaultValue={field.value}
-								>
-									<FormControl>
-										<SelectTrigger>
-											<SelectValue placeholder="Choose Effective Length Factor" />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent>
-										{Object.entries(effectiveLengthFactorChoices).map(
-											([key, value]) => (
-												<SelectItem key={key} value={key}>
-													{value}
-												</SelectItem>
-											)
-										)}
-									</SelectContent>
-								</Select>
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="Ix"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Moment of Inertia X</FormLabel>
-								<FormControl>
-									<Input placeholder="mm⁴" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="Iy"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Moment of Inertia Y</FormLabel>
-								<FormControl>
-									<Input placeholder="mm⁴" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<Button type="submit" className="w-full">
-						Compute
-					</Button>
-				</form>
-			</Form>
-		</>
+								<SelectContent>
+									{Object.entries(effectiveLengthFactorChoices).map(
+										([key, value]) => (
+											<SelectItem key={key} value={key}>
+												{value}
+											</SelectItem>
+										)
+									)}
+								</SelectContent>
+							</Select>
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="Ix"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Moment of Inertia X</FormLabel>
+							<FormControl>
+								<Input placeholder="mm⁴" type="number" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="Iy"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Moment of Inertia Y</FormLabel>
+							<FormControl>
+								<Input placeholder="mm⁴" type="number" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+			</form>
+		</Form>
 	)
 }
 
