@@ -2,11 +2,10 @@
 
 import { createServerAction } from 'zsa'
 
-import { produceNewMessageSchema } from '@/schemas/non-built-up-column-schemas'
+import { produceNewMessageSchema } from './schema'
 
 export const produceNewMessageAction = createServerAction()
 	.input(produceNewMessageSchema)
 	.handler(async ({ input }) => {
-		await new Promise((resolve) => setTimeout(resolve, 500))
-		return 'Hello, ' + input.name
+		return 'Hello, ' + input.name + ', Age: ' + input.age
 	})

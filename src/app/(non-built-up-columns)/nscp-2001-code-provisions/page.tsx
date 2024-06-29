@@ -1,4 +1,3 @@
-import { NSCPInputForm } from '@/components/forms/nscp-2001-code-provisions-input-form'
 import {
 	Card,
 	CardContent,
@@ -6,6 +5,7 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
+import { InputForm } from './_components/input-form'
 
 export default function NSCP_2001_CodeProvisionsPage() {
 	return (
@@ -25,7 +25,7 @@ const InputSection = () => {
 					<CardDescription>Input Description</CardDescription>
 				</CardHeader>
 				<CardContent className="flex flex-col gap-4">
-					<NSCPInputForm />
+					<InputForm />
 				</CardContent>
 			</Card>
 		</section>

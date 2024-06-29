@@ -3,9 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { useServerAction } from 'zsa-react'
 
-import { produceNewMessageAction } from '@/actions/produce-new-message-action'
 import { Button } from '@/components/ui/button'
 import {
 	Form,
@@ -16,28 +14,25 @@ import {
 	FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { produceNewMessageSchema } from '@/schemas/non-built-up-column-schemas'
+import { useServerActionMutation } from '@/lib/hooks'
+import { produceNewMessageAction } from './action'
+import { produceNewMessageSchema } from './schema'
 
-const NSCPInputForm = () => {
-	const { isPending, execute, data } = useServerAction(produceNewMessageAction)
-
+const InputForm = () => {
 	const form = useForm<z.infer<typeof produceNewMessageSchema>>({
 		resolver: zodResolver(produceNewMessageSchema),
 		defaultValues: {
-			name: ''
+			name: '',
+			age: 0
 		}
 	})
 
+	const { mutate, isPending, data } = useServerActionMutation(
+		produceNewMessageAction
+	)
+
 	async function onSubmit(values: z.infer<typeof produceNewMessageSchema>) {
-		const [data, err] = await execute(values)
-
-		if (err) {
-			// show a toast or something
-			return
-		}
-
-		console.log('Data:', data)
-		form.reset({ name: '' })
+		mutate(values)
 	}
 
 	return (
@@ -57,7 +52,20 @@ const NSCPInputForm = () => {
 							</FormItem>
 						)}
 					/>
-					<div className="flex flex-row-reverse">
+					<FormField
+						control={form.control}
+						name="age"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Age</FormLabel>
+								<FormControl>
+									<Input placeholder="age" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<div className="cursor-pointer">
 						<Button disabled={isPending} type="submit" variant={'destructive'}>
 							{isPending ? 'Saving...' : 'Save'}
 						</Button>
@@ -69,4 +77,4 @@ const NSCPInputForm = () => {
 	)
 }
 
-export { NSCPInputForm }
+export { InputForm }

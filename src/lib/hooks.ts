@@ -1,19 +1,22 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
+import { setupServerActionHooks } from 'zsa-react-query'
 
 import { type SectionHashType } from '@/lib/types'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
-const useDebounce = (fn: Function, ms = 300) => {
-	useEffect(() => {
-		const handle = setTimeout(() => {
-			fn()
-		}, ms)
-
-		return () => clearTimeout(handle)
-	}, [fn, ms])
+const useNumberInput = (onChange: any) => {
+	return useCallback(
+		(event: any) => {
+			const value = event.target.value
+			const numberValue = value === '' ? '' : Number(value)
+			onChange?.(numberValue)
+		},
+		[onChange]
+	)
 }
 
 const useSectionInView = (sectionHash: SectionHashType, threshold = 0.75) => {
@@ -31,4 +34,22 @@ const useSectionInView = (sectionHash: SectionHashType, threshold = 0.75) => {
 	}
 }
 
-export { useDebounce, useSectionInView }
+const {
+	useServerActionQuery,
+	useServerActionMutation,
+	useServerActionInfiniteQuery
+} = setupServerActionHooks({
+	hooks: {
+		useQuery: useQuery,
+		useMutation: useMutation,
+		useInfiniteQuery: useInfiniteQuery
+	}
+})
+
+export {
+	useNumberInput,
+	useSectionInView,
+	useServerActionInfiniteQuery,
+	useServerActionMutation,
+	useServerActionQuery
+}
