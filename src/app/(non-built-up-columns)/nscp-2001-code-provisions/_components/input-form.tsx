@@ -1,10 +1,10 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Button } from '@/components/ui/button'
 import {
 	Form,
 	FormControl,
@@ -14,39 +14,66 @@ import {
 	FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue
+} from '@/components/ui/select'
 import { useServerActionMutation } from '@/lib/hooks'
-import { produceNewMessageAction } from './action'
-import { produceNewMessageSchema } from './schema'
+import { nscp2001CodeProvisionsAction } from './action'
+import {
+	effectiveLengthFactorChoices,
+	nscp2001CodeProvisionsSchema,
+	recommendedOrTheoreticalChoices
+} from './schema'
 
 const InputForm = () => {
-	const form = useForm<z.infer<typeof produceNewMessageSchema>>({
-		resolver: zodResolver(produceNewMessageSchema),
+	const queryClient = useQueryClient()
+
+	const form = useForm<z.infer<typeof nscp2001CodeProvisionsSchema>>({
+		resolver: zodResolver(nscp2001CodeProvisionsSchema),
 		defaultValues: {
-			name: '',
-			age: 0
+			Fy: '' as any,
+			A: '' as any,
+			Lx: '' as any,
+			Ly: '' as any,
+			recommendedOrTheoretical: '' as any,
+			effectiveLengthFactor: '' as any,
+			Ix: '' as any,
+			Iy: '' as any
 		}
 	})
 
 	const { mutate, isPending, data } = useServerActionMutation(
-		produceNewMessageAction
+		nscp2001CodeProvisionsAction,
+		{
+			onSuccess: () => {
+				queryClient.setQueryData(['nscp2001CodeProvisionsResult'], data)
+			}
+		}
 	)
 
-	async function onSubmit(values: z.infer<typeof produceNewMessageSchema>) {
+	async function onSubmit(
+		values: z.infer<typeof nscp2001CodeProvisionsSchema>
+	) {
 		mutate(values)
+		form.reset()
 	}
 
 	return (
 		<>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 					<FormField
 						control={form.control}
-						name="name"
+						name="Fy"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Name</FormLabel>
+								<FormLabel>Yield Strength</FormLabel>
 								<FormControl>
-									<Input placeholder="name" {...field} />
+									<Input placeholder="MPa" type="number" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -54,25 +81,126 @@ const InputForm = () => {
 					/>
 					<FormField
 						control={form.control}
-						name="age"
+						name="A"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Age</FormLabel>
+								<FormLabel>Area</FormLabel>
 								<FormControl>
-									<Input placeholder="age" type="number" {...field} />
+									<Input placeholder="mm²" type="number" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
-					<div className="cursor-pointer">
-						<Button disabled={isPending} type="submit" variant={'destructive'}>
-							{isPending ? 'Saving...' : 'Save'}
-						</Button>
-					</div>
+					<FormField
+						control={form.control}
+						name="Lx"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Length X</FormLabel>
+								<FormControl>
+									<Input placeholder="mm" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="Ly"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Length Y</FormLabel>
+								<FormControl>
+									<Input placeholder="mm" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="recommendedOrTheoretical"
+						render={({ field }) => (
+							<FormItem>
+								<Select
+									onValueChange={field.onChange}
+									defaultValue={field.value}
+								>
+									<FormControl>
+										<SelectTrigger>
+											<SelectValue placeholder="Recommended or Theoretical" />
+										</SelectTrigger>
+									</FormControl>
+									<SelectContent>
+										{Object.entries(recommendedOrTheoreticalChoices).map(
+											([key, value]) => (
+												<SelectItem key={key} value={key}>
+													{value}
+												</SelectItem>
+											)
+										)}
+									</SelectContent>
+								</Select>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="effectiveLengthFactor"
+						render={({ field }) => (
+							<FormItem>
+								<Select
+									onValueChange={field.onChange}
+									defaultValue={field.value}
+								>
+									<FormControl>
+										<SelectTrigger>
+											<SelectValue placeholder="Effective Length Factor" />
+										</SelectTrigger>
+									</FormControl>
+									<SelectContent>
+										{Object.entries(effectiveLengthFactorChoices).map(
+											([key, value]) => (
+												<SelectItem key={key} value={key}>
+													{value}
+												</SelectItem>
+											)
+										)}
+									</SelectContent>
+								</Select>
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="Ix"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Moment of Inertia X</FormLabel>
+								<FormControl>
+									<Input placeholder="mm⁴" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="Iy"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Moment of Inertia Y</FormLabel>
+								<FormControl>
+									<Input placeholder="mm⁴" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
 				</form>
 			</Form>
-			{data && <div>Message: {data}</div>}
 		</>
 	)
 }

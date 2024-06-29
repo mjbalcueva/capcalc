@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import {
 	Card,
 	CardContent,
@@ -27,6 +28,9 @@ const InputSection = () => {
 				<CardContent className="flex flex-col gap-4">
 					<InputForm />
 				</CardContent>
+				<Button type="submit" className="w-full">
+					Compute
+				</Button>
 			</Card>
 		</section>
 	)
