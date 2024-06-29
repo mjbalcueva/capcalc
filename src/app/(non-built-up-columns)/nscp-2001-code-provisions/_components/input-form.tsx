@@ -3,9 +3,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { type z } from 'zod'
 
-import { Button } from '@/components/ui/button'
 import {
 	Form,
 	FormControl,
@@ -25,8 +24,10 @@ import {
 import { useServerActionMutation } from '@/lib/hooks'
 import { nscp2001CodeProvisionsAction } from './action'
 import {
+	EffectiveLengthFactor,
 	effectiveLengthFactorChoices,
 	nscp2001CodeProvisionsSchema,
+	RecommendedOrTheoretical,
 	recommendedOrTheoreticalChoices
 } from './schema'
 
@@ -36,18 +37,18 @@ const InputForm = () => {
 	const form = useForm<z.infer<typeof nscp2001CodeProvisionsSchema>>({
 		resolver: zodResolver(nscp2001CodeProvisionsSchema),
 		defaultValues: {
-			Fy: '' as any,
-			A: '' as any,
-			Lx: '' as any,
-			Ly: '' as any,
-			recommendedOrTheoretical: '' as any,
-			effectiveLengthFactor: '' as any,
-			Ix: '' as any,
-			Iy: '' as any
+			Fy: '' as unknown as number,
+			A: '' as unknown as number,
+			Lx: '' as unknown as number,
+			Ly: '' as unknown as number,
+			recommendedOrTheoretical: '' as RecommendedOrTheoretical,
+			effectiveLengthFactor: '' as EffectiveLengthFactor,
+			Ix: '' as unknown as number,
+			Iy: '' as unknown as number
 		}
 	})
 
-	const { mutate, isPending, data } = useServerActionMutation(
+	const { mutate, data } = useServerActionMutation(
 		nscp2001CodeProvisionsAction,
 		{
 			onSuccess: () => {

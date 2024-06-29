@@ -23,7 +23,7 @@ export default function Layout({ children }: Props) {
 
 	useEffect(() => {
 		setActiveSection('#non-built-up-columns')
-	}, [])
+	}, [setActiveSection])
 
 	return (
 		<div className="relative min-h-screen bg-white antialiased dark:bg-[#09090b]">
