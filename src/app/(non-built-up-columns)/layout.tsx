@@ -51,7 +51,7 @@ export default function Layout({ children }: Props) {
 				<Separator className="mb-8 mt-8 sm:mb-12 sm:mt-14 lg:mb-14 lg:mt-20" />
 				{children}
 			</motion.div>
-			<FooterSection className="!bg-[#09090b]" />
+			<FooterSection className="dark:!bg-[#09090b]" />
 		</div>
 	)
 }
