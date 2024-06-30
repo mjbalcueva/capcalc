@@ -25,9 +25,7 @@ import {
 import {
 	effectiveLengthFactorChoices,
 	nscp2001CodeProvisionsSchema,
-	recommendedOrTheoreticalChoices,
-	type EffectiveLengthFactor,
-	type RecommendedOrTheoretical
+	recommendedOrTheoreticalChoices
 } from './schema'
 
 const CardInput = () => {
@@ -37,17 +35,7 @@ const CardInput = () => {
 		handleSubmit,
 		formState: { errors, isSubmitting }
 	} = useForm<z.infer<typeof nscp2001CodeProvisionsSchema>>({
-		resolver: zodResolver(nscp2001CodeProvisionsSchema),
-		defaultValues: {
-			Fy: '' as unknown as number,
-			A: '' as unknown as number,
-			Lx: '' as unknown as number,
-			Ly: '' as unknown as number,
-			recommendedOrTheoretical: '' as RecommendedOrTheoretical,
-			effectiveLengthFactor: '' as EffectiveLengthFactor,
-			Ix: '' as unknown as number,
-			Iy: '' as unknown as number
-		}
+		resolver: zodResolver(nscp2001CodeProvisionsSchema)
 	})
 
 	const onSubmit = (values: z.infer<typeof nscp2001CodeProvisionsSchema>) => {
