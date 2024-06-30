@@ -32,7 +32,7 @@ import {
 	recommendedOrTheoreticalChoices
 } from './schema'
 
-const CardBody = () => {
+const CardInputBody = () => {
 	const form = useForm<z.infer<typeof nscp2001CodeProvisionsSchema>>({
 		resolver: zodResolver(nscp2001CodeProvisionsSchema),
 		defaultValues: {
@@ -65,7 +65,7 @@ const CardBody = () => {
 						name="Fy"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Yield Strength</FormLabel>
+								<FormLabel color="#f10000">Yield Strength</FormLabel>
 								<FormControl>
 									<Input placeholder="MPa" type="number" {...field} />
 								</FormControl>
@@ -204,4 +204,4 @@ const CardBody = () => {
 	)
 }
 
-export { CardBody }
+export { CardInputBody }
