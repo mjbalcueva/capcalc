@@ -1,15 +1,12 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import {
 	Card,
-	CardContent,
 	CardDescription,
-	CardFooter,
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
-import { InputForm } from './input-form'
+import { CardBody } from './card-body'
 
 const InputSection = () => {
 	return (
@@ -19,14 +16,7 @@ const InputSection = () => {
 					<CardTitle>Input Variables</CardTitle>
 					<CardDescription>Input Description</CardDescription>
 				</CardHeader>
-				<CardContent className="flex flex-col gap-4">
-					<InputForm />
-				</CardContent>
-				<CardFooter>
-					<Button type="submit" className="w-full">
-						Compute
-					</Button>
-				</CardFooter>
+				<CardBody />
 			</Card>
 		</section>
 	)
