@@ -60,13 +60,20 @@ const CardInput = () => {
 						/>
 					</FormItem>
 					<FormItem label="Area" errorMessage={errors.A?.message}>
-						<Input id="A" type="number" placeholder="mm²" {...register('A')} />
+						<Input type="number" placeholder="mm²" {...register('A')} />
 					</FormItem>
-					<FormItem label="Length X" errorMessage={errors.Lx?.message}>
-						<Input id="Lx" type="number" placeholder="mm" {...register('Lx')} />
+					<FormItem label="Length of Column" errorMessage={errors.L?.message}>
+						<Input type="number" placeholder="mm" {...register('L')} />
 					</FormItem>
-					<FormItem label="Length Y" errorMessage={errors.Ly?.message}>
-						<Input id="Ly" type="number" placeholder="mm" {...register('Ly')} />
+					<FormItem
+						label="Supports Midspan"
+						errorMessage={errors.supportsMidspan?.message}
+					>
+						<Input
+							type="number"
+							placeholder="mm"
+							{...register('supportsMidspan')}
+						/>
 					</FormItem>
 					<FormItem errorMessage={errors.recommendedOrTheoretical?.message}>
 						<Controller
@@ -122,23 +129,13 @@ const CardInput = () => {
 						label="Moment of Inertia X"
 						errorMessage={errors.Ix?.message}
 					>
-						<Input
-							id="Ix"
-							type="number"
-							placeholder="mm⁴"
-							{...register('Ix')}
-						/>
+						<Input type="number" placeholder="mm⁴" {...register('Ix')} />
 					</FormItem>
 					<FormItem
 						label="Moment of Inertia Y"
 						errorMessage={errors.Iy?.message}
 					>
-						<Input
-							id="Iy"
-							type="number"
-							placeholder="mm⁴"
-							{...register('Iy')}
-						/>
+						<Input type="number" placeholder="mm⁴" {...register('Iy')} />
 					</FormItem>
 				</CardContent>
 				<CardFooter className="flex flex-col">

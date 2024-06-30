@@ -27,8 +27,8 @@ export const effectiveLengthFactorChoices: {
 export const nscp2001CodeProvisionsSchema = z.object({
 	Fy: z.coerce.number().positive(),
 	A: z.coerce.number().positive(),
-	Lx: z.coerce.number().positive(),
-	Ly: z.coerce.number().positive(),
+	L: z.coerce.number().positive(),
+	supportsMidspan: z.boolean(),
 	recommendedOrTheoretical: z.enum(recommendedOrTheoretical),
 	effectiveLengthFactor: z.enum(effectiveLengthFactor),
 	Ix: z.coerce.number().positive(),
