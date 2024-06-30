@@ -15,7 +15,6 @@ import {
 	CardTitle
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import {
 	Select,
 	SelectContent,
@@ -23,13 +22,12 @@ import {
 	SelectTrigger,
 	SelectValue
 } from '@/components/ui/select'
-import { Separator } from '@/components/ui/separator'
 import {
-	EffectiveLengthFactor,
 	effectiveLengthFactorChoices,
 	nscp2001CodeProvisionsSchema,
-	RecommendedOrTheoretical,
-	recommendedOrTheoreticalChoices
+	recommendedOrTheoreticalChoices,
+	type EffectiveLengthFactor,
+	type RecommendedOrTheoretical
 } from './schema'
 
 const CardInput = () => {
@@ -37,8 +35,7 @@ const CardInput = () => {
 		control,
 		register,
 		handleSubmit,
-		formState: { errors, isSubmitting },
-		watch
+		formState: { errors, isSubmitting }
 	} = useForm<z.infer<typeof nscp2001CodeProvisionsSchema>>({
 		resolver: zodResolver(nscp2001CodeProvisionsSchema),
 		defaultValues: {
@@ -66,7 +63,7 @@ const CardInput = () => {
 
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<CardContent className="flex flex-col space-y-4">
-					<FormItem label="Yield Strength" errorMessage={errors.Fy?.message!}>
+					<FormItem label="Yield Strength" errorMessage={errors.Fy?.message}>
 						<Input
 							id="Fy"
 							type="number"
@@ -74,16 +71,16 @@ const CardInput = () => {
 							{...register('Fy')}
 						/>
 					</FormItem>
-					<FormItem label="Area" errorMessage={errors.A?.message!}>
+					<FormItem label="Area" errorMessage={errors.A?.message}>
 						<Input id="A" type="number" placeholder="mm²" {...register('A')} />
 					</FormItem>
-					<FormItem label="Length X" errorMessage={errors.Lx?.message!}>
+					<FormItem label="Length X" errorMessage={errors.Lx?.message}>
 						<Input id="Lx" type="number" placeholder="mm" {...register('Lx')} />
 					</FormItem>
-					<FormItem label="Length Y" errorMessage={errors.Ly?.message!}>
+					<FormItem label="Length Y" errorMessage={errors.Ly?.message}>
 						<Input id="Ly" type="number" placeholder="mm" {...register('Ly')} />
 					</FormItem>
-					<FormItem errorMessage={errors.recommendedOrTheoretical?.message!}>
+					<FormItem errorMessage={errors.recommendedOrTheoretical?.message}>
 						<Controller
 							control={control}
 							name="recommendedOrTheoretical"
@@ -108,7 +105,7 @@ const CardInput = () => {
 							)}
 						/>
 					</FormItem>
-					<FormItem errorMessage={errors.effectiveLengthFactor?.message!}>
+					<FormItem errorMessage={errors.effectiveLengthFactor?.message}>
 						<Controller
 							control={control}
 							name="effectiveLengthFactor"
@@ -135,7 +132,7 @@ const CardInput = () => {
 					</FormItem>
 					<FormItem
 						label="Moment of Inertia X"
-						errorMessage={errors.Ix?.message!}
+						errorMessage={errors.Ix?.message}
 					>
 						<Input
 							id="Ix"
@@ -146,7 +143,7 @@ const CardInput = () => {
 					</FormItem>
 					<FormItem
 						label="Moment of Inertia Y"
-						errorMessage={errors.Iy?.message!}
+						errorMessage={errors.Iy?.message}
 					>
 						<Input
 							id="Iy"

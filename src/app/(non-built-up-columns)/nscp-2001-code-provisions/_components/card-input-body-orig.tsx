@@ -25,11 +25,11 @@ import {
 import { useServerActionMutation } from '@/lib/hooks'
 import { nscp2001CodeProvisionsAction } from './action'
 import {
-	EffectiveLengthFactor,
 	effectiveLengthFactorChoices,
 	nscp2001CodeProvisionsSchema,
-	RecommendedOrTheoretical,
-	recommendedOrTheoreticalChoices
+	recommendedOrTheoreticalChoices,
+	type EffectiveLengthFactor,
+	type RecommendedOrTheoretical
 } from './schema'
 
 const CardInputBody = () => {
@@ -47,7 +47,7 @@ const CardInputBody = () => {
 		}
 	})
 
-	const { mutate, data } = useServerActionMutation(nscp2001CodeProvisionsAction)
+	const { mutate } = useServerActionMutation(nscp2001CodeProvisionsAction)
 
 	async function onSubmit(
 		values: z.infer<typeof nscp2001CodeProvisionsSchema>
