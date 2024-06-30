@@ -186,7 +186,9 @@ const CardInput = () => {
 					<p>{JSON.stringify(watch(), null, 2)}</p>
 				</div>
 				<CardFooter className="flex flex-col">
-					<Button className="w-full">Clear</Button>
+					<Button className="w-full" disabled={isSubmitting}>
+						Clear
+					</Button>
 				</CardFooter>
 			</form>
 		</Card>
