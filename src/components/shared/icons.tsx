@@ -1,8 +1,9 @@
-import { Moon, Sun, type LucideProps } from 'lucide-react'
+import { Info, Moon, Sun, type LucideProps } from 'lucide-react'
 
 const Icons = {
 	moon: Moon,
 	sun: Sun,
+	info: Info,
 	logo: (props: LucideProps) => (
 		<svg version="1.0" viewBox="0 0 750 750" {...props}>
 			<path

@@ -1,6 +1,5 @@
 'use client'
 
-import { watch } from 'fs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { type z } from 'zod'
@@ -9,7 +8,6 @@ import { FormItem } from '@/components/form'
 import { Button } from '@/components/ui/button'
 import {
 	Card,
-	CardContent,
 	CardDescription,
 	CardFooter,
 	CardHeader,
@@ -26,6 +24,12 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { Switch } from '@/components/ui/switch'
 import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger
+} from '@/components/ui/tooltip'
+import {
 	effectiveLengthFactorChoices,
 	nscp2001CodeProvisionsSchema,
 	recommendedOrTheoreticalChoices
@@ -36,6 +40,7 @@ const CardInput = () => {
 		control,
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors, isSubmitting },
 		watch
 	} = useForm<z.infer<typeof nscp2001CodeProvisionsSchema>>({
@@ -45,8 +50,8 @@ const CardInput = () => {
 			A: undefined,
 			L: undefined,
 			supportsMidspan: false,
-			recommendedOrTheoretical: undefined,
-			effectiveLengthFactor: undefined,
+			recommendedOrTheoretical: 'recommended',
+			effectiveLengthFactor: 'fixed-fixed',
 			Ix: undefined,
 			Iy: undefined
 		}
@@ -54,6 +59,7 @@ const CardInput = () => {
 
 	const onSubmit = (values: z.infer<typeof nscp2001CodeProvisionsSchema>) => {
 		console.log(values)
+		reset()
 	}
 
 	return (
@@ -64,33 +70,47 @@ const CardInput = () => {
 			</CardHeader>
 
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<CardContent className="flex flex-col space-y-4">
+				<div className="flex flex-col space-y-4 px-6">
 					<FormItem label="Yield Strength" errorMessage={errors.Fy?.message}>
-						<Input
-							id="Fy"
-							type="number"
-							placeholder="MPa"
-							{...register('Fy')}
-						/>
+						<Input type="number" placeholder="MPa" {...register('Fy')} />
 					</FormItem>
+
 					<FormItem label="Area" errorMessage={errors.A?.message}>
 						<Input type="number" placeholder="mm²" {...register('A')} />
 					</FormItem>
+
 					<FormItem label="Length of Column" errorMessage={errors.L?.message}>
-						<Controller
-							control={control}
-							name="supportsMidspan"
-							render={({ field }) => (
-								<Switch
-									checked={field.value}
-									onCheckedChange={field.onChange}
-									className="absolute right-0"
+						<TooltipProvider>
+							<div className="absolute -top-[6px] right-0">
+								<Controller
+									control={control}
+									name="supportsMidspan"
+									render={({ field }) => (
+										<Tooltip delayDuration={200}>
+											<TooltipTrigger asChild>
+												<div>
+													<Switch
+														checked={field.value}
+														onCheckedChange={field.onChange}
+														className="ring-[#afafaf] ring-offset-[3px] ring-offset-background hover:ring-1"
+													/>
+												</div>
+											</TooltipTrigger>
+											<TooltipContent className="bg-black bg-opacity-25 text-gray-500 backdrop-blur-[0.5rem]">
+												<p>Midspan Support</p>
+											</TooltipContent>
+										</Tooltip>
+									)}
 								/>
-							)}
-						/>
+							</div>
+						</TooltipProvider>
 						<Input type="number" placeholder="mm" {...register('L')} />
 					</FormItem>
-					<FormItem errorMessage={errors.recommendedOrTheoretical?.message}>
+
+					<FormItem
+						label="Recomended or Theoretical"
+						errorMessage={errors.recommendedOrTheoretical?.message}
+					>
 						<Controller
 							control={control}
 							name="recommendedOrTheoretical"
@@ -100,12 +120,16 @@ const CardInput = () => {
 									defaultValue={field.value}
 								>
 									<SelectTrigger>
-										<SelectValue placeholder="Choose Effective Length Factor" />
+										<SelectValue placeholder="Recommended or Theoretical" />
 									</SelectTrigger>
 									<SelectContent>
 										{Object.entries(recommendedOrTheoreticalChoices).map(
 											([key, value]) => (
-												<SelectItem key={key} value={key}>
+												<SelectItem
+													key={key}
+													value={key}
+													className="text-muted-foreground"
+												>
 													{value}
 												</SelectItem>
 											)
@@ -115,7 +139,11 @@ const CardInput = () => {
 							)}
 						/>
 					</FormItem>
-					<FormItem errorMessage={errors.effectiveLengthFactor?.message}>
+
+					<FormItem
+						label="Effective Length Factor"
+						errorMessage={errors.effectiveLengthFactor?.message}
+					>
 						<Controller
 							control={control}
 							name="effectiveLengthFactor"
@@ -125,7 +153,7 @@ const CardInput = () => {
 									defaultValue={field.value}
 								>
 									<SelectTrigger>
-										<SelectValue placeholder="Choose Effective Length Factor" />
+										<SelectValue placeholder="Effective Length Factor" />
 									</SelectTrigger>
 									<SelectContent>
 										{Object.entries(effectiveLengthFactorChoices).map(
@@ -140,6 +168,7 @@ const CardInput = () => {
 							)}
 						/>
 					</FormItem>
+
 					<FormItem
 						label="Moment of Inertia X"
 						errorMessage={errors.Ix?.message}
@@ -152,13 +181,12 @@ const CardInput = () => {
 					>
 						<Input type="number" placeholder="mm⁴" {...register('Iy')} />
 					</FormItem>
+
 					<Separator />
 					<p>{JSON.stringify(watch(), null, 2)}</p>
-				</CardContent>
+				</div>
 				<CardFooter className="flex flex-col">
-					<Button type="submit" disabled={isSubmitting} className="w-full">
-						Submit
-					</Button>
+					<Button className="w-full">Clear</Button>
 				</CardFooter>
 			</form>
 		</Card>
