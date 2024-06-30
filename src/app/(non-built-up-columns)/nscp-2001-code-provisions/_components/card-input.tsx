@@ -1,5 +1,6 @@
 'use client'
 
+import { watch } from 'fs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { type z } from 'zod'
@@ -22,6 +23,8 @@ import {
 	SelectTrigger,
 	SelectValue
 } from '@/components/ui/select'
+import { Separator } from '@/components/ui/separator'
+import { Switch } from '@/components/ui/switch'
 import {
 	effectiveLengthFactorChoices,
 	nscp2001CodeProvisionsSchema,
@@ -33,9 +36,20 @@ const CardInput = () => {
 		control,
 		register,
 		handleSubmit,
-		formState: { errors, isSubmitting }
+		formState: { errors, isSubmitting },
+		watch
 	} = useForm<z.infer<typeof nscp2001CodeProvisionsSchema>>({
-		resolver: zodResolver(nscp2001CodeProvisionsSchema)
+		resolver: zodResolver(nscp2001CodeProvisionsSchema),
+		defaultValues: {
+			Fy: undefined,
+			A: undefined,
+			L: undefined,
+			supportsMidspan: false,
+			recommendedOrTheoretical: undefined,
+			effectiveLengthFactor: undefined,
+			Ix: undefined,
+			Iy: undefined
+		}
 	})
 
 	const onSubmit = (values: z.infer<typeof nscp2001CodeProvisionsSchema>) => {
@@ -63,17 +77,18 @@ const CardInput = () => {
 						<Input type="number" placeholder="mm²" {...register('A')} />
 					</FormItem>
 					<FormItem label="Length of Column" errorMessage={errors.L?.message}>
-						<Input type="number" placeholder="mm" {...register('L')} />
-					</FormItem>
-					<FormItem
-						label="Supports Midspan"
-						errorMessage={errors.supportsMidspan?.message}
-					>
-						<Input
-							type="number"
-							placeholder="mm"
-							{...register('supportsMidspan')}
+						<Controller
+							control={control}
+							name="supportsMidspan"
+							render={({ field }) => (
+								<Switch
+									checked={field.value}
+									onCheckedChange={field.onChange}
+									className="absolute right-0"
+								/>
+							)}
 						/>
+						<Input type="number" placeholder="mm" {...register('L')} />
 					</FormItem>
 					<FormItem errorMessage={errors.recommendedOrTheoretical?.message}>
 						<Controller
@@ -137,6 +152,8 @@ const CardInput = () => {
 					>
 						<Input type="number" placeholder="mm⁴" {...register('Iy')} />
 					</FormItem>
+					<Separator />
+					<p>{JSON.stringify(watch(), null, 2)}</p>
 				</CardContent>
 				<CardFooter className="flex flex-col">
 					<Button type="submit" disabled={isSubmitting} className="w-full">
