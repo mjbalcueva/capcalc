@@ -64,7 +64,7 @@ Form.Input = FormInput
 type FormSelectProps = {
 	choices: Record<string, string>
 	placeHolder: string
-}
+} & React.ComponentPropsWithoutRef<typeof Select>
 const FormSelect = ({ choices, placeHolder, ...props }: FormSelectProps) => {
 	return (
 		<Select {...props}>
