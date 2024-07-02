@@ -85,15 +85,16 @@ const CardInput = () => {
 							control={control}
 							name="supportsMidspan"
 							render={({ field }) => (
-								<div className="absolute -top-[6px] right-0">
+								<>
 									<FormItem.TooltipTrigger>
 										<FormItem.Switch
 											checked={field.value}
 											onCheckedChange={field.onChange}
+											className="absolute right-0 top-[4px]"
 										/>
 									</FormItem.TooltipTrigger>
 									<FormItem.TooltipContent description="Enable Midspan Support" />
-								</div>
+								</>
 							)}
 						/>
 					</FormItem.Tooltip>

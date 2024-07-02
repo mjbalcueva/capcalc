@@ -89,9 +89,8 @@ const FormSwitch = React.forwardRef<
 	<Switch
 		ref={ref}
 		className={cn(
-			(className =
-				'ring-[#afafaf] ring-offset-[3px] ring-offset-background hover:ring-1'),
-			className
+			className,
+			'ring-[#afafaf] ring-offset-[3px] ring-offset-background hover:ring-1'
 		)}
 		{...props}
 	/>
