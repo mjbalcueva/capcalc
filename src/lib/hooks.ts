@@ -1,14 +1,45 @@
 'use client'
 
-import { useEffect } from 'react'
+import { type usePathname } from 'next/navigation'
+import { useEffect, useMemo } from 'react'
 import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
 import { setupServerActionHooks } from 'zsa-react-query'
 
-import { type SectionHashType } from '@/lib/types'
+import { type calculators } from '@/lib/links'
+import { type HashType } from '@/lib/types'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
-const useSectionInView = (sectionHash: SectionHashType, threshold = 0.75) => {
+type CalculatorType = {
+	calculators: typeof calculators
+	pathName: ReturnType<typeof usePathname>
+}
+
+const useCalculator = ({ calculators, pathName }: CalculatorType) => {
+	const { activeSection, activeCalculator, findCalculatorWithHash } =
+		useMemo(() => {
+			const activeSection = calculators.find((calculator) =>
+				calculator.calculators.some(({ link }) => link === pathName)
+			)
+
+			const currentCalculator = activeSection?.calculators.find(
+				({ link }) => link === pathName
+			)
+
+			const findCalculatorWithHash = (hash: HashType) =>
+				calculators.find((calculator) => calculator.hash === hash)
+
+			return {
+				activeSection,
+				activeCalculator: currentCalculator,
+				findCalculatorWithHash
+			}
+		}, [calculators, pathName])
+
+	return { activeSection, activeCalculator, findCalculatorWithHash }
+}
+
+const useSectionInView = (sectionHash: HashType, threshold = 0.75) => {
 	const { ref, inView } = useInView({ threshold })
 	const { setActiveSection, timeOfLastClick } = useActiveSectionContext()
 
@@ -34,6 +65,7 @@ const {
 })
 
 export {
+	useCalculator,
 	useSectionInView,
 	useServerActionInfiniteQuery,
 	useServerActionMutation,

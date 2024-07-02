@@ -41,7 +41,7 @@ const calculators = [
 			'Explore our suite of calculators designed for welded connections, which are essential structural elements used to join two or more components together.',
 		calculators: []
 	}
-] as const
+]
 
 const menuItems = [
 	{

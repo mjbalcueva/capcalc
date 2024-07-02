@@ -2,13 +2,23 @@
 
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'framer-motion'
+import { FormProvider, useForm } from 'react-hook-form'
+import { type z } from 'zod'
 
 import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
+import { useCalculator } from '@/lib/hooks'
 import { calculators } from '@/lib/links'
-import { HashType } from '@/lib/types'
+import { nscp2001CodeProvisionsSchema } from '@/lib/schema'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
+
+const pageToSchemaMapping = {
+	'/nscp-2001-code-provisions': nscp2001CodeProvisionsSchema
+} as const
+
+type PagePath = keyof typeof pageToSchemaMapping
 
 type Props = {
 	children: React.ReactNode
@@ -17,18 +27,20 @@ type Props = {
 export default function Layout({ children }: Props) {
 	const pathName = usePathname()
 	const { setActiveSection } = useActiveSectionContext()
+	const { activeSection, activeCalculator } = useCalculator({
+		calculators,
+		pathName
+	})
 
-	const activeCalculatorSection = calculators.find((calculator) =>
-		calculator.calculators.some(({ link }) => link === pathName)
-	)
+	const currentSchema = pageToSchemaMapping[pathName as PagePath]
 
-	const currentCalculator = activeCalculatorSection?.calculators.find(
-		({ link }) => link === pathName
-	)
+	const form = useForm<z.infer<typeof currentSchema>>({
+		resolver: zodResolver(currentSchema)
+	})
 
 	useEffect(() => {
-		setActiveSection(activeCalculatorSection?.hash as HashType)
-	}, [setActiveSection])
+		if (activeSection) setActiveSection(activeSection.hash)
+	}, [activeSection, setActiveSection])
 
 	return (
 		<div className="relative min-h-screen bg-white antialiased dark:bg-[#09090b]">
@@ -47,14 +59,14 @@ export default function Layout({ children }: Props) {
 			>
 				<section className="flex flex-col gap-4 text-center sm:gap-6 sm:text-start md:gap-8">
 					<h1 className="bg-opacity-50 bg-gradient-to-b from-muted-foreground/90 to-foreground/90 bg-clip-text text-3xl font-bold text-transparent dark:from-muted-foreground/90 dark:to-foreground/90 sm:text-4xl md:text-5xl">
-						{currentCalculator?.title}
+						{activeCalculator?.title}
 					</h1>
 					<p className="max-w-5xl text-muted-foreground sm:text-lg">
-						{currentCalculator?.description}
+						{activeCalculator?.description}
 					</p>
 				</section>
 				<Separator className="mb-8 mt-8 sm:mb-12 sm:mt-14 lg:mb-14 lg:mt-20" />
-				{children}
+				<FormProvider {...form}>{children}</FormProvider>
 			</motion.div>
 			<FooterSection className="dark:!bg-[#09090b]" />
 		</div>
