@@ -8,7 +8,7 @@ import {
 	CardTitle
 } from '@/components/ui/card'
 
-const CardResult = () => {
+const ResultCard = () => {
 	return (
 		<Card>
 			<CardHeader>
@@ -24,4 +24,4 @@ const CardResult = () => {
 	)
 }
 
-export { CardResult }
+export { ResultCard }

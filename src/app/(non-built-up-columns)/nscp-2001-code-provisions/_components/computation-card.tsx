@@ -5,7 +5,7 @@ import {
 	CardTitle
 } from '@/components/ui/card'
 
-const CardComputationVariables = () => {
+const ComputationCard = () => {
 	return (
 		<Card>
 			<CardHeader>
@@ -16,4 +16,4 @@ const CardComputationVariables = () => {
 	)
 }
 
-export { CardComputationVariables }
+export { ComputationCard }

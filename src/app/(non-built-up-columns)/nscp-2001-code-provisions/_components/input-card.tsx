@@ -22,7 +22,7 @@ import {
 	recommendedOrTheoreticalChoices
 } from './schema'
 
-const CardInput = () => {
+const InputCard = () => {
 	const {
 		control,
 		register,
@@ -169,4 +169,4 @@ const CardInput = () => {
 	)
 }
 
-export { CardInput }
+export { InputCard }

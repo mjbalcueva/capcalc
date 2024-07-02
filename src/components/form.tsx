@@ -2,6 +2,7 @@ import * as React from 'react'
 import { type TooltipProps } from '@radix-ui/react-tooltip'
 import { Controller } from 'react-hook-form'
 
+import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import {
 	Select,
@@ -18,7 +19,6 @@ import {
 	TooltipTrigger
 } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
-import { Input } from './ui/input'
 
 type FormItemProps = {
 	label?: string
