@@ -7,7 +7,7 @@ import { menuItems } from '@/lib/links'
 import { cn } from '@/lib/utils'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
-const Header = () => {
+const NavigationMenu = () => {
 	const { activeSection, setActiveSection, setTimeOfLastClick } =
 		useActiveSectionContext()
 
@@ -60,4 +60,4 @@ const Header = () => {
 	)
 }
 
-export { Header }
+export { NavigationMenu }

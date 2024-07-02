@@ -1,6 +1,6 @@
 import { GeistSans } from 'geist/font/sans'
 
-import { Header } from '@/components/header'
+import { NavigationMenu } from '@/components/navigation-menu'
 import { TailwindIndicator } from '@/components/shared/tailwind-indicator'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { ActiveSectionProvider } from '@/providers/active-section-provider'
@@ -28,7 +28,7 @@ export default function RootLayout({
 			<body>
 				<ThemeProvider attribute="class" defaultTheme="dark">
 					<ActiveSectionProvider>
-						<Header />
+						<NavigationMenu />
 						{children}
 						<TailwindIndicator />
 						<ThemeToggle />
