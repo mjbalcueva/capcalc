@@ -1,8 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { type z } from 'zod'
 
 import { FormItem } from '@/components/form'
@@ -18,9 +17,9 @@ import {
 import { Separator } from '@/components/ui/separator'
 import {
 	effectiveLengthFactorChoices,
-	nscp2001CodeProvisionsSchema,
-	recommendedOrTheoreticalChoices
-} from './schema'
+	recommendedOrTheoreticalChoices,
+	type nscp2001CodeProvisionsSchema
+} from '@/lib/schema'
 
 const InputCard = () => {
 	const {
@@ -30,12 +29,7 @@ const InputCard = () => {
 		trigger,
 		watch,
 		formState: { errors, isSubmitting }
-	} = useForm<z.infer<typeof nscp2001CodeProvisionsSchema>>({
-		resolver: zodResolver(nscp2001CodeProvisionsSchema),
-		defaultValues: {
-			supportsMidspan: false
-		}
-	})
+	} = useFormContext<z.infer<typeof nscp2001CodeProvisionsSchema>>()
 
 	useEffect(() => {
 		void trigger()
@@ -82,8 +76,9 @@ const InputCard = () => {
 				>
 					<FormItem.Tooltip delayDuration={450}>
 						<FormItem.Controller
-							control={control}
 							name="supportsMidspan"
+							control={control}
+							defaultValue={false}
 							render={({ field }) => (
 								<div className="absolute -top-[6px] right-0">
 									<FormItem.TooltipTrigger>

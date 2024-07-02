@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
-import { nonBuiltUpColumns } from '@/lib/links'
+import { calculators } from '@/lib/links'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 type Props = {
@@ -17,8 +17,12 @@ export default function Layout({ children }: Props) {
 	const pathName = usePathname()
 	const { setActiveSection } = useActiveSectionContext()
 
-	const page = nonBuiltUpColumns.calculators.find(
-		(calculator) => calculator.link === pathName
+	const activeCalculatorSection = calculators.find((calculator) =>
+		calculator.calculators.some(({ link }) => link === pathName)
+	)
+
+	const currentCalculator = activeCalculatorSection?.calculators.find(
+		({ link }) => link === pathName
 	)
 
 	useEffect(() => {
@@ -42,10 +46,10 @@ export default function Layout({ children }: Props) {
 			>
 				<section className="flex flex-col gap-4 text-center sm:gap-6 sm:text-start md:gap-8">
 					<h1 className="bg-opacity-50 bg-gradient-to-b from-muted-foreground/90 to-foreground/90 bg-clip-text text-3xl font-bold text-transparent dark:from-muted-foreground/90 dark:to-foreground/90 sm:text-4xl md:text-5xl">
-						{page!.title}
+						{currentCalculator?.title}
 					</h1>
 					<p className="max-w-5xl text-muted-foreground sm:text-lg">
-						{page!.description}
+						{currentCalculator?.description}
 					</p>
 				</section>
 				<Separator className="mb-8 mt-8 sm:mb-12 sm:mt-14 lg:mb-14 lg:mt-20" />
