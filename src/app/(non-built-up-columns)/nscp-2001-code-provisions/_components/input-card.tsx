@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { type z } from 'zod'
 
 import { FormItem } from '@/components/form'
 import { Button } from '@/components/ui/button'
@@ -38,12 +38,12 @@ const InputCard = () => {
 	})
 
 	useEffect(() => {
-		trigger()
+		void trigger()
 	}, [trigger])
 
 	useEffect(() => {
 		const subscription = watch(() => {
-			trigger()
+			void trigger()
 			console.log('watch', watch())
 		})
 		return () => subscription.unsubscribe()
