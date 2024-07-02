@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
 import { type z } from 'zod'
 
-import { FormItem } from '@/components/form'
+import { Form } from '@/components/form'
 import { Button } from '@/components/ui/button'
 import {
 	Card,
@@ -69,128 +69,120 @@ const CardInput = () => {
 				<CardDescription>Input Description</CardDescription>
 			</CardHeader>
 
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<div className="flex flex-col space-y-4 px-6">
-					<FormItem label="Yield Strength" errorMessage={errors.Fy?.message}>
-						<Input type="number" placeholder="MPa" {...register('Fy')} />
-					</FormItem>
+			<Form onSubmit={handleSubmit(onSubmit)}>
+				<Form.Item label="Yield Strength" errorMessage={errors.Fy?.message}>
+					<Input type="number" placeholder="MPa" {...register('Fy')} />
+				</Form.Item>
 
-					<FormItem label="Area" errorMessage={errors.A?.message}>
-						<Input type="number" placeholder="mm²" {...register('A')} />
-					</FormItem>
+				<Form.Item label="Area" errorMessage={errors.A?.message}>
+					<Input type="number" placeholder="mm²" {...register('A')} />
+				</Form.Item>
 
-					<FormItem label="Length of Column" errorMessage={errors.L?.message}>
-						<TooltipProvider>
-							<div className="absolute -top-[6px] right-0">
-								<Controller
-									control={control}
-									name="supportsMidspan"
-									render={({ field }) => (
-										<Tooltip delayDuration={200}>
-											<TooltipTrigger asChild>
-												<div>
-													<Switch
-														checked={field.value}
-														onCheckedChange={field.onChange}
-														className="ring-[#afafaf] ring-offset-[3px] ring-offset-background hover:ring-1"
-													/>
-												</div>
-											</TooltipTrigger>
-											<TooltipContent className="bg-black bg-opacity-25 text-gray-500 backdrop-blur-[0.5rem]">
-												<p>Midspan Support</p>
-											</TooltipContent>
-										</Tooltip>
+				<Form.Item label="Length of Column" errorMessage={errors.L?.message}>
+					<TooltipProvider>
+						<div className="absolute -top-[6px] right-0">
+							<Controller
+								control={control}
+								name="supportsMidspan"
+								render={({ field }) => (
+									<Tooltip delayDuration={200}>
+										<TooltipTrigger asChild>
+											<div>
+												<Switch
+													checked={field.value}
+													onCheckedChange={field.onChange}
+													className="ring-[#afafaf] ring-offset-[3px] ring-offset-background hover:ring-1"
+												/>
+											</div>
+										</TooltipTrigger>
+										<TooltipContent className="bg-black bg-opacity-25 text-gray-500 backdrop-blur-[0.5rem]">
+											<p>Midspan Support</p>
+										</TooltipContent>
+									</Tooltip>
+								)}
+							/>
+						</div>
+					</TooltipProvider>
+					<Input type="number" placeholder="mm" {...register('L')} />
+				</Form.Item>
+
+				<Form.Item
+					label="Recomended or Theoretical"
+					errorMessage={errors.recommendedOrTheoretical?.message}
+				>
+					<Controller
+						control={control}
+						name="recommendedOrTheoretical"
+						render={({ field }) => (
+							<Select onValueChange={field.onChange} defaultValue={field.value}>
+								<SelectTrigger>
+									<SelectValue placeholder="Recommended or Theoretical" />
+								</SelectTrigger>
+								<SelectContent>
+									{Object.entries(recommendedOrTheoreticalChoices).map(
+										([key, value]) => (
+											<SelectItem
+												key={key}
+												value={key}
+												className="text-muted-foreground"
+											>
+												{value}
+											</SelectItem>
+										)
 									)}
-								/>
-							</div>
-						</TooltipProvider>
-						<Input type="number" placeholder="mm" {...register('L')} />
-					</FormItem>
+								</SelectContent>
+							</Select>
+						)}
+					/>
+				</Form.Item>
 
-					<FormItem
-						label="Recomended or Theoretical"
-						errorMessage={errors.recommendedOrTheoretical?.message}
-					>
-						<Controller
-							control={control}
-							name="recommendedOrTheoretical"
-							render={({ field }) => (
-								<Select
-									onValueChange={field.onChange}
-									defaultValue={field.value}
-								>
-									<SelectTrigger>
-										<SelectValue placeholder="Recommended or Theoretical" />
-									</SelectTrigger>
-									<SelectContent>
-										{Object.entries(recommendedOrTheoreticalChoices).map(
-											([key, value]) => (
-												<SelectItem
-													key={key}
-													value={key}
-													className="text-muted-foreground"
-												>
-													{value}
-												</SelectItem>
-											)
-										)}
-									</SelectContent>
-								</Select>
-							)}
-						/>
-					</FormItem>
+				<Form.Item
+					label="Effective Length Factor"
+					errorMessage={errors.effectiveLengthFactor?.message}
+				>
+					<Controller
+						control={control}
+						name="effectiveLengthFactor"
+						render={({ field }) => (
+							<Select onValueChange={field.onChange} defaultValue={field.value}>
+								<SelectTrigger>
+									<SelectValue placeholder="Effective Length Factor" />
+								</SelectTrigger>
+								<SelectContent>
+									{Object.entries(effectiveLengthFactorChoices).map(
+										([key, value]) => (
+											<SelectItem key={key} value={key}>
+												{value}
+											</SelectItem>
+										)
+									)}
+								</SelectContent>
+							</Select>
+						)}
+					/>
+				</Form.Item>
 
-					<FormItem
-						label="Effective Length Factor"
-						errorMessage={errors.effectiveLengthFactor?.message}
-					>
-						<Controller
-							control={control}
-							name="effectiveLengthFactor"
-							render={({ field }) => (
-								<Select
-									onValueChange={field.onChange}
-									defaultValue={field.value}
-								>
-									<SelectTrigger>
-										<SelectValue placeholder="Effective Length Factor" />
-									</SelectTrigger>
-									<SelectContent>
-										{Object.entries(effectiveLengthFactorChoices).map(
-											([key, value]) => (
-												<SelectItem key={key} value={key}>
-													{value}
-												</SelectItem>
-											)
-										)}
-									</SelectContent>
-								</Select>
-							)}
-						/>
-					</FormItem>
+				<Form.Item
+					label="Moment of Inertia X"
+					errorMessage={errors.Ix?.message}
+				>
+					<Input type="number" placeholder="mm⁴" {...register('Ix')} />
+				</Form.Item>
+				<Form.Item
+					label="Moment of Inertia Y"
+					errorMessage={errors.Iy?.message}
+				>
+					<Input type="number" placeholder="mm⁴" {...register('Iy')} />
+				</Form.Item>
 
-					<FormItem
-						label="Moment of Inertia X"
-						errorMessage={errors.Ix?.message}
-					>
-						<Input type="number" placeholder="mm⁴" {...register('Ix')} />
-					</FormItem>
-					<FormItem
-						label="Moment of Inertia Y"
-						errorMessage={errors.Iy?.message}
-					>
-						<Input type="number" placeholder="mm⁴" {...register('Iy')} />
-					</FormItem>
-
-					<Separator />
-					<p>{JSON.stringify(watch(), null, 2)}</p>
-				</div>
-				<CardFooter className="flex flex-col">
-					<Button className="w-full" disabled={isSubmitting}>
-						Clear
-					</Button>
-				</CardFooter>
-			</form>
+				<Separator />
+				<p>{JSON.stringify(watch(), null, 2)}</p>
+			</Form>
+			<CardFooter className="flex flex-col">
+				<Button className="w-full" disabled={isSubmitting}>
+					Clear
+				</Button>
+			</CardFooter>
 		</Card>
 	)
 }
