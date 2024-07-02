@@ -29,7 +29,9 @@ const FormItem = ({ label, errorMessage, children }: FormItemProps) => {
 	return (
 		<div className="relative space-y-2">
 			{label && (
-				<Label className={cn(errorMessage && 'font-medium')}>{label}</Label>
+				<Label className={cn(errorMessage && 'font-medium text-foreground/90')}>
+					{label}
+				</Label>
 			)}
 			{children}
 			{errorMessage && (
@@ -51,7 +53,7 @@ const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
 		return (
 			<FormItem label={label} errorMessage={errorMessage}>
 				{children}
-				<Input ref={ref} {...props} />
+				<Input ref={ref} className="text-foreground/90" {...props} />
 			</FormItem>
 		)
 	}
