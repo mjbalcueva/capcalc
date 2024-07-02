@@ -1,34 +1,20 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { type z } from 'zod'
 
 import { Form } from '@/components/form'
 import { Button } from '@/components/ui/button'
 import {
 	Card,
+	CardContent,
 	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue
-} from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import { Switch } from '@/components/ui/switch'
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger
-} from '@/components/ui/tooltip'
 import {
 	effectiveLengthFactorChoices,
 	nscp2001CodeProvisionsSchema,
@@ -41,8 +27,8 @@ const CardInput = () => {
 		register,
 		handleSubmit,
 		reset,
-		formState: { errors, isSubmitting },
-		watch
+		watch,
+		formState: { errors, isSubmitting }
 	} = useForm<z.infer<typeof nscp2001CodeProvisionsSchema>>({
 		resolver: zodResolver(nscp2001CodeProvisionsSchema),
 		defaultValues: {
@@ -57,7 +43,10 @@ const CardInput = () => {
 		}
 	})
 
-	const onSubmit = (values: z.infer<typeof nscp2001CodeProvisionsSchema>) => {
+	const onSubmit = async (
+		values: z.infer<typeof nscp2001CodeProvisionsSchema>
+	) => {
+		await new Promise((resolve) => setTimeout(resolve, 1000))
 		console.log(values)
 		reset()
 	}
@@ -68,121 +57,97 @@ const CardInput = () => {
 				<CardTitle>Input Variables</CardTitle>
 				<CardDescription>Input Description</CardDescription>
 			</CardHeader>
-
 			<Form onSubmit={handleSubmit(onSubmit)}>
-				<Form.Item label="Yield Strength" errorMessage={errors.Fy?.message}>
-					<Input type="number" placeholder="MPa" {...register('Fy')} />
-				</Form.Item>
+				<CardContent className='px-6" flex flex-col space-y-4'>
+					<Form.Item label="Yield Strength" errorMessage={errors.Fy?.message}>
+						<Form.Input type="number" placeholder="MPa" {...register('Fy')} />
+					</Form.Item>
 
-				<Form.Item label="Area" errorMessage={errors.A?.message}>
-					<Input type="number" placeholder="mm²" {...register('A')} />
-				</Form.Item>
+					<Form.Item label="Area" errorMessage={errors.A?.message}>
+						<Form.Input type="number" placeholder="mm²" {...register('A')} />
+					</Form.Item>
 
-				<Form.Item label="Length of Column" errorMessage={errors.L?.message}>
-					<TooltipProvider>
-						<div className="absolute -top-[6px] right-0">
-							<Controller
+					<Form.Item label="Length of Column" errorMessage={errors.L?.message}>
+						<Form.Tooltip delayDuration={200}>
+							<Form.Controller
 								control={control}
 								name="supportsMidspan"
 								render={({ field }) => (
-									<Tooltip delayDuration={200}>
-										<TooltipTrigger asChild>
-											<div>
-												<Switch
-													checked={field.value}
-													onCheckedChange={field.onChange}
-													className="ring-[#afafaf] ring-offset-[3px] ring-offset-background hover:ring-1"
-												/>
-											</div>
-										</TooltipTrigger>
-										<TooltipContent className="bg-black bg-opacity-25 text-gray-500 backdrop-blur-[0.5rem]">
-											<p>Midspan Support</p>
-										</TooltipContent>
-									</Tooltip>
+									<div className="absolute -top-[6px] right-0">
+										<Form.TooltipTrigger>
+											<Form.Switch
+												checked={field.value}
+												onCheckedChange={field.onChange}
+											/>
+										</Form.TooltipTrigger>
+										<Form.TooltipContent description="Enable Midspan Support" />
+									</div>
 								)}
 							/>
-						</div>
-					</TooltipProvider>
-					<Input type="number" placeholder="mm" {...register('L')} />
-				</Form.Item>
+						</Form.Tooltip>
+						<Form.Input type="number" placeholder="mm" {...register('L')} />
+					</Form.Item>
 
-				<Form.Item
-					label="Recomended or Theoretical"
-					errorMessage={errors.recommendedOrTheoretical?.message}
-				>
-					<Controller
-						control={control}
-						name="recommendedOrTheoretical"
-						render={({ field }) => (
-							<Select onValueChange={field.onChange} defaultValue={field.value}>
-								<SelectTrigger>
-									<SelectValue placeholder="Recommended or Theoretical" />
-								</SelectTrigger>
-								<SelectContent>
-									{Object.entries(recommendedOrTheoreticalChoices).map(
-										([key, value]) => (
-											<SelectItem
-												key={key}
-												value={key}
-												className="text-muted-foreground"
-											>
-												{value}
-											</SelectItem>
-										)
-									)}
-								</SelectContent>
-							</Select>
-						)}
-					/>
-				</Form.Item>
+					<Form.Item
+						label="Recomended or Theoretical"
+						errorMessage={errors.recommendedOrTheoretical?.message}
+					>
+						<Form.Controller
+							control={control}
+							name="recommendedOrTheoretical"
+							render={({ field }) => (
+								<Form.Select
+									onValueChange={field.onChange}
+									defaultValue={field.value}
+									placeHolder="Recommended or Theoretical"
+									choices={recommendedOrTheoreticalChoices}
+								/>
+							)}
+						/>
+					</Form.Item>
 
-				<Form.Item
-					label="Effective Length Factor"
-					errorMessage={errors.effectiveLengthFactor?.message}
-				>
-					<Controller
-						control={control}
-						name="effectiveLengthFactor"
-						render={({ field }) => (
-							<Select onValueChange={field.onChange} defaultValue={field.value}>
-								<SelectTrigger>
-									<SelectValue placeholder="Effective Length Factor" />
-								</SelectTrigger>
-								<SelectContent>
-									{Object.entries(effectiveLengthFactorChoices).map(
-										([key, value]) => (
-											<SelectItem key={key} value={key}>
-												{value}
-											</SelectItem>
-										)
-									)}
-								</SelectContent>
-							</Select>
-						)}
-					/>
-				</Form.Item>
+					<Form.Item
+						label="Effective Length Factor"
+						errorMessage={errors.effectiveLengthFactor?.message}
+					>
+						<Form.Controller
+							control={control}
+							name="effectiveLengthFactor"
+							render={({ field }) => (
+								<Form.Select
+									onValueChange={field.onChange}
+									defaultValue={field.value}
+									placeHolder="Effective Length Factor"
+									choices={effectiveLengthFactorChoices}
+								/>
+							)}
+						/>
+					</Form.Item>
 
-				<Form.Item
-					label="Moment of Inertia X"
-					errorMessage={errors.Ix?.message}
-				>
-					<Input type="number" placeholder="mm⁴" {...register('Ix')} />
-				</Form.Item>
-				<Form.Item
-					label="Moment of Inertia Y"
-					errorMessage={errors.Iy?.message}
-				>
-					<Input type="number" placeholder="mm⁴" {...register('Iy')} />
-				</Form.Item>
+					<Form.Item
+						label="Moment of Inertia X"
+						errorMessage={errors.Ix?.message}
+					>
+						<Form.Input type="number" placeholder="mm⁴" {...register('Ix')} />
+					</Form.Item>
+
+					<Form.Item
+						label="Moment of Inertia Y"
+						errorMessage={errors.Iy?.message}
+					>
+						<Form.Input type="number" placeholder="mm⁴" {...register('Iy')} />
+					</Form.Item>
+				</CardContent>
+
+				<CardFooter className="flex flex-col">
+					<Button className="w-full" disabled={isSubmitting}>
+						{isSubmitting ? 'Submitting...' : 'Submit'}
+					</Button>
+				</CardFooter>
 
 				<Separator />
-				<p>{JSON.stringify(watch(), null, 2)}</p>
+				<pre>{JSON.stringify(watch(), null, 2)}</pre>
 			</Form>
-			<CardFooter className="flex flex-col">
-				<Button className="w-full" disabled={isSubmitting}>
-					Clear
-				</Button>
-			</CardFooter>
 		</Card>
 	)
 }
