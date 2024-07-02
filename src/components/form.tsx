@@ -61,36 +61,12 @@ const FormInput = React.forwardRef<
 FormInput.displayName = 'FormInput'
 Form.Input = FormInput
 
-// type FormSelectProps = {
-// 	choices: Record<string, string>
-// 	placeHolder: string
-// }
-// const FormSelect = ({ choices, placeHolder, ...props }: FormSelectProps) => {
-// 	return (
-// 		<Select {...props}>
-// 			<SelectTrigger>
-// 				<SelectValue placeholder={placeHolder} />
-// 			</SelectTrigger>
-// 			<SelectContent>
-// 				{Object.entries(choices).map(([key, value]) => (
-// 					<SelectItem key={key} value={key}>
-// 						{value}
-// 					</SelectItem>
-// 				))}
-// 			</SelectContent>
-// 		</Select>
-// 	)
-// }
-// FormSelect.displayName = 'FormSelect'
-// Form.Select = FormSelect
-
 type FormSelectProps = {
 	choices: Record<string, string>
 	placeHolder: string
 } & React.ComponentPropsWithoutRef<typeof Select> & {
 		ref: React.RefObject<React.ElementRef<typeof Select>>
 	}
-
 const FormSelect = React.forwardRef<
 	React.ElementRef<typeof Select>,
 	FormSelectProps
@@ -153,7 +129,7 @@ Form.TooltipTrigger = FormTooltipTrigger
 
 const FormTooltipContent = ({ description }: { description: string }) => {
 	return (
-		<TooltipContent className="bg-black bg-opacity-25 text-gray-500 backdrop-blur-[0.5rem]">
+		<TooltipContent className="bg-white/10 text-xs font-medium text-gray-500 backdrop-blur-[0.08rem] dark:bg-black/10 dark:text-gray-400">
 			<p>{description}</p>
 		</TooltipContent>
 	)

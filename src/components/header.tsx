@@ -14,7 +14,7 @@ const Header = () => {
 	return (
 		<header className="relative z-[999]">
 			<motion.div
-				className="fixed left-1/2 top-0 h-[4.5rem] w-screen rounded-none border-b border-white border-opacity-10 bg-white bg-opacity-45 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] dark:border-gray-600/30 dark:bg-black dark:bg-opacity-35 sm:top-6 sm:h-[3.25rem] sm:w-[40rem] sm:rounded-full sm:border"
+				className="fixed left-1/2 top-0 h-[4.5rem] w-screen rounded-none border-b border-gray-200 bg-white/45 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] dark:border-gray-600/30 dark:bg-black/35 sm:top-6 sm:h-[3.25rem] sm:w-[40rem] sm:rounded-full sm:border"
 				initial={{ y: -100, x: '-50%', opacity: 0 }}
 				animate={{ y: 0, x: '-50%', opacity: 1 }}
 			></motion.div>
@@ -42,7 +42,7 @@ const Header = () => {
 								{menuItem.content}
 								{menuItem.hash === activeSection && (
 									<motion.span
-										className="absolute inset-0 -z-10 rounded-full bg-gray-200 bg-opacity-55 dark:bg-gray-700 dark:bg-opacity-30"
+										className="absolute inset-0 -z-10 rounded-full bg-gray-200/55 dark:bg-gray-700/30"
 										layoutId="activeSection"
 										transition={{
 											type: 'spring',

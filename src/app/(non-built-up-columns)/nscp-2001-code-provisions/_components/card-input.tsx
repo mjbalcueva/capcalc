@@ -68,7 +68,7 @@ const CardInput = () => {
 					</Form.Item>
 
 					<Form.Item label="Length of Column" errorMessage={errors.L?.message}>
-						<Form.Tooltip delayDuration={200}>
+						<Form.Tooltip delayDuration={450}>
 							<Form.Controller
 								control={control}
 								name="supportsMidspan"
