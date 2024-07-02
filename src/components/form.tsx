@@ -64,13 +64,8 @@ Form.Input = FormInput
 type FormSelectProps = {
 	choices: Record<string, string>
 	placeHolder: string
-} & React.ComponentPropsWithoutRef<typeof Select> & {
-		ref: React.RefObject<React.ElementRef<typeof Select>>
-	}
-const FormSelect = React.forwardRef<
-	React.ElementRef<typeof Select>,
-	FormSelectProps
->(({ choices, placeHolder, ...props }) => {
+}
+const FormSelect = ({ choices, placeHolder, ...props }: FormSelectProps) => {
 	return (
 		<Select {...props}>
 			<SelectTrigger>
@@ -85,7 +80,7 @@ const FormSelect = React.forwardRef<
 			</SelectContent>
 		</Select>
 	)
-})
+}
 FormSelect.displayName = 'FormSelect'
 Form.Select = FormSelect
 
