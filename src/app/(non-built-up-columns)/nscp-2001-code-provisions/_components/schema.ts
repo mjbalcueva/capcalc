@@ -25,12 +25,24 @@ export const effectiveLengthFactorChoices: {
 }
 
 export const nscp2001CodeProvisionsSchema = z.object({
-	Fy: z.coerce.number().positive(),
-	A: z.coerce.number().positive(),
-	L: z.coerce.number().positive(),
+	Fy: z.coerce.number().positive({
+		message: 'Input must be greater than 0'
+	}),
+	A: z.coerce.number().positive({
+		message: 'Input must be greater than 0'
+	}),
+	L: z.coerce.number().positive({
+		message: 'Input must be greater than 0'
+	}),
 	supportsMidspan: z.boolean(),
-	recommendedOrTheoretical: z.enum(recommendedOrTheoretical),
-	effectiveLengthFactor: z.enum(effectiveLengthFactor),
-	Ix: z.coerce.number().positive(),
-	Iy: z.coerce.number().positive()
+	recommendedOrTheoretical: z.enum(recommendedOrTheoretical, {
+		message: 'Please select an option'
+	}),
+	effectiveLengthFactor: z.enum(effectiveLengthFactor, {
+		message: 'Please select an option'
+	}),
+	Ix: z.coerce.number().positive({
+		message: 'Input must be greater than 0'
+	}),
+	Iy: z.coerce.number().positive('Input must be greater than 0')
 })
