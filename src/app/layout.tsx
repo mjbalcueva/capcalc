@@ -8,8 +8,6 @@ import { ThemeProvider } from '@/providers/theme-provider'
 
 import '@/styles/globals.css'
 
-import ReactQueryProvider from '@/providers/react-query-provider'
-
 export const metadata = {
 	title: 'CapCalc',
 	description: 'A simple engineering calculator project',
@@ -31,7 +29,7 @@ export default function RootLayout({
 				<ThemeProvider attribute="class" defaultTheme="dark">
 					<ActiveSectionProvider>
 						<Header />
-						<ReactQueryProvider>{children}</ReactQueryProvider>
+						{children}
 						<TailwindIndicator />
 						<ThemeToggle />
 					</ActiveSectionProvider>

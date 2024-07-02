@@ -2,9 +2,7 @@
 
 import { type usePathname } from 'next/navigation'
 import { useEffect, useMemo } from 'react'
-import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
-import { setupServerActionHooks } from 'zsa-react-query'
 
 import { type calculators } from '@/lib/links'
 import { type HashType } from '@/lib/types'
@@ -52,22 +50,4 @@ const useSectionInView = (sectionHash: HashType, threshold = 0.75) => {
 	return { ref }
 }
 
-const {
-	useServerActionQuery,
-	useServerActionMutation,
-	useServerActionInfiniteQuery
-} = setupServerActionHooks({
-	hooks: {
-		useQuery: useQuery,
-		useMutation: useMutation,
-		useInfiniteQuery: useInfiniteQuery
-	}
-})
-
-export {
-	useCalculator,
-	useSectionInView,
-	useServerActionInfiniteQuery,
-	useServerActionMutation,
-	useServerActionQuery
-}
+export { useCalculator, useSectionInView }
