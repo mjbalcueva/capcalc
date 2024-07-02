@@ -42,10 +42,20 @@ const FormItem = ({ label, errorMessage, children }: FormItemProps) => {
 const FormController = Controller
 FormItem.Controller = FormController
 
-const FormInput = React.forwardRef<
-	React.ElementRef<typeof Input>,
-	React.ComponentPropsWithoutRef<typeof Input>
->(({ ...props }, ref) => <Input ref={ref} {...props} />)
+type FormInputProps = React.ComponentPropsWithoutRef<typeof Input> & {
+	label?: string
+	errorMessage?: string
+}
+const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
+	({ label, errorMessage, children, ...props }, ref) => {
+		return (
+			<FormItem label={label} errorMessage={errorMessage}>
+				{children}
+				<Input ref={ref} {...props} />
+			</FormItem>
+		)
+	}
+)
 FormInput.displayName = 'FormInput'
 FormItem.Input = FormInput
 

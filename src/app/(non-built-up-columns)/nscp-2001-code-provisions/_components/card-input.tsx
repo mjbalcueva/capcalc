@@ -55,14 +55,31 @@ const CardInput = () => {
 				<CardTitle>Input Variables</CardTitle>
 				<CardDescription>Input Description</CardDescription>
 			</CardHeader>
+
 			<CardContent className='px-6" flex flex-col space-y-4'>
-				<FormItem label="Yield Strength" errorMessage={errors.Fy?.message}>
-					<FormItem.Input type="number" placeholder="MPa" {...register('Fy')} />
-				</FormItem>
-				<FormItem label="Area" errorMessage={errors.A?.message}>
-					<FormItem.Input type="number" placeholder="mm²" {...register('A')} />
-				</FormItem>
-				<FormItem label="Length of Column" errorMessage={errors.L?.message}>
+				<FormItem.Input
+					type="number"
+					label="Yield Strength"
+					placeholder="MPa"
+					errorMessage={errors.Fy?.message}
+					{...register('Fy')}
+				/>
+
+				<FormItem.Input
+					type="number"
+					label="Area"
+					placeholder="mm²"
+					errorMessage={errors.A?.message}
+					{...register('A')}
+				/>
+
+				<FormItem.Input
+					type="number"
+					label="Length of Column"
+					placeholder="mm"
+					errorMessage={errors.L?.message}
+					{...register('L')}
+				>
 					<FormItem.Tooltip delayDuration={450}>
 						<FormItem.Controller
 							control={control}
@@ -80,15 +97,15 @@ const CardInput = () => {
 							)}
 						/>
 					</FormItem.Tooltip>
-					<FormItem.Input type="number" placeholder="mm" {...register('L')} />
-				</FormItem>
+				</FormItem.Input>
+
 				<FormItem
 					label="Recomended or Theoretical"
 					errorMessage={errors.recommendedOrTheoretical?.message}
 				>
 					<FormItem.Controller
-						control={control}
 						name="recommendedOrTheoretical"
+						control={control}
 						render={({ field }) => (
 							<FormItem.Select
 								onValueChange={field.onChange}
@@ -99,13 +116,14 @@ const CardInput = () => {
 						)}
 					/>
 				</FormItem>
+
 				<FormItem
 					label="Effective Length Factor"
 					errorMessage={errors.effectiveLengthFactor?.message}
 				>
 					<FormItem.Controller
-						control={control}
 						name="effectiveLengthFactor"
+						control={control}
 						render={({ field }) => (
 							<FormItem.Select
 								onValueChange={field.onChange}
@@ -116,12 +134,22 @@ const CardInput = () => {
 						)}
 					/>
 				</FormItem>
-				<FormItem label="Moment of Inertia X" errorMessage={errors.Ix?.message}>
-					<FormItem.Input type="number" placeholder="mm⁴" {...register('Ix')} />
-				</FormItem>
-				<FormItem label="Moment of Inertia Y" errorMessage={errors.Iy?.message}>
-					<FormItem.Input type="number" placeholder="mm⁴" {...register('Iy')} />
-				</FormItem>
+
+				<FormItem.Input
+					type="number"
+					label="Moment of Inertia X"
+					placeholder="mm⁴"
+					errorMessage={errors.Ix?.message}
+					{...register('Ix')}
+				/>
+
+				<FormItem.Input
+					type="number"
+					label="Moment of Inertia Y"
+					placeholder="mm⁴"
+					errorMessage={errors.Iy?.message}
+					{...register('Iy')}
+				/>
 			</CardContent>
 
 			<CardFooter className="flex flex-col">
