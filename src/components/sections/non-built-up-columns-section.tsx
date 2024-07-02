@@ -5,17 +5,12 @@ import { motion } from 'framer-motion'
 
 import { HoverEffect } from '@/components/ui/card-hover-effect'
 import { useCalculator, useSectionInView } from '@/lib/hooks'
-import { calculators } from '@/lib/links'
 
 const NonBuiltUpColumnsSection = () => {
 	const { ref } = useSectionInView('#non-built-up-columns')
 	const pathName = usePathname()
 
-	// const nonBuiltUpCalculators = calculators.find(
-	// 	(calculator) => calculator.hash === '#non-built-up-columns'
-	// )
-
-	const { findCalculatorWithHash } = useCalculator({ calculators, pathName })
+	const { findCalculatorWithHash } = useCalculator({ pathName })
 	const nonBuiltUpCalculators = findCalculatorWithHash('#non-built-up-columns')
 
 	return (

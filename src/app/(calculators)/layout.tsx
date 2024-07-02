@@ -10,7 +10,6 @@ import { type z } from 'zod'
 import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
 import { useCalculator } from '@/lib/hooks'
-import { calculators } from '@/lib/links'
 import { nscp2001CodeProvisionsSchema } from '@/lib/schema'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
@@ -27,10 +26,7 @@ type Props = {
 export default function Layout({ children }: Props) {
 	const pathName = usePathname()
 	const { setActiveSection } = useActiveSectionContext()
-	const { activeSection, activeCalculator } = useCalculator({
-		calculators,
-		pathName
-	})
+	const { activeSection, activeCalculator } = useCalculator({ pathName })
 
 	const currentSchema = pageToSchemaMapping[pathName as PagePath]
 

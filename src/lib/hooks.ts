@@ -4,35 +4,31 @@ import { type usePathname } from 'next/navigation'
 import { useEffect, useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { type calculators } from '@/lib/links'
+import { calculators } from '@/lib/links'
 import { type HashType } from '@/lib/types'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 type CalculatorType = {
-	calculators: typeof calculators
 	pathName: ReturnType<typeof usePathname>
 }
 
-const useCalculator = ({ calculators, pathName }: CalculatorType) => {
+const useCalculator = ({ pathName }: CalculatorType) => {
 	const { activeSection, activeCalculator, findCalculatorWithHash } =
 		useMemo(() => {
 			const activeSection = calculators.find((calculator) =>
 				calculator.calculators.some(({ link }) => link === pathName)
 			)
-
 			const currentCalculator = activeSection?.calculators.find(
 				({ link }) => link === pathName
 			)
-
 			const findCalculatorWithHash = (hash: HashType) =>
 				calculators.find((calculator) => calculator.hash === hash)
-
 			return {
 				activeSection,
 				activeCalculator: currentCalculator,
 				findCalculatorWithHash
 			}
-		}, [calculators, pathName])
+		}, [pathName])
 
 	return { activeSection, activeCalculator, findCalculatorWithHash }
 }
