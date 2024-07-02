@@ -2,7 +2,6 @@
 
 import { useFormContext } from 'react-hook-form'
 import { type z } from 'zod'
-import { useServerAction } from 'zsa-react'
 
 import { FormItem } from '@/components/form'
 import { Button } from '@/components/ui/button'
@@ -27,21 +26,19 @@ const InputCard = () => {
 		control,
 		handleSubmit,
 		register,
-		watch,
 		formState: { errors, isSubmitting }
 	} = useFormContext<z.infer<typeof nscp2001CodeProvisionsSchema>>()
 
 	const onSubmit = (values: z.infer<typeof nscp2001CodeProvisionsSchema>) => {
-		let {
+		const {
 			Fy,
 			A,
 			L,
 			supportsMidspan,
 			recommendedOrTheoretical,
-			effectiveLengthFactor,
-			Ix,
-			Iy
+			effectiveLengthFactor
 		} = values
+		let { Ix, Iy } = values
 
 		Ix = Ix * 10 ** 6
 		Iy = Iy * 10 ** 6
