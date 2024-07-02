@@ -37,7 +37,6 @@ const InputCard = () => {
 	useEffect(() => {
 		const subscription = watch(() => {
 			void trigger()
-			console.log('watch', watch())
 		})
 		return () => subscription.unsubscribe()
 	}, [watch, trigger])
@@ -51,27 +50,30 @@ const InputCard = () => {
 
 			<CardContent className='px-6" flex flex-col space-y-4'>
 				<FormItem.Input
-					type="number"
 					label="Yield Strength"
 					placeholder="MPa"
 					errorMessage={errors.Fy?.message}
-					{...register('Fy')}
+					{...register('Fy', {
+						valueAsNumber: true
+					})}
 				/>
 
 				<FormItem.Input
-					type="number"
 					label="Area"
 					placeholder="mm²"
 					errorMessage={errors.A?.message}
-					{...register('A')}
+					{...register('A', {
+						valueAsNumber: true
+					})}
 				/>
 
 				<FormItem.Input
-					type="number"
 					label="Length of Column"
 					placeholder="mm"
 					errorMessage={errors.L?.message}
-					{...register('L')}
+					{...register('L', {
+						valueAsNumber: true
+					})}
 				>
 					<FormItem.Tooltip delayDuration={450}>
 						<FormItem.Controller
@@ -130,19 +132,21 @@ const InputCard = () => {
 				</FormItem>
 
 				<FormItem.Input
-					type="number"
 					label="Moment of Inertia X"
 					placeholder="mm⁴"
 					errorMessage={errors.Ix?.message}
-					{...register('Ix')}
+					{...register('Ix', {
+						valueAsNumber: true
+					})}
 				/>
 
 				<FormItem.Input
-					type="number"
 					label="Moment of Inertia Y"
 					placeholder="mm⁴"
 					errorMessage={errors.Iy?.message}
-					{...register('Iy')}
+					{...register('Iy', {
+						valueAsNumber: true
+					})}
 				/>
 			</CardContent>
 

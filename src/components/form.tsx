@@ -53,13 +53,37 @@ const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
 		return (
 			<FormItem label={label} errorMessage={errorMessage}>
 				{children}
-				<Input ref={ref} className="text-foreground/90" {...props} />
+				<Input
+					ref={ref}
+					type="number"
+					className="text-foreground/90"
+					{...props}
+				/>
 			</FormItem>
 		)
 	}
 )
 FormInput.displayName = 'FormInput'
 FormItem.Input = FormInput
+
+const FormOutput = React.forwardRef<HTMLInputElement, FormInputProps>(
+	({ label, errorMessage, children, ...props }, ref) => {
+		return (
+			<FormItem label={label} errorMessage={errorMessage}>
+				{children}
+				<Input
+					ref={ref}
+					type="number"
+					className="!cursor-auto text-foreground/90"
+					readOnly
+					{...props}
+				/>
+			</FormItem>
+		)
+	}
+)
+FormOutput.displayName = 'FormOutput'
+FormItem.Output = FormOutput
 
 type FormSelectProps = {
 	choices: Record<string, string>
