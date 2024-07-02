@@ -13,37 +13,37 @@ type CalculatorType = {
 }
 
 const useCalculator = ({ pathName }: CalculatorType) => {
-	const { activeSection, activeCalculator, findCalculatorWithHash } =
-		useMemo(() => {
-			const activeSection = calculators.find((calculator) =>
-				calculator.calculators.some(({ link }) => link === pathName)
-			)
-			const currentCalculator = activeSection?.calculators.find(
-				({ link }) => link === pathName
-			)
-			const findCalculatorWithHash = (hash: HashType) =>
-				calculators.find((calculator) => calculator.hash === hash)
-			return {
-				activeSection,
-				activeCalculator: currentCalculator,
-				findCalculatorWithHash
-			}
-		}, [pathName])
+	const { activeSection, activeCalculator } = useMemo(() => {
+		const activeSection = calculators.find((calculator) =>
+			calculator.calculators.some(({ link }) => link === pathName)
+		)
+		const activeCalculator = activeSection?.calculators.find(
+			({ link }) => link === pathName
+		)
+		return {
+			activeSection,
+			activeCalculator
+		}
+	}, [pathName])
 
-	return { activeSection, activeCalculator, findCalculatorWithHash }
+	return { activeSection, activeCalculator }
+}
+
+const useCalculatorWithHash = (hash: HashType) => {
+	return useMemo(() => {
+		return calculators.find((calculator) => calculator.hash === hash)
+	}, [hash])
 }
 
 const useSectionInView = (sectionHash: HashType, threshold = 0.75) => {
 	const { ref, inView } = useInView({ threshold })
 	const { setActiveSection, timeOfLastClick } = useActiveSectionContext()
-
 	useEffect(() => {
 		if (inView && Date.now() - timeOfLastClick > 1000) {
 			setActiveSection(sectionHash)
 		}
 	}, [inView, setActiveSection, timeOfLastClick, sectionHash])
-
 	return { ref }
 }
 
-export { useCalculator, useSectionInView }
+export { useCalculator, useCalculatorWithHash, useSectionInView }

@@ -1,17 +1,13 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 
 import { HoverEffect } from '@/components/ui/card-hover-effect'
-import { useCalculator, useSectionInView } from '@/lib/hooks'
+import { useCalculatorWithHash, useSectionInView } from '@/lib/hooks'
 
 const NonBuiltUpColumnsSection = () => {
 	const { ref } = useSectionInView('#non-built-up-columns')
-	const pathName = usePathname()
-
-	const { findCalculatorWithHash } = useCalculator({ pathName })
-	const nonBuiltUpCalculators = findCalculatorWithHash('#non-built-up-columns')
+	const nonBuiltUpCalculators = useCalculatorWithHash('#non-built-up-columns')
 
 	return (
 		<section
@@ -19,7 +15,6 @@ const NonBuiltUpColumnsSection = () => {
 			id="non-built-up-columns"
 			className="relative z-[1] flex min-h-screen items-center justify-center bg-white py-10 dark:bg-[#050506]"
 		>
-			{/* <pre>{JSON.stringify(nonBuiltUpCalculators, null, 2)}</pre> */}
 			<motion.div
 				className="grid w-full items-center gap-y-2 sm:container lg:grid-cols-2"
 				initial={{ opacity: 0.0, y: 40 }}
