@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { type CalculatorItemType } from '@/lib/types'
 import { cn, truncateText } from '@/lib/utils'
 
-const HoverEffect = ({
+const CardHoverEffect = ({
 	items,
 	className
 }: {
@@ -68,7 +68,7 @@ const Card = ({
 	return (
 		<div
 			className={cn(
-				'relative z-20 h-full w-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 dark:border-white/[0.2] dark:bg-black dark:group-hover:border-zinc-700',
+				'relative z-20 h-full w-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 dark:border-white/[0.2] dark:bg-[#000505] dark:group-hover:border-zinc-700',
 				className
 			)}
 		>
@@ -117,4 +117,4 @@ const CardDescription = ({
 	)
 }
 
-export { Card, CardDescription, CardTitle, HoverEffect }
+export { Card, CardDescription, CardTitle, CardHoverEffect }
