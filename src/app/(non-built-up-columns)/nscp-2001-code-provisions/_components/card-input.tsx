@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { Form } from '@/components/form'
+import { FormItem } from '@/components/form'
 import { Button } from '@/components/ui/button'
 import {
 	Card,
@@ -56,44 +56,41 @@ const CardInput = () => {
 				<CardDescription>Input Description</CardDescription>
 			</CardHeader>
 			<CardContent className='px-6" flex flex-col space-y-4'>
-				<Form.Item label="Yield Strength" errorMessage={errors.Fy?.message}>
-					<Form.Input type="number" placeholder="MPa" {...register('Fy')} />
-				</Form.Item>
-
-				<Form.Item label="Area" errorMessage={errors.A?.message}>
-					<Form.Input type="number" placeholder="mm²" {...register('A')} />
-				</Form.Item>
-
-				<Form.Item label="Length of Column" errorMessage={errors.L?.message}>
-					<Form.Tooltip delayDuration={450}>
-						<Form.Controller
+				<FormItem label="Yield Strength" errorMessage={errors.Fy?.message}>
+					<FormItem.Input type="number" placeholder="MPa" {...register('Fy')} />
+				</FormItem>
+				<FormItem label="Area" errorMessage={errors.A?.message}>
+					<FormItem.Input type="number" placeholder="mm²" {...register('A')} />
+				</FormItem>
+				<FormItem label="Length of Column" errorMessage={errors.L?.message}>
+					<FormItem.Tooltip delayDuration={450}>
+						<FormItem.Controller
 							control={control}
 							name="supportsMidspan"
 							render={({ field }) => (
 								<div className="absolute -top-[6px] right-0">
-									<Form.TooltipTrigger>
-										<Form.Switch
+									<FormItem.TooltipTrigger>
+										<FormItem.Switch
 											checked={field.value}
 											onCheckedChange={field.onChange}
 										/>
-									</Form.TooltipTrigger>
-									<Form.TooltipContent description="Enable Midspan Support" />
+									</FormItem.TooltipTrigger>
+									<FormItem.TooltipContent description="Enable Midspan Support" />
 								</div>
 							)}
 						/>
-					</Form.Tooltip>
-					<Form.Input type="number" placeholder="mm" {...register('L')} />
-				</Form.Item>
-
-				<Form.Item
+					</FormItem.Tooltip>
+					<FormItem.Input type="number" placeholder="mm" {...register('L')} />
+				</FormItem>
+				<FormItem
 					label="Recomended or Theoretical"
 					errorMessage={errors.recommendedOrTheoretical?.message}
 				>
-					<Form.Controller
+					<FormItem.Controller
 						control={control}
 						name="recommendedOrTheoretical"
 						render={({ field }) => (
-							<Form.Select
+							<FormItem.Select
 								onValueChange={field.onChange}
 								defaultValue={field.value}
 								placeHolder="Select an option"
@@ -101,17 +98,16 @@ const CardInput = () => {
 							/>
 						)}
 					/>
-				</Form.Item>
-
-				<Form.Item
+				</FormItem>
+				<FormItem
 					label="Effective Length Factor"
 					errorMessage={errors.effectiveLengthFactor?.message}
 				>
-					<Form.Controller
+					<FormItem.Controller
 						control={control}
 						name="effectiveLengthFactor"
 						render={({ field }) => (
-							<Form.Select
+							<FormItem.Select
 								onValueChange={field.onChange}
 								defaultValue={field.value}
 								placeHolder="Select an option"
@@ -119,21 +115,13 @@ const CardInput = () => {
 							/>
 						)}
 					/>
-				</Form.Item>
-
-				<Form.Item
-					label="Moment of Inertia X"
-					errorMessage={errors.Ix?.message}
-				>
-					<Form.Input type="number" placeholder="mm⁴" {...register('Ix')} />
-				</Form.Item>
-
-				<Form.Item
-					label="Moment of Inertia Y"
-					errorMessage={errors.Iy?.message}
-				>
-					<Form.Input type="number" placeholder="mm⁴" {...register('Iy')} />
-				</Form.Item>
+				</FormItem>
+				<FormItem label="Moment of Inertia X" errorMessage={errors.Ix?.message}>
+					<FormItem.Input type="number" placeholder="mm⁴" {...register('Ix')} />
+				</FormItem>
+				<FormItem label="Moment of Inertia Y" errorMessage={errors.Iy?.message}>
+					<FormItem.Input type="number" placeholder="mm⁴" {...register('Iy')} />
+				</FormItem>
 			</CardContent>
 
 			<CardFooter className="flex flex-col">

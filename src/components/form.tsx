@@ -20,26 +20,12 @@ import {
 import { cn } from '@/lib/utils'
 import { Input } from './ui/input'
 
-const Form = ({
-	children,
-	...props
-}: React.HTMLAttributes<HTMLFormElement>) => {
-	return <form {...props}>{children}</form>
-}
-
-const FormController = Controller
-Form.Controller = FormController
-
 type FormItemProps = {
 	label?: string
 	errorMessage?: string
 	children: React.ReactNode
 }
-const FormItem: React.FC<FormItemProps> = ({
-	label,
-	errorMessage,
-	children
-}) => {
+const FormItem = ({ label, errorMessage, children }: FormItemProps) => {
 	return (
 		<div className="relative space-y-2">
 			{label && (
@@ -52,14 +38,16 @@ const FormItem: React.FC<FormItemProps> = ({
 		</div>
 	)
 }
-Form.Item = FormItem
+
+const FormController = Controller
+FormItem.Controller = FormController
 
 const FormInput = React.forwardRef<
 	React.ElementRef<typeof Input>,
 	React.ComponentPropsWithoutRef<typeof Input>
 >(({ ...props }, ref) => <Input ref={ref} {...props} />)
 FormInput.displayName = 'FormInput'
-Form.Input = FormInput
+FormItem.Input = FormInput
 
 type FormSelectProps = {
 	choices: Record<string, string>
@@ -82,7 +70,7 @@ const FormSelect = ({ choices, placeHolder, ...props }: FormSelectProps) => {
 	)
 }
 FormSelect.displayName = 'FormSelect'
-Form.Select = FormSelect
+FormItem.Select = FormSelect
 
 const FormSwitch = React.forwardRef<
 	React.ElementRef<typeof Switch>,
@@ -99,7 +87,7 @@ const FormSwitch = React.forwardRef<
 	/>
 ))
 FormSwitch.displayName = 'FormSwitch'
-Form.Switch = FormSwitch
+FormItem.Switch = FormSwitch
 
 const FormTooltip = ({
 	children,
@@ -111,7 +99,7 @@ const FormTooltip = ({
 		</TooltipProvider>
 	)
 }
-Form.Tooltip = FormTooltip
+FormItem.Tooltip = FormTooltip
 
 const FormTooltipTrigger = ({ children }: { children: React.ReactNode }) => {
 	return (
@@ -120,7 +108,7 @@ const FormTooltipTrigger = ({ children }: { children: React.ReactNode }) => {
 		</TooltipTrigger>
 	)
 }
-Form.TooltipTrigger = FormTooltipTrigger
+FormItem.TooltipTrigger = FormTooltipTrigger
 
 const FormTooltipContent = ({ description }: { description: string }) => {
 	return (
@@ -129,6 +117,6 @@ const FormTooltipContent = ({ description }: { description: string }) => {
 		</TooltipContent>
 	)
 }
-Form.TooltipContent = FormTooltipContent
+FormItem.TooltipContent = FormTooltipContent
 
-export { Form }
+export { FormItem }
