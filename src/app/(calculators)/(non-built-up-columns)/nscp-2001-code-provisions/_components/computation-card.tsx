@@ -1,8 +1,5 @@
 'use client'
 
-import { useFormContext } from 'react-hook-form'
-import { z } from 'zod'
-
 import { FormItem } from '@/components/form'
 import {
 	Card,
@@ -11,12 +8,8 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
-import { nscp2001CodeProvisionsSchema } from '@/lib/schema'
 
 const ComputationCard = () => {
-	const { watch } =
-		useFormContext<z.infer<typeof nscp2001CodeProvisionsSchema>>()
-
 	return (
 		<Card>
 			<CardHeader>
