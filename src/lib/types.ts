@@ -1,8 +1,8 @@
 import { type ZodSchema } from 'zod'
 
-import { type menuItems } from '@/lib/links'
+import { menuItems } from '@/lib/links'
 
-type SectionHashType = (typeof menuItems)[number]['hash']
+type HashType = (typeof menuItems)[number]['hash']
 
 type CalculatorItemType = {
 	title: string
@@ -12,12 +12,12 @@ type CalculatorItemType = {
 }
 
 type CalculatorSectionType = {
+	hash: string
 	title: string
 	description: string
-	hash?: SectionHashType
 	calculators: CalculatorItemType[]
 }
 
 type CalculatorType = CalculatorSectionType[]
 
-export type { SectionHashType, CalculatorItemType, CalculatorType }
+export type { HashType, CalculatorItemType, CalculatorType }

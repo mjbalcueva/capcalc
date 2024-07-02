@@ -1,31 +1,18 @@
 import { Icons } from '@/components/shared/icons'
-import { type CalculatorType } from '@/lib/types'
 
-const menuItems = [
+const calculators = [
 	{
-		content: <Icons.logo className="h-6" />,
-		hash: '#home'
+		hash: '#bolted-connections',
+		title: 'Bolted Connections Calculator',
+		description:
+			'Explore our suite of calculators designed for bolted connections, which are essential structural elements used to join two or more components together.',
+		calculators: []
 	},
 	{
-		content: 'Bolted Connections',
-		hash: '#bolted-connections'
-	},
-	{
-		content: 'Welded Connections',
-		hash: '#welded-connections'
-	},
-	{
-		content: 'Non-Built Up Columns',
-		hash: '#non-built-up-columns'
-	}
-] as const
-
-const calculators: CalculatorType = [
-	{
+		hash: '#non-built-up-columns',
 		title: 'Non-Built Up Columns Calculator',
 		description:
 			'Explore our suite of calculators designed for non-built up columns, which are essential structural elements made from single-piece rolled steel sections.',
-		hash: '#non-built-up-columns',
 		calculators: [
 			{
 				title: "Euler's Formula for Columns",
@@ -46,7 +33,25 @@ const calculators: CalculatorType = [
 				link: '/base-plate'
 			}
 		]
+	},
+	{
+		hash: '#welded-connections',
+		title: 'Welded Connections Calculator',
+		description:
+			'Explore our suite of calculators designed for welded connections, which are essential structural elements used to join two or more components together.',
+		calculators: []
 	}
-]
+] as const
+
+const menuItems = [
+	{
+		content: <Icons.logo className="h-6" />,
+		hash: '#home'
+	},
+	...calculators.map((calculator) => ({
+		content: calculator.title?.slice(0, -11),
+		hash: calculator.hash
+	}))
+] as const
 
 export { menuItems, calculators }

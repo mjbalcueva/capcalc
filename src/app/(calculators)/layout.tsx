@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
 import { calculators } from '@/lib/links'
+import { HashType } from '@/lib/types'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 type Props = {
@@ -26,7 +27,7 @@ export default function Layout({ children }: Props) {
 	)
 
 	useEffect(() => {
-		setActiveSection('#non-built-up-columns')
+		setActiveSection(activeCalculatorSection?.hash as HashType)
 	}, [setActiveSection])
 
 	return (
