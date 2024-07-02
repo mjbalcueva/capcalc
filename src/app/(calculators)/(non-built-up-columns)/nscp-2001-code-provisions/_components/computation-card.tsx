@@ -60,6 +60,7 @@ const ComputationCard = () => {
 						placeholder="SRmax"
 					/>
 					<FormItem.Output
+						type="text"
 						value={state.ColumnType.toString()}
 						label="Column Type"
 						placeholder="Cc"
