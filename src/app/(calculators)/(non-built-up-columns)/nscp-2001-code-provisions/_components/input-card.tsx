@@ -14,7 +14,6 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
 import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,
@@ -156,9 +155,6 @@ const InputCard = () => {
 					Reset
 				</Button>
 			</CardFooter>
-
-			<Separator />
-			<pre>{JSON.stringify(watch(), null, 2)}</pre>
 		</Card>
 	)
 }

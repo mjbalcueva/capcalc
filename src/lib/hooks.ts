@@ -12,21 +12,19 @@ type CalculatorType = {
 	pathName: ReturnType<typeof usePathname>
 }
 
-const useCalculator = ({ pathName }: CalculatorType) => {
-	const { activeSection, activeCalculator } = useMemo(() => {
-		const activeSection = calculators.find((calculator) =>
+const useCalculatorWithPathName = ({ pathName }: CalculatorType) => {
+	return useMemo(() => {
+		const activeCalculator = calculators.find((calculator) =>
 			calculator.calculators.some(({ link }) => link === pathName)
 		)
-		const activeCalculator = activeSection?.calculators.find(
+		const activeCalculatorItem = activeCalculator?.calculators.find(
 			({ link }) => link === pathName
 		)
 		return {
-			activeSection,
-			activeCalculator
+			activeCalculator,
+			activeCalculatorItem
 		}
 	}, [pathName])
-
-	return { activeSection, activeCalculator }
 }
 
 const useCalculatorWithHash = (hash: HashType) => {
@@ -46,4 +44,4 @@ const useSectionInView = (sectionHash: HashType, threshold = 0.75) => {
 	return { ref }
 }
 
-export { useCalculator, useCalculatorWithHash, useSectionInView }
+export { useCalculatorWithPathName, useCalculatorWithHash, useSectionInView }
