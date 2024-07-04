@@ -8,7 +8,6 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
 import { useNSCP2001CodeProvisionStore } from '@/store/nscp2001CodeProvisionStore'
 
 const ComputationCard = () => {
