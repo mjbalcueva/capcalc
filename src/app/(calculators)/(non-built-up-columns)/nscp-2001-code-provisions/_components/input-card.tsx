@@ -37,23 +37,22 @@ import {
 	recommendedOrTheoreticalChoices,
 	type nscp2001CodeProvisionsSchema
 } from '@/lib/schema'
-import { useCalculatorContext } from '@/providers/calculator-providert'
+import { useNSCP2001CodeProvisionStore } from '@/store/nscp2001CodeProvisionStore'
 
 type schema = z.infer<typeof nscp2001CodeProvisionsSchema>
 const InputCard = () => {
-	const { setState } = useCalculatorContext()
+	const { setValues, resetValues } = useNSCP2001CodeProvisionStore()
 	const {
 		control,
 		register,
 		reset,
-		getValues,
 		trigger,
-		formState: { isDirty, errors, isSubmitting }
+		getValues,
+		watch,
+		formState: { errors, isSubmitting }
 	} = useFormContext<schema>()
 
 	const debouncedSubmit = useDebounce((values: schema) => {
-		void trigger()
-
 		const {
 			Fy,
 			A,
@@ -89,12 +88,9 @@ const InputCard = () => {
 			Fy,
 			Fs
 		})
-		const AllowableCapacity = calculateAllowableCapacity({
-			AllowableStress,
-			A
-		})
+		const AllowableCapacity = calculateAllowableCapacity({ AllowableStress, A })
 
-		setState({
+		setValues({
 			Rx,
 			Ry,
 			rMin,
@@ -110,8 +106,11 @@ const InputCard = () => {
 	})
 
 	useEffect(() => {
-		isDirty && debouncedSubmit(getValues())
-	}, [isDirty, debouncedSubmit, getValues])
+		return watch((values) => {
+			debouncedSubmit(values as schema)
+			void trigger()
+		}).unsubscribe
+	}, [trigger, getValues])
 
 	return (
 		<Card>
@@ -225,19 +224,7 @@ const InputCard = () => {
 							Ix: '' as unknown as undefined,
 							Iy: '' as unknown as undefined
 						})
-						setState({
-							Rx: 0,
-							Ry: 0,
-							rMin: 0,
-							Cc: 0,
-							SRx: 0,
-							SRy: 0,
-							SRmax: 0,
-							ColumnType: 'Intermediate',
-							Fs: 0,
-							AllowableStress: 0,
-							AllowableCapacity: 0
-						})
+						resetValues()
 					}}
 				>
 					Reset

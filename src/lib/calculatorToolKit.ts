@@ -16,7 +16,7 @@ const kValues: KValues = {
 	}
 }
 
-const calculateUpdatedI = (I: number) => I * 10 ** 6
+const calculateUpdatedI = (I: number) => parseFloat((I * 10 ** 6).toFixed(3))
 
 const calculateLValues = (L: number, supportsMidspan: boolean) => {
 	return {
@@ -34,19 +34,19 @@ const getKValues = (
 }
 
 const calculateRx = ({ updatedIx, A }: { updatedIx: number; A: number }) => {
-	return Math.sqrt(updatedIx / A)
+	return parseFloat(Math.sqrt(updatedIx / A).toFixed(3))
 }
 
 const calculateRy = ({ updatedIy, A }: { updatedIy: number; A: number }) => {
-	return Math.sqrt(updatedIy / A)
+	return parseFloat(Math.sqrt(updatedIy / A).toFixed(3))
 }
 
 const calculateRmin = ({ Rx, Ry }: { Rx: number; Ry: number }) => {
-	return Math.min(Rx, Ry)
+	return parseFloat(Math.min(Rx, Ry).toFixed(3))
 }
 
 const calculateCc = ({ Fy }: { Fy: number }) => {
-	return Math.sqrt((Math.PI ** 2 * (4 * 10 ** 5)) / Fy)
+	return parseFloat(Math.sqrt((Math.PI ** 2 * (4 * 10 ** 5)) / Fy).toFixed(3))
 }
 
 const calculateSRx = ({
@@ -58,7 +58,7 @@ const calculateSRx = ({
 	Lx: number
 	Rx: number
 }) => {
-	return (Kx * Lx) / Rx
+	return parseFloat(((Kx * Lx) / Rx).toFixed(3))
 }
 
 const calculateSRy = ({
@@ -70,11 +70,11 @@ const calculateSRy = ({
 	Ly: number
 	Ry: number
 }) => {
-	return (Ky * Ly) / Ry
+	return parseFloat(((Ky * Ly) / Ry).toFixed(3))
 }
 
 const calculateSRmax = ({ SRx, SRy }: { SRx: number; SRy: number }) => {
-	return Math.max(SRx, SRy)
+	return parseFloat(Math.max(SRx, SRy).toFixed(3))
 }
 
 const calculateColumnType = ({ SRmax, Cc }: { SRmax: number; Cc: number }) => {
@@ -91,7 +91,9 @@ const calculateFs = ({
 	Cc: number
 }) => {
 	return ColumnType === 'Intermediate'
-		? 5 / 3 + (3 / 8) * (SRmax / Cc) - SRmax ** 3 / (8 * Cc ** 3)
+		? parseFloat(
+				(5 / 3 + (3 / 8) * (SRmax / Cc) - SRmax ** 3 / (8 * Cc ** 3)).toFixed(3)
+			)
 		: 1
 }
 
@@ -121,7 +123,7 @@ const calculateAllowableCapacity = ({
 	AllowableStress: number
 	A: number
 }) => {
-	return (AllowableStress * A) / 1000
+	return parseFloat(((AllowableStress * A) / 1000).toFixed(3))
 }
 
 export {

@@ -39,6 +39,8 @@ const useDebounce = <T extends unknown[]>(
 ) => {
 	const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
+	const validDelay = Number.isFinite(delay) ? delay : 300
+
 	const debouncedFunction = useCallback(
 		(...args: T) => {
 			if (debounceTimeoutRef.current) {
@@ -46,9 +48,9 @@ const useDebounce = <T extends unknown[]>(
 			}
 			debounceTimeoutRef.current = setTimeout(() => {
 				callback(...args)
-			}, delay)
+			}, validDelay)
 		},
-		[callback, delay]
+		[callback, validDelay]
 	)
 
 	useEffect(() => {

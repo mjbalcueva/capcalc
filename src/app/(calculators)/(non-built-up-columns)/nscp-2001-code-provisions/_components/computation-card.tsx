@@ -8,11 +8,19 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
-import { useCalculatorContext } from '@/providers/calculator-providert'
-import type { CalculatorState } from './type'
+import { useNSCP2001CodeProvisionStore } from '@/store/nscp2001CodeProvisionStore'
 
 const ComputationCard = () => {
-	const { state } = useCalculatorContext<CalculatorState>()
+	const { values } = useNSCP2001CodeProvisionStore()
+	const Rx = values.Rx || 0
+	const Ry = values.Ry || 0
+	const rMin = values.rMin || 0
+	const Cc = values.Cc || 0
+	const SRx = values.SRx || 0
+	const SRy = values.SRy || 0
+	const SRmax = values.SRmax || 0
+	const ColumnType = values.ColumnType || 'Intermediate'
+	const Fs = values.Fs || 0
 
 	return (
 		<Card>
@@ -23,22 +31,22 @@ const ComputationCard = () => {
 			<CardContent className="grid grid-cols-2 gap-8">
 				<div className='px-6" flex flex-col space-y-4'>
 					<FormItem.Output
-						value={state.Rx.toFixed(3)}
+						value={Rx}
 						label="Radius of Gyration Rx"
 						placeholder="Rx"
 					/>
 					<FormItem.Output
-						value={state.Ry.toFixed(3)}
+						value={Ry}
 						label="Radius of Gyration Ry"
 						placeholder="mm"
 					/>
 					<FormItem.Output
-						value={state.rMin.toFixed(3)}
+						value={rMin}
 						label="Minimum, Rmin"
 						placeholder="mm"
 					/>
 					<FormItem.Output
-						value={state.Cc.toFixed(3)}
+						value={Cc}
 						type="number"
 						label="Critical SR"
 						placeholder="Cc"
@@ -46,28 +54,28 @@ const ComputationCard = () => {
 				</div>
 				<div className='px-6" flex flex-col space-y-4'>
 					<FormItem.Output
-						value={state.SRx.toFixed(3)}
+						value={SRx}
 						label="Slenderness Ratio SRx"
 						placeholder="SRx"
 					/>
 					<FormItem.Output
-						value={state.SRy.toFixed(3)}
+						value={SRy}
 						label="Slenderess Ratio SRy"
 						placeholder="SRy"
 					/>
 					<FormItem.Output
-						value={state.SRmax.toFixed(3)}
+						value={SRmax}
 						label="Maximum, SRmax"
 						placeholder="SRmax"
 					/>
 					<FormItem.Output
 						type="text"
-						value={state.ColumnType.toString()}
+						value={ColumnType}
 						label="Column Type"
 						placeholder="Cc"
 					/>
 					<FormItem.Output
-						value={Number(state.Fs).toFixed(3)}
+						value={Fs}
 						label="Factor of Safety"
 						placeholder="Fs"
 					/>
