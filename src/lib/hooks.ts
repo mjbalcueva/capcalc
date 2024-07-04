@@ -35,7 +35,7 @@ const useCalculatorWithHash = (hash: HashType) => {
 
 const useDebounce = <T extends unknown[]>(
 	callback: (...args: T) => void,
-	delay: number
+	delay?: number
 ) => {
 	const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 

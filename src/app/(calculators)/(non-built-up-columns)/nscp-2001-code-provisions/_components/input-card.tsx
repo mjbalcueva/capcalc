@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { watch } from 'fs'
 import { useFormContext } from 'react-hook-form'
 import { type z } from 'zod'
 
@@ -45,9 +46,9 @@ const InputCard = () => {
 		control,
 		register,
 		reset,
-		watch,
+		getValues,
 		trigger,
-		formState: { errors, isSubmitting }
+		formState: { isDirty, errors, isSubmitting }
 	} = useFormContext<schema>()
 
 	const debouncedSubmit = useDebounce((values: schema) => {
@@ -106,11 +107,11 @@ const InputCard = () => {
 			AllowableStress,
 			AllowableCapacity
 		})
-	}, 500)
+	})
 
 	useEffect(() => {
-		debouncedSubmit(watch())
-	}, [watch, debouncedSubmit])
+		isDirty && debouncedSubmit(getValues())
+	}, [isDirty, debouncedSubmit, getValues])
 
 	return (
 		<Card>
