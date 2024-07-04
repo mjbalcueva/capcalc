@@ -1,7 +1,7 @@
 'use client'
 
 import { type usePathname } from 'next/navigation'
-import { useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { calculators } from '@/lib/links'
@@ -33,6 +33,35 @@ const useCalculatorWithHash = (hash: HashType) => {
 	}, [hash])
 }
 
+const useDebounce = <T extends unknown[]>(
+	callback: (...args: T) => void,
+	delay: number
+) => {
+	const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+	const debouncedFunction = useCallback(
+		(...args: T) => {
+			if (debounceTimeoutRef.current) {
+				clearTimeout(debounceTimeoutRef.current)
+			}
+			debounceTimeoutRef.current = setTimeout(() => {
+				callback(...args)
+			}, delay)
+		},
+		[callback, delay]
+	)
+
+	useEffect(() => {
+		return () => {
+			if (debounceTimeoutRef.current) {
+				clearTimeout(debounceTimeoutRef.current)
+			}
+		}
+	}, [])
+
+	return debouncedFunction
+}
+
 const useSectionInView = (sectionHash: HashType, threshold = 0.75) => {
 	const { ref, inView } = useInView({ threshold })
 	const { setActiveSection, timeOfLastClick } = useActiveSectionContext()
@@ -44,4 +73,9 @@ const useSectionInView = (sectionHash: HashType, threshold = 0.75) => {
 	return { ref }
 }
 
-export { useCalculatorWithPathName, useCalculatorWithHash, useSectionInView }
+export {
+	useCalculatorWithPathName,
+	useCalculatorWithHash,
+	useDebounce,
+	useSectionInView
+}
