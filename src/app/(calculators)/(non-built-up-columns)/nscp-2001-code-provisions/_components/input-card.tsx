@@ -38,72 +38,74 @@ import {
 } from '@/lib/schema'
 import { useCalculatorContext } from '@/providers/calculator-providert'
 
+type schema = z.infer<typeof nscp2001CodeProvisionsSchema>
 const InputCard = () => {
 	const { setState } = useCalculatorContext()
 	const {
 		control,
-		handleSubmit,
 		register,
 		reset,
 		watch,
+		trigger,
 		formState: { errors, isSubmitting }
-	} = useFormContext<z.infer<typeof nscp2001CodeProvisionsSchema>>()
+	} = useFormContext<schema>()
 
-	const debouncedSubmit = useDebounce(() => {
-		void handleSubmit((values) => {
-			const {
-				Fy,
-				A,
-				L,
-				supportsMidspan,
-				recommendedOrTheoretical,
-				effectiveLengthFactor,
-				Ix,
-				Iy
-			} = values
+	const debouncedSubmit = useDebounce(async (values: schema) => {
+		const isValid = await trigger()
+		if (!isValid) return
 
-			const updatedIx = calculateUpdatedI(Ix)
-			const updatedIy = calculateUpdatedI(Iy)
-			const { Lx, Ly } = calculateLValues(L, supportsMidspan)
-			const { Kx, Ky } = getKValues(
-				recommendedOrTheoretical,
-				effectiveLengthFactor
-			)
+		const {
+			Fy,
+			A,
+			L,
+			supportsMidspan,
+			recommendedOrTheoretical,
+			effectiveLengthFactor,
+			Ix,
+			Iy
+		} = values
 
-			const Rx = calculateRx({ updatedIx, A })
-			const Ry = calculateRy({ updatedIy, A })
-			const rMin = calculateRmin({ Rx, Ry })
-			const Cc = calculateCc({ Fy })
-			const SRx = calculateSRx({ Kx, Lx, Rx })
-			const SRy = calculateSRy({ Ky, Ly, Ry })
-			const SRMax = calculateSRMax({ SRx, SRy })
-			const ColumnType = calculateColumnType({ SRMax, Cc })
-			const Fs = calculateFs({ ColumnType, SRMax, Cc })
-			const AllowableStress = calculateAllowableStress({ SRMax })
-			const AllowableCapacity = calculateAllowableCapacity({
-				AllowableStress,
-				A
-			})
+		const updatedIx = calculateUpdatedI(Ix)
+		const updatedIy = calculateUpdatedI(Iy)
+		const { Lx, Ly } = calculateLValues(L, supportsMidspan)
+		const { Kx, Ky } = getKValues(
+			recommendedOrTheoretical,
+			effectiveLengthFactor
+		)
 
-			setState({
-				Rx,
-				Ry,
-				rMin,
-				Cc,
-				SRx,
-				SRy,
-				SRMax,
-				ColumnType,
-				Fs,
-				AllowableStress,
-				AllowableCapacity
-			})
-		})()
+		const Rx = calculateRx({ updatedIx, A })
+		const Ry = calculateRy({ updatedIy, A })
+		const rMin = calculateRmin({ Rx, Ry })
+		const Cc = calculateCc({ Fy })
+		const SRx = calculateSRx({ Kx, Lx, Rx })
+		const SRy = calculateSRy({ Ky, Ly, Ry })
+		const SRMax = calculateSRMax({ SRx, SRy })
+		const ColumnType = calculateColumnType({ SRMax, Cc })
+		const Fs = calculateFs({ ColumnType, SRMax, Cc })
+		const AllowableStress = calculateAllowableStress({ SRMax })
+		const AllowableCapacity = calculateAllowableCapacity({
+			AllowableStress,
+			A
+		})
+
+		setState({
+			Rx,
+			Ry,
+			rMin,
+			Cc,
+			SRx,
+			SRy,
+			SRMax,
+			ColumnType,
+			Fs,
+			AllowableStress,
+			AllowableCapacity
+		})
 	}, 500)
 
 	useEffect(() => {
-		debouncedSubmit()
-	}, [debouncedSubmit, watch])
+		debouncedSubmit(watch())
+	}, [watch, debouncedSubmit])
 
 	return (
 		<Card>
