@@ -27,13 +27,13 @@ const ResultCard = () => {
 					type="number"
 					label="Allowable Stress"
 					placeholder="Mpa"
-					value={AllowableStress}
+					value={AllowableStress || ''}
 				/>
 				<FormItem.Output
 					type="number"
 					label="Allowable Capacity"
 					placeholder="kN"
-					value={AllowableCapacity}
+					value={AllowableCapacity || ''}
 				/>
 			</CardContent>
 		</Card>

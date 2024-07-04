@@ -8,6 +8,7 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 import { useNSCP2001CodeProvisionStore } from '@/store/nscp2001CodeProvisionStore'
 
 const ComputationCard = () => {
@@ -31,22 +32,22 @@ const ComputationCard = () => {
 			<CardContent className="grid grid-cols-2 gap-8">
 				<div className='px-6" flex flex-col space-y-4'>
 					<FormItem.Output
-						value={Rx}
+						value={Rx || ''}
 						label="Radius of Gyration Rx"
 						placeholder="Rx"
 					/>
 					<FormItem.Output
-						value={Ry}
+						value={Ry || ''}
 						label="Radius of Gyration Ry"
 						placeholder="mm"
 					/>
 					<FormItem.Output
-						value={rMin}
+						value={rMin || ''}
 						label="Minimum, Rmin"
 						placeholder="mm"
 					/>
 					<FormItem.Output
-						value={Cc}
+						value={Cc || ''}
 						type="number"
 						label="Critical SR"
 						placeholder="Cc"
@@ -54,28 +55,29 @@ const ComputationCard = () => {
 				</div>
 				<div className='px-6" flex flex-col space-y-4'>
 					<FormItem.Output
-						value={SRx}
+						value={SRx || ''}
 						label="Slenderness Ratio SRx"
 						placeholder="SRx"
 					/>
 					<FormItem.Output
-						value={SRy}
+						value={SRy || ''}
 						label="Slenderess Ratio SRy"
 						placeholder="SRy"
 					/>
 					<FormItem.Output
-						value={SRmax}
+						value={SRmax || ''}
 						label="Maximum, SRmax"
 						placeholder="SRmax"
 					/>
 					<FormItem.Output
 						type="text"
-						value={ColumnType}
+						value={ColumnType || ''}
 						label="Column Type"
 						placeholder="Cc"
 					/>
 					<FormItem.Output
-						value={Fs}
+						type="text"
+						value={Fs == -1 ? 'N/A' : Fs || ''}
 						label="Factor of Safety"
 						placeholder="Fs"
 					/>
