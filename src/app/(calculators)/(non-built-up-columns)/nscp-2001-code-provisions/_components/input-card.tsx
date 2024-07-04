@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect } from 'react'
-import { watch } from 'fs'
 import { useFormContext } from 'react-hook-form'
 import { type z } from 'zod'
 
@@ -47,7 +46,6 @@ const InputCard = () => {
 		register,
 		reset,
 		trigger,
-		getValues,
 		watch,
 		formState: { errors, isSubmitting }
 	} = useFormContext<schema>()
@@ -110,7 +108,7 @@ const InputCard = () => {
 			debouncedSubmit(values as schema)
 			void trigger()
 		}).unsubscribe
-	}, [trigger, getValues])
+	}, [watch, debouncedSubmit, trigger])
 
 	return (
 		<Card>
