@@ -44,6 +44,7 @@ const InputCard = () => {
 		control,
 		handleSubmit,
 		register,
+		reset,
 		watch,
 		formState: { errors, isSubmitting }
 	} = useFormContext<z.infer<typeof nscp2001CodeProvisionsSchema>>()
@@ -116,27 +117,21 @@ const InputCard = () => {
 					label="Yield Strength"
 					placeholder="MPa"
 					errorMessage={errors.Fy?.message}
-					{...register('Fy', {
-						valueAsNumber: true
-					})}
+					{...register('Fy')}
 				/>
 
 				<FormItem.Input
 					label="Area"
 					placeholder="mm²"
 					errorMessage={errors.A?.message}
-					{...register('A', {
-						valueAsNumber: true
-					})}
+					{...register('A')}
 				/>
 
 				<FormItem.Input
 					label="Length of Column"
 					placeholder="mm"
 					errorMessage={errors.L?.message}
-					{...register('L', {
-						valueAsNumber: true
-					})}
+					{...register('L')}
 				>
 					<FormItem.Tooltip delayDuration={450}>
 						<FormItem.Controller
@@ -198,18 +193,14 @@ const InputCard = () => {
 					label="Moment of Inertia X"
 					placeholder="mm⁴"
 					errorMessage={errors.Ix?.message}
-					{...register('Ix', {
-						valueAsNumber: true
-					})}
+					{...register('Ix')}
 				/>
 
 				<FormItem.Input
 					label="Moment of Inertia Y"
 					placeholder="mm⁴"
 					errorMessage={errors.Iy?.message}
-					{...register('Iy', {
-						valueAsNumber: true
-					})}
+					{...register('Iy')}
 				/>
 			</CardContent>
 
@@ -217,7 +208,29 @@ const InputCard = () => {
 				<Button
 					className="w-full"
 					disabled={isSubmitting}
-					onClick={() => window.location.reload()}
+					onClick={() => {
+						reset({
+							Fy: '' as unknown as undefined,
+							A: '' as unknown as undefined,
+							L: '' as unknown as undefined,
+							supportsMidspan: false,
+							Ix: '' as unknown as undefined,
+							Iy: '' as unknown as undefined
+						})
+						setState({
+							Rx: 0,
+							Ry: 0,
+							rMin: 0,
+							Cc: 0,
+							SRx: 0,
+							SRy: 0,
+							SRMax: 0,
+							ColumnType: 'Intermediate',
+							Fs: 0,
+							AllowableStress: 0,
+							AllowableCapacity: 0
+						})
+					}}
 				>
 					Reset
 				</Button>

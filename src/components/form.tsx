@@ -25,62 +25,55 @@ type FormItemProps = {
 	errorMessage?: string
 	children: React.ReactNode
 }
-const FormItem = ({ label, errorMessage, children }: FormItemProps) => {
-	return (
-		<div className="relative space-y-2">
-			{label && (
-				<Label className={cn(errorMessage && 'font-medium text-foreground/90')}>
-					{label}
-				</Label>
-			)}
-			{children}
-			{errorMessage && (
-				<h4 className="text-sm font-medium text-destructive">{errorMessage}</h4>
-			)}
-		</div>
-	)
-}
+const FormItem = ({ label, errorMessage, children }: FormItemProps) => (
+	<div className="relative space-y-2">
+		{label && (
+			<Label className={cn(errorMessage && 'font-medium text-foreground/90')}>
+				{label}
+			</Label>
+		)}
+		{children}
+		{errorMessage && (
+			<h4 className="text-sm font-medium text-destructive">{errorMessage}</h4>
+		)}
+	</div>
+)
 
-const FormController = Controller
-FormItem.Controller = FormController
+FormItem.Controller = Controller
 
 type FormInputProps = React.ComponentPropsWithoutRef<typeof Input> & {
 	label?: string
 	errorMessage?: string
 }
 const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
-	({ label, errorMessage, children, ...props }, ref) => {
-		return (
-			<FormItem label={label} errorMessage={errorMessage}>
-				{children}
-				<Input
-					ref={ref}
-					type="number"
-					className="text-foreground/90"
-					{...props}
-				/>
-			</FormItem>
-		)
-	}
+	({ label, errorMessage, children, ...props }, ref) => (
+		<FormItem label={label} errorMessage={errorMessage}>
+			{children}
+			<Input
+				ref={ref}
+				type="number"
+				className="text-foreground/90"
+				{...props}
+			/>
+		</FormItem>
+	)
 )
 FormInput.displayName = 'FormInput'
 FormItem.Input = FormInput
 
 const FormOutput = React.forwardRef<HTMLInputElement, FormInputProps>(
-	({ label, errorMessage, children, ...props }, ref) => {
-		return (
-			<FormItem label={label} errorMessage={errorMessage}>
-				{children}
-				<Input
-					ref={ref}
-					type="number"
-					className="!cursor-auto text-foreground/90"
-					readOnly
-					{...props}
-				/>
-			</FormItem>
-		)
-	}
+	({ label, errorMessage, children, ...props }, ref) => (
+		<FormItem label={label} errorMessage={errorMessage}>
+			{children}
+			<Input
+				ref={ref}
+				type="number"
+				className="!cursor-auto text-foreground/90"
+				readOnly
+				{...props}
+			/>
+		</FormItem>
+	)
 )
 FormOutput.displayName = 'FormOutput'
 FormItem.Output = FormOutput
@@ -89,22 +82,20 @@ type FormSelectProps = {
 	choices: Record<string, string>
 	placeHolder: string
 } & React.ComponentPropsWithoutRef<typeof Select>
-const FormSelect = ({ choices, placeHolder, ...props }: FormSelectProps) => {
-	return (
-		<Select {...props}>
-			<SelectTrigger>
-				<SelectValue placeholder={placeHolder} />
-			</SelectTrigger>
-			<SelectContent>
-				{Object.entries(choices).map(([key, value]) => (
-					<SelectItem key={key} value={key}>
-						{value}
-					</SelectItem>
-				))}
-			</SelectContent>
-		</Select>
-	)
-}
+const FormSelect = ({ choices, placeHolder, ...props }: FormSelectProps) => (
+	<Select {...props}>
+		<SelectTrigger>
+			<SelectValue placeholder={placeHolder} />
+		</SelectTrigger>
+		<SelectContent>
+			{Object.entries(choices).map(([key, value]) => (
+				<SelectItem key={key} value={key}>
+					{value}
+				</SelectItem>
+			))}
+		</SelectContent>
+	</Select>
+)
 FormSelect.displayName = 'FormSelect'
 FormItem.Select = FormSelect
 
@@ -127,31 +118,25 @@ FormItem.Switch = FormSwitch
 const FormTooltip = ({
 	children,
 	...props
-}: { children: React.ReactNode } & TooltipProps) => {
-	return (
-		<TooltipProvider>
-			<Tooltip {...props}>{children}</Tooltip>
-		</TooltipProvider>
-	)
-}
+}: { children: React.ReactNode } & TooltipProps) => (
+	<TooltipProvider>
+		<Tooltip {...props}>{children}</Tooltip>
+	</TooltipProvider>
+)
 FormItem.Tooltip = FormTooltip
 
-const FormTooltipTrigger = ({ children }: { children: React.ReactNode }) => {
-	return (
-		<TooltipTrigger asChild>
-			<div>{children}</div>
-		</TooltipTrigger>
-	)
-}
+const FormTooltipTrigger = ({ children }: { children: React.ReactNode }) => (
+	<TooltipTrigger asChild>
+		<div>{children}</div>
+	</TooltipTrigger>
+)
 FormItem.TooltipTrigger = FormTooltipTrigger
 
-const FormTooltipContent = ({ description }: { description: string }) => {
-	return (
-		<TooltipContent className="bg-white/10 text-xs font-medium text-gray-500 backdrop-blur-[0.08rem] dark:bg-black/10 dark:text-gray-400">
-			<p>{description}</p>
-		</TooltipContent>
-	)
-}
+const FormTooltipContent = ({ description }: { description: string }) => (
+	<TooltipContent className="bg-white/10 text-xs font-medium text-gray-500 backdrop-blur-[0.08rem] dark:bg-black/10 dark:text-gray-400">
+		<p>{description}</p>
+	</TooltipContent>
+)
 FormItem.TooltipContent = FormTooltipContent
 
 export { FormItem }
