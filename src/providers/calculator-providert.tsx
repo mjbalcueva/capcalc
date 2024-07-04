@@ -9,7 +9,7 @@ type CalculatorState = {
 	Cc: number
 	SRx: number
 	SRy: number
-	SRMax: number
+	SRmax: number
 	ColumnType: 'Intermediate' | 'Long'
 	Fs: number | string
 	AllowableStress: number
@@ -43,7 +43,7 @@ const CalculatorProvider = ({ children }: { children: React.ReactNode }) => {
 		Cc: 0,
 		SRx: 0,
 		SRy: 0,
-		SRMax: 0,
+		SRmax: 0,
 		ColumnType: 'Intermediate',
 		Fs: 0,
 		AllowableStress: 0,

@@ -77,7 +77,13 @@ const calculateSRMax = ({ SRx, SRy }: { SRx: number; SRy: number }) => {
 	return Math.max(SRx, SRy)
 }
 
-const calculateColumnType = ({ SRMax, Cc }: { SRMax: number; Cc: number }) => {
+const calculateColumnType = ({
+	SRmax: SRMax,
+	Cc
+}: {
+	SRmax: number
+	Cc: number
+}) => {
 	return SRMax > Cc ? 'Long' : 'Intermediate'
 }
 
@@ -92,11 +98,26 @@ const calculateFs = ({
 }) => {
 	return ColumnType === 'Intermediate'
 		? 5 / 3 + (3 / 8) * (SRMax / Cc) - SRMax ** 3 / (8 * Cc ** 3)
-		: 'N/A'
+		: -1
 }
 
-const calculateAllowableStress = ({ SRMax }: { SRMax: number }) => {
-	return (Math.PI ** 2 * 200000) / SRMax ** 2
+const calculateAllowableStress = ({
+	ColumnType,
+	SRmax,
+	Cc,
+	Fy,
+	Fs
+}: {
+	ColumnType: string
+	SRmax: number
+	Cc: number
+	Fy: number
+	Fs: number
+}) => {
+	if (ColumnType !== 'Intermediate')
+		parseFloat(((12 * Math.PI ** 2 * 200000) / (23 * SRmax ** 2)).toFixed(3))
+	if (Fs === -1) return -1
+	return parseFloat(((1 - SRmax ** 2 / (2 * Cc ** 2)) * (Fy / Fs)).toFixed(3))
 }
 
 const calculateAllowableCapacity = ({

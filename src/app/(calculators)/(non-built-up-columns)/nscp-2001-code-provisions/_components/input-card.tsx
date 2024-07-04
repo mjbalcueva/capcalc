@@ -50,8 +50,8 @@ const InputCard = () => {
 		formState: { errors, isSubmitting }
 	} = useFormContext<schema>()
 
-	const debouncedSubmit = useDebounce(async (values: schema) => {
-		const isValid = await trigger()
+	const debouncedSubmit = useDebounce((values: schema) => {
+		const isValid = void trigger()
 		if (!isValid) return
 
 		const {
@@ -79,10 +79,16 @@ const InputCard = () => {
 		const Cc = calculateCc({ Fy })
 		const SRx = calculateSRx({ Kx, Lx, Rx })
 		const SRy = calculateSRy({ Ky, Ly, Ry })
-		const SRMax = calculateSRMax({ SRx, SRy })
-		const ColumnType = calculateColumnType({ SRMax, Cc })
-		const Fs = calculateFs({ ColumnType, SRMax, Cc })
-		const AllowableStress = calculateAllowableStress({ SRMax })
+		const SRmax = calculateSRMax({ SRx, SRy })
+		const ColumnType = calculateColumnType({ SRmax, Cc })
+		const Fs = calculateFs({ ColumnType, SRMax: SRmax, Cc })
+		const AllowableStress = calculateAllowableStress({
+			ColumnType,
+			SRmax,
+			Cc,
+			Fy,
+			Fs
+		})
 		const AllowableCapacity = calculateAllowableCapacity({
 			AllowableStress,
 			A
@@ -95,7 +101,7 @@ const InputCard = () => {
 			Cc,
 			SRx,
 			SRy,
-			SRMax,
+			SRmax,
 			ColumnType,
 			Fs,
 			AllowableStress,
@@ -226,7 +232,7 @@ const InputCard = () => {
 							Cc: 0,
 							SRx: 0,
 							SRy: 0,
-							SRMax: 0,
+							SRmax: 0,
 							ColumnType: 'Intermediate',
 							Fs: 0,
 							AllowableStress: 0,

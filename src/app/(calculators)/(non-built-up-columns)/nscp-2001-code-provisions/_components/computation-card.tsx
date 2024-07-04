@@ -33,8 +33,8 @@ const ComputationCard = () => {
 					/>
 					<FormItem.Output
 						value={state.rMin.toFixed(3)}
-						label="Minimum, mm"
-						placeholder="rmin"
+						label="Minimum, Rmin"
+						placeholder="mm"
 					/>
 					<FormItem.Output
 						value={state.Cc.toFixed(3)}
@@ -55,7 +55,7 @@ const ComputationCard = () => {
 						placeholder="SRy"
 					/>
 					<FormItem.Output
-						value={state.SRMax.toFixed(3)}
+						value={state.SRmax.toFixed(3)}
 						label="Maximum, SRmax"
 						placeholder="SRmax"
 					/>
