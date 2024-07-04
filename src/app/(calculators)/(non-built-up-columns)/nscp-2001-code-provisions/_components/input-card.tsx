@@ -24,7 +24,7 @@ import {
 	calculateRmin,
 	calculateRx,
 	calculateRy,
-	calculateSRMax,
+	calculateSRmax,
 	calculateSRx,
 	calculateSRy,
 	calculateUpdatedI,
@@ -79,9 +79,9 @@ const InputCard = () => {
 		const Cc = calculateCc({ Fy })
 		const SRx = calculateSRx({ Kx, Lx, Rx })
 		const SRy = calculateSRy({ Ky, Ly, Ry })
-		const SRmax = calculateSRMax({ SRx, SRy })
+		const SRmax = calculateSRmax({ SRx, SRy })
 		const ColumnType = calculateColumnType({ SRmax, Cc })
-		const Fs = calculateFs({ ColumnType, SRMax: SRmax, Cc })
+		const Fs = calculateFs({ ColumnType, SRmax, Cc })
 		const AllowableStress = calculateAllowableStress({
 			ColumnType,
 			SRmax,

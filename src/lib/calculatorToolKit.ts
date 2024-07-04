@@ -73,31 +73,25 @@ const calculateSRy = ({
 	return (Ky * Ly) / Ry
 }
 
-const calculateSRMax = ({ SRx, SRy }: { SRx: number; SRy: number }) => {
+const calculateSRmax = ({ SRx, SRy }: { SRx: number; SRy: number }) => {
 	return Math.max(SRx, SRy)
 }
 
-const calculateColumnType = ({
-	SRmax: SRMax,
-	Cc
-}: {
-	SRmax: number
-	Cc: number
-}) => {
-	return SRMax > Cc ? 'Long' : 'Intermediate'
+const calculateColumnType = ({ SRmax, Cc }: { SRmax: number; Cc: number }) => {
+	return SRmax > Cc ? 'Long' : 'Intermediate'
 }
 
 const calculateFs = ({
 	ColumnType,
-	SRMax,
+	SRmax,
 	Cc
 }: {
 	ColumnType: string
-	SRMax: number
+	SRmax: number
 	Cc: number
 }) => {
 	return ColumnType === 'Intermediate'
-		? 5 / 3 + (3 / 8) * (SRMax / Cc) - SRMax ** 3 / (8 * Cc ** 3)
+		? 5 / 3 + (3 / 8) * (SRmax / Cc) - SRmax ** 3 / (8 * Cc ** 3)
 		: -1
 }
 
@@ -140,7 +134,7 @@ export {
 	calculateCc,
 	calculateSRx,
 	calculateSRy,
-	calculateSRMax,
+	calculateSRmax,
 	calculateColumnType,
 	calculateFs,
 	calculateAllowableStress,
