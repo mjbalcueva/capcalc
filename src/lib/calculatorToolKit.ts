@@ -92,7 +92,7 @@ const calculateFs = ({
 }) => {
 	return ColumnType === 'Intermediate'
 		? 5 / 3 + (3 / 8) * (SRmax / Cc) - SRmax ** 3 / (8 * Cc ** 3)
-		: -1
+		: 1
 }
 
 const calculateAllowableStress = ({
@@ -110,7 +110,7 @@ const calculateAllowableStress = ({
 }) => {
 	if (ColumnType !== 'Intermediate')
 		parseFloat(((12 * Math.PI ** 2 * 200000) / (23 * SRmax ** 2)).toFixed(3))
-	if (Fs === -1) return -1
+	if (Fs === 1) return 1
 	return parseFloat(((1 - SRmax ** 2 / (2 * Cc ** 2)) * (Fy / Fs)).toFixed(3))
 }
 

@@ -9,9 +9,10 @@ import {
 	CardTitle
 } from '@/components/ui/card'
 import { useCalculatorContext } from '@/providers/calculator-providert'
+import { CalculatorState } from './type'
 
 const ComputationCard = () => {
-	const { state } = useCalculatorContext()
+	const { state } = useCalculatorContext<CalculatorState>()
 
 	return (
 		<Card>

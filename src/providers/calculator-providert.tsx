@@ -2,31 +2,25 @@
 
 import React, { createContext, useContext, useState } from 'react'
 
-type CalculatorState = {
-	Rx: number
-	Ry: number
-	rMin: number
-	Cc: number
-	SRx: number
-	SRy: number
-	SRmax: number
-	ColumnType: 'Intermediate' | 'Long'
-	Fs: number | string
-	AllowableStress: number
-	AllowableCapacity: number
+// Step 1: Make CalculatorState generic
+type CalculatorState<T> = T
+
+// Step 2: Update CalculatorContextType to be generic
+type CalculatorContextType<T> = {
+	state: CalculatorState<T>
+	setState: (state: CalculatorState<T>) => void
 }
 
-type CalculatorContextType = {
-	state: CalculatorState
-	setState: (state: CalculatorState) => void
-}
-
-const CalculatorContext = createContext<CalculatorContextType | undefined>(
+// Step 3: Create context with generic type, defaulting to undefined
+const CalculatorContext = createContext<CalculatorContextType<any> | undefined>(
 	undefined
 )
 
-const useCalculatorContext = () => {
-	const context = useContext(CalculatorContext)
+// Step 4: Generic hook to use context
+function useCalculatorContext<T>() {
+	const context = useContext(
+		CalculatorContext as React.Context<CalculatorContextType<T> | undefined>
+	)
 	if (context === undefined) {
 		throw new Error(
 			'useCalculatorContext must be used within a CalculatorProvider'
@@ -35,20 +29,15 @@ const useCalculatorContext = () => {
 	return context
 }
 
-const CalculatorProvider = ({ children }: { children: React.ReactNode }) => {
-	const [state, setState] = useState<CalculatorState>({
-		Rx: 0,
-		Ry: 0,
-		rMin: 0,
-		Cc: 0,
-		SRx: 0,
-		SRy: 0,
-		SRmax: 0,
-		ColumnType: 'Intermediate',
-		Fs: 0,
-		AllowableStress: 0,
-		AllowableCapacity: 0
-	})
+// Step 5: Update CalculatorProvider to accept generic type
+const CalculatorProvider = <T,>({
+	children,
+	initialState
+}: {
+	children: React.ReactNode
+	initialState: T
+}) => {
+	const [state, setState] = useState<CalculatorState<T>>(initialState)
 
 	return (
 		<CalculatorContext.Provider value={{ state, setState }}>

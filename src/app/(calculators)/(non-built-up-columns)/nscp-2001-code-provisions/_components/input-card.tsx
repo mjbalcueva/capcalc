@@ -51,7 +51,7 @@ const InputCard = () => {
 	} = useFormContext<schema>()
 
 	const debouncedSubmit = useDebounce((values: schema) => {
-		const isValid = void trigger()
+		const isValid = trigger()
 		if (!isValid) return
 
 		const {
