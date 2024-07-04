@@ -89,17 +89,17 @@ const InputCard = () => {
 		const AllowableCapacity = calculateAllowableCapacity({ AllowableStress, A })
 
 		setValues({
-			Rx,
-			Ry,
-			rMin,
-			Cc,
-			SRx,
-			SRy,
-			SRmax,
+			Rx: isFinite(Rx) ? Rx : 0,
+			Ry: isFinite(Ry) ? Ry : 0,
+			rMin: isFinite(rMin) ? rMin : 0,
+			Cc: isFinite(Cc) ? Cc : 0,
+			SRx: isFinite(SRx) ? SRx : 0,
+			SRy: isFinite(SRy) ? SRy : 0,
+			SRmax: isFinite(SRmax) ? SRmax : 0,
 			ColumnType,
-			Fs,
-			AllowableStress,
-			AllowableCapacity
+			Fs: isFinite(Fs) ? Fs : 0,
+			AllowableStress: isFinite(AllowableStress) ? AllowableStress : 0,
+			AllowableCapacity: isFinite(AllowableCapacity) ? AllowableCapacity : 0
 		})
 	})
 
