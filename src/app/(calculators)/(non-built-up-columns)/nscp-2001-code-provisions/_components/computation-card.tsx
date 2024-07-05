@@ -1,30 +1,18 @@
 'use client'
 
-import { useFormContext } from 'react-hook-form'
-
 import { Calculator } from '@/components/calculator'
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle
-} from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useNSCP2001CodeProvisionStore } from '@/store/nscp2001CodeProvisionStore'
 
 const ComputationCard = () => {
 	const { values } = useNSCP2001CodeProvisionStore()
-	const { getValues } = useFormContext()
 
 	return (
 		<Card>
 			<CardHeader>
 				<CardTitle>Computation Variables</CardTitle>
 			</CardHeader>
-			<CardContent>
-				<pre>{JSON.stringify(getValues(), null, 2)}</pre>
-			</CardContent>
-			{/* <CardContent className="grid gap-4 sm:grid-cols-2 sm:gap-8">
+			<CardContent className="grid gap-4 sm:grid-cols-2 sm:gap-8">
 				<div className="flex flex-col space-y-4">
 					<Calculator.Output
 						value={values.Rx || 0}
@@ -59,7 +47,7 @@ const ComputationCard = () => {
 						label="Factor of Safety"
 					/>
 				</div>
-			</CardContent> */}
+			</CardContent>
 		</Card>
 	)
 }
