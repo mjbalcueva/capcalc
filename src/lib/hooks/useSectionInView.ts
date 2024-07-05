@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { HashType } from '@/lib/types'
+import type { HashType } from '@/lib/types'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 export const useSectionInView = (sectionHash: HashType, threshold = 0.75) => {
