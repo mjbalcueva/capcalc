@@ -35,7 +35,7 @@ import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,
 	type nscp2001CodeProvisionsSchema
-} from '@/lib/schema'
+} from '@/lib/schemas/nonBuiltUpColumnsSchema'
 import { useNSCP2001CodeProvisionStore } from '@/store/nscp2001CodeProvisionStore'
 
 type schema = z.infer<typeof nscp2001CodeProvisionsSchema>
