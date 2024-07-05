@@ -6,12 +6,14 @@ import { useTheme } from 'next-themes'
 
 import { CardHoverEffect } from '@/components/ui/card-hover-effect'
 import { ParticlesBackground } from '@/components/ui/particles-background'
-import { useCalculatorWithHash } from '@/lib/hooks/useCalculator'
+import { useFindCalculatorWithHash } from '@/lib/hooks/useFindCalculator'
 import { useSectionInView } from '@/lib/hooks/useSectionInView'
 
 const NonBuiltUpColumnsSection = () => {
 	const { ref } = useSectionInView('#non-built-up-columns')
-	const nonBuiltUpCalculators = useCalculatorWithHash('#non-built-up-columns')
+	const nonBuiltUpCalculators = useFindCalculatorWithHash(
+		'#non-built-up-columns'
+	)
 	const { theme } = useTheme()
 	const [color, setColor] = useState('#ffffff')
 

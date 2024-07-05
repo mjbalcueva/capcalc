@@ -9,7 +9,7 @@ import { type z } from 'zod'
 
 import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
-import { useCalculatorWithPathName } from '@/lib/hooks/useCalculator'
+import { useFindCalculatorWithPathName } from '@/lib/hooks/useFindCalculator'
 import { nonBuiltUpColumnsSchema } from '@/lib/schemas/nonBuiltUpColumnsSchema'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
@@ -27,9 +27,10 @@ type Props = {
 export default function Layout({ children }: Props) {
 	const pathName = usePathname()
 	const { setActiveSection } = useActiveSectionContext()
-	const { activeCalculator, activeCalculatorItem } = useCalculatorWithPathName({
-		pathName
-	})
+	const { activeCalculator, activeCalculatorItem } =
+		useFindCalculatorWithPathName({
+			pathName
+		})
 
 	const currentSchema = pageToSchemaMapping[pathName as PagePath]
 

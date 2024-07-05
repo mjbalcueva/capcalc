@@ -6,11 +6,11 @@ import { useMemo } from 'react'
 import { calculators } from '@/lib/links'
 import { type HashType } from '@/lib/types'
 
-type CalculatorType = {
+const useFindCalculatorWithPathName = ({
+	pathName
+}: {
 	pathName: ReturnType<typeof usePathname>
-}
-
-const useCalculatorWithPathName = ({ pathName }: CalculatorType) => {
+}) => {
 	return useMemo(() => {
 		const activeCalculator = calculators.find((calculator) =>
 			calculator.calculators.some(({ link }) => link === pathName)
@@ -25,10 +25,10 @@ const useCalculatorWithPathName = ({ pathName }: CalculatorType) => {
 	}, [pathName])
 }
 
-const useCalculatorWithHash = (hash: HashType) => {
+const useFindCalculatorWithHash = (hash: HashType) => {
 	return useMemo(() => {
 		return calculators.find((calculator) => calculator.hash === hash)
 	}, [hash])
 }
 
-export { useCalculatorWithPathName, useCalculatorWithHash }
+export { useFindCalculatorWithPathName, useFindCalculatorWithHash }

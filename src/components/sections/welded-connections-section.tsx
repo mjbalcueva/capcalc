@@ -3,12 +3,14 @@
 import { motion } from 'framer-motion'
 
 import { CardHoverEffect } from '@/components/ui/card-hover-effect'
-import { useCalculatorWithHash } from '@/lib/hooks/useCalculator'
+import { useFindCalculatorWithHash } from '@/lib/hooks/useFindCalculator'
 import { useSectionInView } from '@/lib/hooks/useSectionInView'
 
 const WeldedConnectionsSection = () => {
 	const { ref } = useSectionInView('#welded-connections')
-	const nonBuiltUpCalculators = useCalculatorWithHash('#non-built-up-columns')
+	const nonBuiltUpCalculators = useFindCalculatorWithHash(
+		'#non-built-up-columns'
+	)
 
 	return (
 		<section
