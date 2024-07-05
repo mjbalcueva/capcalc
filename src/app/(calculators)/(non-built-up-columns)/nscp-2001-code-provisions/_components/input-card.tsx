@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { type z } from 'zod'
 
-import { FormItem } from '@/components/form'
+import { FormItem } from '@/components/calculator'
 import { Button } from '@/components/ui/button'
 import {
 	Card,

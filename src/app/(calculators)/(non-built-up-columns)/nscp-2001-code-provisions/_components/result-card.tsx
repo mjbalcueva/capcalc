@@ -1,6 +1,6 @@
 'use client'
 
-import { Calculator } from '@/components/form'
+import { Calculator } from '@/components/calculator'
 import {
 	Card,
 	CardContent,
