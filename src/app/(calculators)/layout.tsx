@@ -10,11 +10,12 @@ import { type z } from 'zod'
 import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
 import { useCalculatorWithPathName } from '@/lib/hooks/useCalculator'
-import { nscp2001CodeProvisionsSchema } from '@/lib/schema'
+import { nonBuiltUpColumnsSchema } from '@/lib/schemas/nonBuiltUpColumnsSchema'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const pageToSchemaMapping = {
-	'/nscp-2001-code-provisions': nscp2001CodeProvisionsSchema
+	'/nscp-2001-code-provisions': nonBuiltUpColumnsSchema,
+	'/eulers-formula-for-columns': nonBuiltUpColumnsSchema
 } as const
 
 type PagePath = keyof typeof pageToSchemaMapping

@@ -24,7 +24,7 @@ const effectiveLengthFactorChoices: {
 	'pinned-pinned': 'Pinned-Pinned'
 }
 
-const nscp2001CodeProvisionsSchema = z.object({
+const nonBuiltUpColumnsSchema = z.object({
 	Fy: z.coerce.number().positive({
 		message: 'Input must be greater than 0'
 	}),
@@ -47,8 +47,11 @@ const nscp2001CodeProvisionsSchema = z.object({
 	Iy: z.coerce.number().positive('Input must be greater than 0')
 })
 
+type NonBuiltUpColumnsSchemaType = z.infer<typeof nonBuiltUpColumnsSchema>
+
 export {
 	recommendedOrTheoreticalChoices,
 	effectiveLengthFactorChoices,
-	nscp2001CodeProvisionsSchema
+	nonBuiltUpColumnsSchema,
+	type NonBuiltUpColumnsSchemaType
 }

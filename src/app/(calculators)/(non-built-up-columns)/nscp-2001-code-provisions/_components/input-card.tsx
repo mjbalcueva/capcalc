@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react'
 import { useFormContext } from 'react-hook-form'
-import { type z } from 'zod'
 
 import { FormItem } from '@/components/calculator'
 import { Button } from '@/components/ui/button'
@@ -34,11 +33,10 @@ import { useDebounce } from '@/lib/hooks/useDebounce'
 import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,
-	type nscp2001CodeProvisionsSchema
+	type NonBuiltUpColumnsSchemaType
 } from '@/lib/schemas/nonBuiltUpColumnsSchema'
 import { useNSCP2001CodeProvisionStore } from '@/store/nscp2001CodeProvisionStore'
 
-type schema = z.infer<typeof nscp2001CodeProvisionsSchema>
 const InputCard = () => {
 	const { setValues, resetValues } = useNSCP2001CodeProvisionStore()
 	const {
@@ -48,9 +46,9 @@ const InputCard = () => {
 		trigger,
 		watch,
 		formState: { errors, isSubmitting }
-	} = useFormContext<schema>()
+	} = useFormContext<NonBuiltUpColumnsSchemaType>()
 
-	const debouncedSubmit = useDebounce((values: schema) => {
+	const debouncedSubmit = useDebounce((values: NonBuiltUpColumnsSchemaType) => {
 		const {
 			Fy,
 			A,
@@ -86,7 +84,10 @@ const InputCard = () => {
 			Fy,
 			Fs
 		})
-		const AllowableCapacity = calculateAllowableCapacity({ AllowableStress, A })
+		const AllowableCapacity = calculateAllowableCapacity({
+			AllowableStress,
+			A
+		})
 
 		setValues({
 			Rx: isFinite(Rx) ? Rx : 0,
@@ -105,7 +106,7 @@ const InputCard = () => {
 
 	useEffect(() => {
 		return watch((values) => {
-			debouncedSubmit(values as schema)
+			debouncedSubmit(values as NonBuiltUpColumnsSchemaType)
 			void trigger()
 		}).unsubscribe
 	}, [watch, debouncedSubmit, trigger])
