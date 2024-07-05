@@ -9,7 +9,7 @@ import { type z } from 'zod'
 
 import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
-import { useCalculatorWithPathName } from '@/lib/hooks'
+import { useCalculatorWithPathName } from '@/lib/hooks/useCalculator'
 import { nscp2001CodeProvisionsSchema } from '@/lib/schema'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 

@@ -30,7 +30,7 @@ import {
 	calculateUpdatedI,
 	getKValues
 } from '@/lib/calculatorToolKit'
-import { useDebounce } from '@/lib/hooks'
+import { useDebounce } from '@/lib/hooks/useDebounce'
 import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,

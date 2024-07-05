@@ -6,7 +6,8 @@ import { useTheme } from 'next-themes'
 
 import { CardHoverEffect } from '@/components/ui/card-hover-effect'
 import { ParticlesBackground } from '@/components/ui/particles-background'
-import { useCalculatorWithHash, useSectionInView } from '@/lib/hooks'
+import { useCalculatorWithHash } from '@/lib/hooks/useCalculator'
+import { useSectionInView } from '@/lib/hooks/useSectionInView'
 
 const NonBuiltUpColumnsSection = () => {
 	const { ref } = useSectionInView('#non-built-up-columns')

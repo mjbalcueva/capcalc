@@ -1,6 +1,6 @@
 'use client'
 
-import { useSectionInView } from '@/lib/hooks'
+import { useSectionInView } from '@/lib/hooks/useSectionInView'
 
 const BoltedConnectionsSection = () => {
 	const { ref } = useSectionInView('#bolted-connections')

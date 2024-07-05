@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion'
 
 import { CardHoverEffect } from '@/components/ui/card-hover-effect'
-import { useCalculatorWithHash, useSectionInView } from '@/lib/hooks'
+import { useCalculatorWithHash } from '@/lib/hooks/useCalculator'
+import { useSectionInView } from '@/lib/hooks/useSectionInView'
 
 const WeldedConnectionsSection = () => {
 	const { ref } = useSectionInView('#welded-connections')
