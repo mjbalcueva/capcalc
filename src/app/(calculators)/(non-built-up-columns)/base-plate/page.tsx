@@ -1,52 +1,17 @@
-import { Button } from '@/components/ui/button'
-import {
-	Card,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle
-} from '@/components/ui/card'
+import { ComputationCard } from './_components/computation-card'
+import { InputCard } from './_components/input-card'
+import { ResultCard } from './_components/result-card'
 
 export default function BasePlatePage() {
 	return (
 		<main className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_2fr]">
-			<InputSection />
-			<OutputSection />
+			<section className="flex flex-col">
+				<InputCard />
+			</section>
+			<section className="flex flex-col gap-4">
+				<ResultCard />
+				<ComputationCard />
+			</section>
 		</main>
-	)
-}
-
-const InputSection = () => {
-	return (
-		<section className="flex flex-col">
-			<Card>
-				<CardHeader>
-					<CardTitle>Input Variables</CardTitle>
-					<CardDescription>Input Description</CardDescription>
-				</CardHeader>
-				<CardFooter className="flex flex-row-reverse">
-					<Button variant="destructive">Clear</Button>
-				</CardFooter>
-			</Card>
-		</section>
-	)
-}
-
-const OutputSection = () => {
-	return (
-		<section className="flex flex-col gap-4">
-			<Card>
-				<CardHeader>
-					<CardTitle>Result</CardTitle>
-					<CardDescription>Result Description</CardDescription>
-				</CardHeader>
-			</Card>
-			<Card>
-				<CardHeader>
-					<CardTitle>Computation Variables</CardTitle>
-					<CardDescription>Computation Description</CardDescription>
-				</CardHeader>
-			</Card>
-		</section>
 	)
 }
