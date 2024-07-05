@@ -1,6 +1,6 @@
 'use client'
 
-import { FormItem } from '@/components/form'
+import { Calculator } from '@/components/form'
 import {
 	Card,
 	CardContent,
@@ -19,21 +19,16 @@ const ResultCard = () => {
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle>Result</CardTitle>
-				<CardDescription>Result Description</CardDescription>
+				<CardTitle>Results</CardTitle>
 			</CardHeader>
 			<CardContent className="grid grid-cols-2 gap-8">
-				<FormItem.Output
-					type="number"
-					label="Allowable Stress"
-					placeholder="Mpa"
-					value={AllowableStress || ''}
+				<Calculator.Output
+					label="Allowable Stress (Mpa)"
+					value={AllowableStress}
 				/>
-				<FormItem.Output
-					type="number"
-					label="Allowable Capacity"
-					placeholder="kN"
-					value={AllowableCapacity || ''}
+				<Calculator.Output
+					label="Allowable Capacity (kN)"
+					value={AllowableCapacity}
 				/>
 			</CardContent>
 		</Card>

@@ -1,6 +1,6 @@
 'use client'
 
-import { FormItem } from '@/components/form'
+import { Calculator } from '@/components/form'
 import {
 	Card,
 	CardContent,
@@ -12,73 +12,45 @@ import { useNSCP2001CodeProvisionStore } from '@/store/nscp2001CodeProvisionStor
 
 const ComputationCard = () => {
 	const { values } = useNSCP2001CodeProvisionStore()
-	const Rx = values.Rx || 0
-	const Ry = values.Ry || 0
-	const rMin = values.rMin || 0
-	const Cc = values.Cc || 0
-	const SRx = values.SRx || 0
-	const SRy = values.SRy || 0
-	const SRmax = values.SRmax || 0
-	const ColumnType = values.ColumnType || 'Intermediate'
-	const Fs = values.Fs || 0
 
 	return (
 		<Card>
 			<CardHeader>
 				<CardTitle>Computation Variables</CardTitle>
-				<CardDescription>Computation Description</CardDescription>
 			</CardHeader>
-			<CardContent className="grid grid-cols-2 gap-8">
-				<div className='px-6" flex flex-col space-y-4'>
-					<FormItem.Output
-						value={Rx || ''}
-						label="Radius of Gyration Rx"
-						placeholder="Rx"
+			<CardContent className="grid gap-4 sm:grid-cols-2 sm:gap-8">
+				<div className="flex flex-col space-y-4">
+					<Calculator.Output
+						value={values.Rx || 0}
+						label="Radius of Gyration (Rx)"
 					/>
-					<FormItem.Output
-						value={Ry || ''}
-						label="Radius of Gyration Ry"
-						placeholder="mm"
+					<Calculator.Output
+						value={values.Ry || 0}
+						label="Radius of Gyration (Ry)"
 					/>
-					<FormItem.Output
-						value={rMin || ''}
-						label="Minimum, Rmin"
-						placeholder="mm"
-					/>
-					<FormItem.Output
-						value={Cc || ''}
-						type="number"
-						label="Critical SR"
-						placeholder="Cc"
-					/>
+					<Calculator.Output value={values.rMin || 0} label="Minimum (Rmin)" />
+					<Calculator.Output value={values.Cc || 0} label="Critical (SR)" />
 				</div>
-				<div className='px-6" flex flex-col space-y-4'>
-					<FormItem.Output
-						value={SRx || ''}
-						label="Slenderness Ratio SRx"
-						placeholder="SRx"
+				<div className="flex flex-col space-y-4">
+					<Calculator.Output
+						value={values.SRx || 0}
+						label="Slenderness Ratio (SRx)"
 					/>
-					<FormItem.Output
-						value={SRy || ''}
-						label="Slenderess Ratio SRy"
-						placeholder="SRy"
+					<Calculator.Output
+						value={values.SRy || 0}
+						label="Slenderess Ratio (SRy)"
 					/>
-					<FormItem.Output
-						value={SRmax || ''}
-						label="Maximum, SRmax"
-						placeholder="SRmax"
+					<Calculator.Output
+						value={values.SRmax || 0}
+						label="Maximum (SRmax)"
 					/>
-					<FormItem.Output
-						type="text"
-						value={ColumnType || ''}
+					<Calculator.Output
+						value={values.ColumnType || 'None'}
 						label="Column Type"
-						placeholder="Cc"
 					/>
-					<FormItem.Output
-						type="text"
-						value={Fs == -1 ? 'N/A' : Fs || ''}
+					<Calculator.Output
+						value={values.Fs == -1 ? 'N/A' : values.Fs || 0}
 						label="Factor of Safety"
-						placeholder="Fs"
 					/>
 				</div>
 			</CardContent>

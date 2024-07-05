@@ -78,6 +78,7 @@ const calculateSRmax = ({ SRx, SRy }: { SRx: number; SRy: number }) => {
 }
 
 const calculateColumnType = ({ SRmax, Cc }: { SRmax: number; Cc: number }) => {
+	if (Number.isNaN(SRmax) || Cc == Infinity) return 'None'
 	return SRmax > Cc ? 'Long' : 'Intermediate'
 }
 
@@ -90,11 +91,11 @@ const calculateFs = ({
 	SRmax: number
 	Cc: number
 }) => {
-	return ColumnType === 'Intermediate'
-		? parseFloat(
-				(5 / 3 + (3 / 8) * (SRmax / Cc) - SRmax ** 3 / (8 * Cc ** 3)).toFixed(3)
-			)
-		: -1
+	if (Number.isNaN(SRmax) || Cc == Infinity) return 0
+	if (ColumnType !== 'Intermediate') return -1
+	return parseFloat(
+		(5 / 3 + (3 / 8) * (SRmax / Cc) - SRmax ** 3 / (8 * Cc ** 3)).toFixed(3)
+	)
 }
 
 const calculateAllowableStress = ({

@@ -139,4 +139,28 @@ const FormTooltipContent = ({ description }: { description: string }) => (
 )
 FormItem.TooltipContent = FormTooltipContent
 
-export { FormItem }
+const Calculator = ({ children }: { children: React.ReactNode }) => (
+	<div className="space-y-4">{children}</div>
+)
+
+type OutputProps<T> = {
+	label: string
+	value: T
+} & React.HTMLAttributes<HTMLDivElement>
+
+const Output = <T,>({ label, value, ...props }: OutputProps<T>) => (
+	<div {...props}>
+		<Label className="text-lg">{label}</Label>
+		<p
+			className={cn(
+				'font-mono text-4xl font-bold',
+				(value === 0 || value === 'None') && 'text-muted-foreground/40'
+			)}
+		>
+			{value as React.ReactNode}
+		</p>
+	</div>
+)
+Calculator.Output = Output
+
+export { FormItem, Calculator }

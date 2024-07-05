@@ -9,7 +9,7 @@ type NSCP2001CodeProvesion = {
 		SRx: number
 		SRy: number
 		SRmax: number
-		ColumnType: 'Intermediate' | 'Long'
+		ColumnType: 'Intermediate' | 'Long' | 'None'
 		Fs: number | string
 		AllowableStress: number
 		AllowableCapacity: number
@@ -28,7 +28,7 @@ export const useNSCP2001CodeProvisionStore = create<NSCP2001CodeProvesion>(
 			SRx: 0,
 			SRy: 0,
 			SRmax: 0,
-			ColumnType: 'Intermediate',
+			ColumnType: 'None',
 			Fs: 0,
 			AllowableStress: 0,
 			AllowableCapacity: 0
@@ -44,7 +44,7 @@ export const useNSCP2001CodeProvisionStore = create<NSCP2001CodeProvesion>(
 					SRx: 0,
 					SRy: 0,
 					SRmax: 0,
-					ColumnType: 'Intermediate',
+					ColumnType: 'None',
 					Fs: 0,
 					AllowableStress: 0,
 					AllowableCapacity: 0
