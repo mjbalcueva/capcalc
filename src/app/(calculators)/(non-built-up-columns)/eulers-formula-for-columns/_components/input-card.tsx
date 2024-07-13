@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button'
 import {
 	Card,
 	CardContent,
-	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle
@@ -57,7 +56,6 @@ const InputCard = () => {
 		<Card>
 			<CardHeader>
 				<CardTitle>Input Variables</CardTitle>
-				<CardDescription>Input Description</CardDescription>
 			</CardHeader>
 
 			<CardContent className='px-6" flex flex-col space-y-4'>

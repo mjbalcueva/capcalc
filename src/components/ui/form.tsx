@@ -182,7 +182,7 @@ const FormOutput = React.forwardRef<HTMLParagraphElement, FormOutputProps>(
 					className={cn(
 						'font-mono text-4xl font-bold',
 						(children === 0 || children === 'None') &&
-							'text-muted-foreground/40'
+							'text-[#d3d3d6] dark:text-[#4a4a50]'
 					)}
 					{...props}
 				>
