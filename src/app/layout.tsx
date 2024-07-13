@@ -8,6 +8,8 @@ import { ThemeProvider } from '@/providers/theme-provider'
 
 import '@/styles/globals.css'
 
+import { TooltipProvider } from '@/components/ui/tooltip'
+
 export const metadata = {
 	title: 'CapCalc',
 	description: 'A simple engineering calculator project',
@@ -26,14 +28,16 @@ export default function RootLayout({
 			suppressHydrationWarning={true}
 		>
 			<body>
-				<ThemeProvider attribute="class" defaultTheme="dark">
-					<ActiveSectionProvider>
-						<NavigationMenu />
-						{children}
-						<TailwindIndicator />
-						<ThemeToggle />
-					</ActiveSectionProvider>
-				</ThemeProvider>
+				<TooltipProvider>
+					<ThemeProvider attribute="class" defaultTheme="dark">
+						<ActiveSectionProvider>
+							<NavigationMenu />
+							{children}
+							<TailwindIndicator />
+							<ThemeToggle />
+						</ActiveSectionProvider>
+					</ThemeProvider>
+				</TooltipProvider>
 			</body>
 		</html>
 	)
