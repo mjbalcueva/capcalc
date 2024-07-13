@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 
 import { menuItems } from '@/lib/links'
 import { cn } from '@/lib/utils'
+
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const NavigationMenu = () => {

@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes'
 
 import { CardHoverEffect } from '@/components/ui/card-hover-effect'
 import { ParticlesBackground } from '@/components/ui/particles-background'
+
 import { useFindCalculatorWithHash } from '@/lib/hooks/useFindCalculator'
 import { useSectionInView } from '@/lib/hooks/useSectionInView'
 

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 
 import { CardHoverEffect } from '@/components/ui/card-hover-effect'
+
 import { useFindCalculatorWithHash } from '@/lib/hooks/useFindCalculator'
 import { useSectionInView } from '@/lib/hooks/useSectionInView'
 

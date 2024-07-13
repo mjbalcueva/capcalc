@@ -3,6 +3,7 @@
 import { Hero } from '@/components/hero'
 import { Meteors } from '@/components/ui/meteors'
 import { RetroGrid } from '@/components/ui/retro-grid'
+
 import { useSectionInView } from '@/lib/hooks/useSectionInView'
 
 const HeroSection = () => {

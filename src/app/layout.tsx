@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans'
 import { NavigationMenu } from '@/components/navigation-menu'
 import { TailwindIndicator } from '@/components/shared/tailwind-indicator'
 import { ThemeToggle } from '@/components/theme-toggle'
+
 import { ActiveSectionProvider } from '@/providers/active-section-provider'
 import { ThemeProvider } from '@/providers/theme-provider'
 

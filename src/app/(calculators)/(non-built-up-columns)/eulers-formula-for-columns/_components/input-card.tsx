@@ -5,6 +5,7 @@ import { useAtom } from 'jotai'
 import { useFormContext } from 'react-hook-form'
 
 import { inputAtom } from '@/atoms/eulers-formula-for-columns'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -12,6 +13,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+
 import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,

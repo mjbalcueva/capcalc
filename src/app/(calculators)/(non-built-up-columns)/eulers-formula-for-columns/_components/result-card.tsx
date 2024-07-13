@@ -3,6 +3,7 @@
 import { useAtom } from 'jotai'
 
 import { calculatedAtoms } from '@/atoms/eulers-formula-for-columns'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { FormOutput } from '@/components/ui/form'
 

@@ -3,6 +3,7 @@
 import { useAtom } from 'jotai'
 
 import { calculatedAtoms } from '@/atoms/nscp-2001-code-provisions'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { FormOutput } from '@/components/ui/form'
 

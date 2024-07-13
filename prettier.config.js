@@ -7,7 +7,16 @@ const config = {
 		'<BUILTIN_MODULES>', // Node.js built-in modules
 		'<THIRD_PARTY_MODULES>', // NPM packages
 		'',
-		'^@/(.*)$', // Custom imports
+		'^@/atoms/(.*)$',
+		'',
+		'^@/components/(.*)$',
+		'',
+		'^@/lib/(.*)$',
+		'',
+		'^@/providers/(.*)$',
+		'',
+		'^@/(.*)$',
+		'',
 		'^(?!.*[.]css$)[./].*$', // Relative imports
 		'.css$' // CSS imports
 	],
