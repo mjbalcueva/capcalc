@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useAtom } from 'jotai'
 import { useFormContext } from 'react-hook-form'
 
+import { inputAtom } from '@/atoms/nscp-2001-code-provisions'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -16,7 +17,6 @@ import {
 	recommendedOrTheoreticalChoices,
 	type nscp2001CodeProvisionsType
 } from '@/lib/schemas/nscp-2001-code-provisions'
-import { inputAtom } from './atom'
 
 const InputCard = () => {
 	const [, setInput] = useAtom(inputAtom)

@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useAtom } from 'jotai'
 import { useFormContext } from 'react-hook-form'
 
+import { inputAtom } from '@/atoms/eulers-formula-for-columns'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -16,7 +17,6 @@ import {
 	recommendedOrTheoreticalChoices,
 	type eulersFormulaType
 } from '@/lib/schemas/eulers-formula-for-columns'
-import { inputAtom } from './atom'
 
 const InputCard = () => {
 	const [, setInput] = useAtom(inputAtom)

@@ -10,13 +10,16 @@ import { type z } from 'zod'
 import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
 import { useFindCalculatorWithPathName } from '@/lib/hooks/useFindCalculator'
+import { basePlateSchema } from '@/lib/schemas/base-plate'
 import { eulersFormulaSchema } from '@/lib/schemas/eulers-formula-for-columns'
 import { nscp2001CodeProvisionsSchema } from '@/lib/schemas/nscp-2001-code-provisions'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const pageToSchemaMapping = {
+	// non-built-up-columns
 	'/nscp-2001-code-provisions': nscp2001CodeProvisionsSchema,
-	'/eulers-formula-for-columns': eulersFormulaSchema
+	'/eulers-formula-for-columns': eulersFormulaSchema,
+	'/base-plate': basePlateSchema
 }
 type PagePath = keyof typeof pageToSchemaMapping
 
@@ -28,7 +31,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	})
 
 	const currentSchema = pageToSchemaMapping[pathName as PagePath]
-
 	const form = useForm<z.infer<typeof currentSchema>>({
 		resolver: zodResolver(currentSchema)
 	})
