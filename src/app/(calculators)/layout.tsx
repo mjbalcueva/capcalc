@@ -10,21 +10,17 @@ import { type z } from 'zod'
 import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
 import { useFindCalculatorWithPathName } from '@/lib/hooks/useFindCalculator'
-import { nonBuiltUpColumnsSchema } from '@/lib/schemas/nonBuiltUpColumnsSchema'
+import { eulersFormulaSchema } from '@/lib/schemas/eulers-formula-for-columns'
+import { nscp2001CodeProvisionsSchema } from '@/lib/schemas/nscp-2001-code-provisions'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const pageToSchemaMapping = {
-	'/nscp-2001-code-provisions': nonBuiltUpColumnsSchema,
-	'/eulers-formula-for-columns': nonBuiltUpColumnsSchema
-} as const
-
+	'/nscp-2001-code-provisions': nscp2001CodeProvisionsSchema,
+	'/eulers-formula-for-columns': eulersFormulaSchema
+}
 type PagePath = keyof typeof pageToSchemaMapping
 
-type Props = {
-	children: React.ReactNode
-}
-
-export default function Layout({ children }: Props) {
+export default function Layout({ children }: { children: React.ReactNode }) {
 	const pathName = usePathname()
 	const { setActiveSection } = useActiveSectionContext()
 	const { activeCalculator, activeCalculatorItem } =

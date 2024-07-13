@@ -37,17 +37,17 @@ import {
 import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,
-	type NonBuiltUpColumnsSchemaType
-} from '@/lib/schemas/nonBuiltUpColumnsSchema'
+	type nscp2001CodeProvisionsType
+} from '@/lib/schemas/nscp-2001-code-provisions'
 import { inputAtom } from './atom'
 
 const InputCard = () => {
 	const [, setInput] = useAtom(inputAtom)
-	const form = useFormContext<NonBuiltUpColumnsSchemaType>()
+	const form = useFormContext<nscp2001CodeProvisionsType>()
 
 	useEffect(() => {
 		return form.watch((values) => {
-			setInput(values as NonBuiltUpColumnsSchemaType)
+			setInput(values as nscp2001CodeProvisionsType)
 			void form.trigger()
 		}).unsubscribe
 	}, [form, setInput])

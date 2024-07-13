@@ -1,9 +1,7 @@
 import { z } from 'zod'
 
 const recommendedOrTheoretical = ['recommended', 'theoretical'] as const
-
 type RecommendedOrTheoretical = (typeof recommendedOrTheoretical)[number]
-
 const recommendedOrTheoreticalChoices: {
 	[key in RecommendedOrTheoretical]: string
 } = { recommended: 'Recommended', theoretical: 'Theoretical' }
@@ -13,9 +11,7 @@ const effectiveLengthFactor = [
 	'fixed-pinned',
 	'pinned-pinned'
 ] as const
-
 type EffectiveLengthFactor = (typeof effectiveLengthFactor)[number]
-
 const effectiveLengthFactorChoices: {
 	[key in EffectiveLengthFactor]: string
 } = {
@@ -24,16 +20,10 @@ const effectiveLengthFactorChoices: {
 	'pinned-pinned': 'Pinned-Pinned'
 }
 
-const nonBuiltUpColumnsSchema = z.object({
-	Fy: z.coerce.number().positive({
-		message: 'Input must be greater than 0'
-	}),
-	A: z.coerce.number().positive({
-		message: 'Input must be greater than 0'
-	}),
-	L: z.coerce.number().positive({
-		message: 'Input must be greater than 0'
-	}),
+const eulersFormulaSchema = z.object({
+	Fy: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
+	A: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
+	L: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
 	supportsMidspan: z.boolean(),
 	recommendedOrTheoretical: z.enum(recommendedOrTheoretical, {
 		message: 'Please select an option'
@@ -41,17 +31,14 @@ const nonBuiltUpColumnsSchema = z.object({
 	effectiveLengthFactor: z.enum(effectiveLengthFactor, {
 		message: 'Please select an option'
 	}),
-	Ix: z.coerce.number().positive({
-		message: 'Input must be greater than 0'
-	}),
+	Ix: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
 	Iy: z.coerce.number().positive('Input must be greater than 0')
 })
-
-type NonBuiltUpColumnsSchemaType = z.infer<typeof nonBuiltUpColumnsSchema>
+type eulersFormulaType = z.infer<typeof eulersFormulaSchema>
 
 export {
 	recommendedOrTheoreticalChoices,
 	effectiveLengthFactorChoices,
-	nonBuiltUpColumnsSchema,
-	type NonBuiltUpColumnsSchemaType
+	eulersFormulaSchema,
+	type eulersFormulaType
 }

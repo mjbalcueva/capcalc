@@ -1,8 +1,8 @@
 import { atom } from 'jotai'
 
-import { type NonBuiltUpColumnsSchemaType } from '@/lib/schemas/nonBuiltUpColumnsSchema'
+import { type eulersFormulaType } from '@/lib/schemas/eulers-formula-for-columns'
 
-export const inputAtom = atom<NonBuiltUpColumnsSchemaType>({
+export const inputAtom = atom<eulersFormulaType>({
 	Fy: 0,
 	A: 0,
 	L: 0,

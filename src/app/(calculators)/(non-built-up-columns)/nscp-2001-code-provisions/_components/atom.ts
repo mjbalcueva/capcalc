@@ -1,8 +1,8 @@
 import { atom } from 'jotai'
 
-import { type NonBuiltUpColumnsSchemaType } from '@/lib/schemas/nonBuiltUpColumnsSchema'
+import { type nscp2001CodeProvisionsType } from '@/lib/schemas/nscp-2001-code-provisions'
 
-export const inputAtom = atom<NonBuiltUpColumnsSchemaType>({
+export const inputAtom = atom<nscp2001CodeProvisionsType>({
 	Fy: 0,
 	A: 0,
 	L: 0,

@@ -37,17 +37,17 @@ import {
 import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,
-	type NonBuiltUpColumnsSchemaType
-} from '@/lib/schemas/nonBuiltUpColumnsSchema'
+	type eulersFormulaType
+} from '@/lib/schemas/eulers-formula-for-columns'
 import { inputAtom } from './atom'
 
 const InputCard = () => {
 	const [, setInput] = useAtom(inputAtom)
-	const form = useFormContext<NonBuiltUpColumnsSchemaType>()
+	const form = useFormContext<eulersFormulaType>()
 
 	useEffect(() => {
 		return form.watch((values) => {
-			setInput(values as NonBuiltUpColumnsSchemaType)
+			setInput(values as eulersFormulaType)
 			void form.trigger()
 		}).unsubscribe
 	}, [form, setInput])
