@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { useAtom } from 'jotai'
 import { useFormContext } from 'react-hook-form'
 
 import { FormItem } from '@/components/calculator'
@@ -13,32 +14,16 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
-import {
-	calculateAllowableCapacity,
-	calculateAllowableStress,
-	calculateCc,
-	calculateColumnType,
-	calculateFs,
-	calculateLValues,
-	calculateRmin,
-	calculateRx,
-	calculateRy,
-	calculateSRmax,
-	calculateSRx,
-	calculateSRy,
-	calculateUpdatedI,
-	getKValues
-} from '@/lib/calculatorToolKit'
 import { useDebounce } from '@/lib/hooks/useDebounce'
 import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,
 	type NonBuiltUpColumnsSchemaType
 } from '@/lib/schemas/nonBuiltUpColumnsSchema'
-import { useNSCP2001CodeProvisionStore } from '@/store/nscp2001CodeProvisionStore'
+import { inputAtom } from './atom'
 
 const InputCard = () => {
-	const { setValues, resetValues } = useNSCP2001CodeProvisionStore()
+	const [, setInput] = useAtom(inputAtom)
 	const {
 		control,
 		register,
@@ -49,59 +34,7 @@ const InputCard = () => {
 	} = useFormContext<NonBuiltUpColumnsSchemaType>()
 
 	const debouncedSubmit = useDebounce((values: NonBuiltUpColumnsSchemaType) => {
-		const {
-			Fy,
-			A,
-			L,
-			supportsMidspan,
-			recommendedOrTheoretical,
-			effectiveLengthFactor,
-			Ix,
-			Iy
-		} = values
-
-		const updatedIx = calculateUpdatedI(Ix)
-		const updatedIy = calculateUpdatedI(Iy)
-		const { Lx, Ly } = calculateLValues(L, supportsMidspan)
-		const { Kx, Ky } = getKValues(
-			recommendedOrTheoretical,
-			effectiveLengthFactor
-		)
-
-		const Rx = calculateRx({ updatedIx, A })
-		const Ry = calculateRy({ updatedIy, A })
-		const rMin = calculateRmin({ Rx, Ry })
-		const Cc = calculateCc({ Fy })
-		const SRx = calculateSRx({ Kx, Lx, Rx })
-		const SRy = calculateSRy({ Ky, Ly, Ry })
-		const SRmax = calculateSRmax({ SRx, SRy })
-		const ColumnType = calculateColumnType({ SRmax, Cc })
-		const Fs = calculateFs({ ColumnType, SRmax, Cc })
-		const AllowableStress = calculateAllowableStress({
-			ColumnType,
-			SRmax,
-			Cc,
-			Fy,
-			Fs
-		})
-		const AllowableCapacity = calculateAllowableCapacity({
-			AllowableStress,
-			A
-		})
-
-		setValues({
-			Rx: isFinite(Rx) ? Rx : 0,
-			Ry: isFinite(Ry) ? Ry : 0,
-			rMin: isFinite(rMin) ? rMin : 0,
-			Cc: isFinite(Cc) ? Cc : 0,
-			SRx: isFinite(SRx) ? SRx : 0,
-			SRy: isFinite(SRy) ? SRy : 0,
-			SRmax: isFinite(SRmax) ? SRmax : 0,
-			ColumnType,
-			Fs: isFinite(Fs) ? Fs : 0,
-			AllowableStress: isFinite(AllowableStress) ? AllowableStress : 0,
-			AllowableCapacity: isFinite(AllowableCapacity) ? AllowableCapacity : 0
-		})
+		setInput(values)
 	})
 
 	useEffect(() => {
@@ -220,10 +153,11 @@ const InputCard = () => {
 							A: '' as unknown as undefined,
 							L: '' as unknown as undefined,
 							supportsMidspan: false,
+							recommendedOrTheoretical: watch('recommendedOrTheoretical'),
+							effectiveLengthFactor: watch('effectiveLengthFactor'),
 							Ix: '' as unknown as undefined,
 							Iy: '' as unknown as undefined
 						})
-						resetValues()
 					}}
 				>
 					Reset

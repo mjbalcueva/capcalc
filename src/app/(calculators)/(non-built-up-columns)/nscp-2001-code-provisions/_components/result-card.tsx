@@ -1,14 +1,13 @@
 'use client'
 
+import { useAtom } from 'jotai'
+
 import { Calculator } from '@/components/calculator'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { useNSCP2001CodeProvisionStore } from '@/store/nscp2001CodeProvisionStore'
+import { calculatedAtoms } from './atom'
 
 const ResultCard = () => {
-	const { values } = useNSCP2001CodeProvisionStore()
-
-	const AllowableStress = values.AllowableStress || 0
-	const AllowableCapacity = values.AllowableCapacity || 0
+	const [values] = useAtom(calculatedAtoms)
 
 	return (
 		<Card>
@@ -18,11 +17,11 @@ const ResultCard = () => {
 			<CardContent className="grid grid-cols-2 gap-8">
 				<Calculator.Output
 					label="Allowable Stress (Mpa)"
-					value={AllowableStress}
+					value={values.AllowableStress || 0}
 				/>
 				<Calculator.Output
 					label="Allowable Capacity (kN)"
-					value={AllowableCapacity}
+					value={values.AllowableCapacity || 0}
 				/>
 			</CardContent>
 		</Card>
