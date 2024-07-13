@@ -147,7 +147,7 @@ const FormOutput = React.forwardRef<HTMLParagraphElement, FormOutputProps>(
 					)}
 					{...props}
 				>
-					{children}
+					{children?.toLocaleString()}
 				</p>
 			</div>
 		)
