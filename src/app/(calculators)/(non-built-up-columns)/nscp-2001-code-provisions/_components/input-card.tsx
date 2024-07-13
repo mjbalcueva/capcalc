@@ -15,16 +15,16 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,
-	type nscp2001CodeProvisionsType
+	type inputType
 } from '@/lib/schemas/nscp-2001-code-provisions'
 
 const InputCard = () => {
 	const [, setInput] = useAtom(inputAtom)
-	const form = useFormContext<nscp2001CodeProvisionsType>()
+	const form = useFormContext<inputType>()
 
 	useEffect(() => {
 		return form.watch((values) => {
-			setInput(values as nscp2001CodeProvisionsType)
+			setInput(values as inputType)
 			void form.trigger()
 		}).unsubscribe
 	}, [form, setInput])

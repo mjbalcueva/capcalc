@@ -15,16 +15,16 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,
-	type eulersFormulaType
+	type inputType
 } from '@/lib/schemas/eulers-formula-for-columns'
 
 const InputCard = () => {
 	const [, setInput] = useAtom(inputAtom)
-	const form = useFormContext<eulersFormulaType>()
+	const form = useFormContext<inputType>()
 
 	useEffect(() => {
 		return form.watch((values) => {
-			setInput(values as eulersFormulaType)
+			setInput(values as inputType)
 			void form.trigger()
 		}).unsubscribe
 	}, [form, setInput])

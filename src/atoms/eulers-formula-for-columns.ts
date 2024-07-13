@@ -1,8 +1,8 @@
 import { atom } from 'jotai'
 
-import { type eulersFormulaType } from '@/lib/schemas/eulers-formula-for-columns'
+import { type inputType } from '@/lib/schemas/eulers-formula-for-columns'
 
-export const inputAtom = atom<eulersFormulaType>({
+export const inputAtom = atom<inputType>({
 	Fy: 0,
 	A: 0,
 	L: 0,

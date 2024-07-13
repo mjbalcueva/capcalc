@@ -16,7 +16,7 @@ const effectiveLengthFactorChoices: {
 	'pinned-pinned': 'Pinned-Pinned'
 }
 
-const eulersFormulaSchema = z.object({
+const inputSchema = z.object({
 	Fy: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
 	A: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
 	L: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
@@ -30,6 +30,6 @@ const eulersFormulaSchema = z.object({
 	Ix: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
 	Iy: z.coerce.number().positive('Input must be greater than 0')
 })
-type eulersFormulaType = z.infer<typeof eulersFormulaSchema>
+type inputType = z.infer<typeof inputSchema>
 
-export { recommendedOrTheoreticalChoices, effectiveLengthFactorChoices, eulersFormulaSchema, type eulersFormulaType }
+export { recommendedOrTheoreticalChoices, effectiveLengthFactorChoices, inputSchema, type inputType }

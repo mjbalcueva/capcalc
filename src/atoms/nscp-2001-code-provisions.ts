@@ -1,8 +1,8 @@
 import { atom } from 'jotai'
 
-import { type nscp2001CodeProvisionsType } from '@/lib/schemas/nscp-2001-code-provisions'
+import { type inputType } from '@/lib/schemas/nscp-2001-code-provisions'
 
-export const inputAtom = atom<nscp2001CodeProvisionsType>({
+export const inputAtom = atom<inputType>({
 	Fy: 0,
 	A: 0,
 	L: 0,

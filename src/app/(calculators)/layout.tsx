@@ -10,14 +10,14 @@ import { type z } from 'zod'
 import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
 import { useFindCalculatorWithPathName } from '@/lib/hooks/useFindCalculator'
-import { basePlateSchema } from '@/lib/schemas/base-plate'
-import { eulersFormulaSchema } from '@/lib/schemas/eulers-formula-for-columns'
-import { nscp2001CodeProvisionsSchema } from '@/lib/schemas/nscp-2001-code-provisions'
+import { inputSchema as basePlateSchema } from '@/lib/schemas/base-plate'
+import { inputSchema as eulersFormulaSchema } from '@/lib/schemas/eulers-formula-for-columns'
+import { inputSchema as nscp2001Schema } from '@/lib/schemas/nscp-2001-code-provisions'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const pageToSchemaMapping = {
 	// non-built-up-columns
-	'/nscp-2001-code-provisions': nscp2001CodeProvisionsSchema,
+	'/nscp-2001-code-provisions': nscp2001Schema,
 	'/eulers-formula-for-columns': eulersFormulaSchema,
 	'/base-plate': basePlateSchema
 }

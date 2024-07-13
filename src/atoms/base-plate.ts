@@ -1,8 +1,8 @@
 import { atom } from 'jotai'
 
-import { type basePlateType } from '@/lib/schemas/base-plate'
+import { type inputType } from '@/lib/schemas/base-plate'
 
-export const inputAtom = atom<basePlateType>({
+export const inputAtom = atom<inputType>({
 	W: 0,
 	H: 0,
 	B: 0,

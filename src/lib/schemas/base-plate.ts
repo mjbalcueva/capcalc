@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-const basePlateSchema = z.object({
+const inputSchema = z.object({
 	W: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
 	H: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
 	B: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
@@ -12,6 +12,6 @@ const basePlateSchema = z.object({
 	fY: z.coerce.number().positive({ message: 'Input must be greater than 0' })
 })
 
-type basePlateType = z.infer<typeof basePlateSchema>
+type inputType = z.infer<typeof inputSchema>
 
-export { basePlateSchema, type basePlateType }
+export { inputSchema, type inputType }

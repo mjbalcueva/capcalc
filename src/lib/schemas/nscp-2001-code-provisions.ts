@@ -16,7 +16,7 @@ const effectiveLengthFactorChoices: {
 	'pinned-pinned': 'Pinned-Pinned'
 }
 
-const nscp2001CodeProvisionsSchema = z.object({
+const inputSchema = z.object({
 	Fy: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
 	A: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
 	L: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
@@ -30,11 +30,6 @@ const nscp2001CodeProvisionsSchema = z.object({
 	Ix: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
 	Iy: z.coerce.number().positive('Input must be greater than 0')
 })
-type nscp2001CodeProvisionsType = z.infer<typeof nscp2001CodeProvisionsSchema>
+type inputType = z.infer<typeof inputSchema>
 
-export {
-	recommendedOrTheoreticalChoices,
-	effectiveLengthFactorChoices,
-	nscp2001CodeProvisionsSchema,
-	type nscp2001CodeProvisionsType
-}
+export { recommendedOrTheoreticalChoices, effectiveLengthFactorChoices, inputSchema, type inputType }
