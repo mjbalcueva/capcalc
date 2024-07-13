@@ -11,9 +11,8 @@ import { useSectionInView } from '@/lib/hooks/useSectionInView'
 
 const NonBuiltUpColumnsSection = () => {
 	const { ref } = useSectionInView('#non-built-up-columns')
-	const nonBuiltUpCalculators = useFindCalculatorWithHash(
-		'#non-built-up-columns'
-	)
+	const nonBuiltUpCalculators = useFindCalculatorWithHash('#non-built-up-columns')
+
 	const { theme } = useTheme()
 	const [color, setColor] = useState('#ffffff')
 
@@ -38,21 +37,13 @@ const NonBuiltUpColumnsSection = () => {
 			>
 				<CardHoverEffect items={nonBuiltUpCalculators?.calculators ?? []} />
 				<div className="row-start-1 mx-2.5 flex h-[97.4%] min-h-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white text-center backdrop-blur-[0.3rem] dark:border-white/[0.2] dark:bg-black/60 lg:row-start-auto">
-					<h2 className="text-xl font-bold text-card-foreground/75 md:text-4xl">
-						{nonBuiltUpCalculators?.title}
-					</h2>
+					<h2 className="text-xl font-bold text-card-foreground/75 md:text-4xl">{nonBuiltUpCalculators?.title}</h2>
 					<p className="mx-auto mt-4 max-w-lg text-muted-foreground/90 md:text-lg">
 						{nonBuiltUpCalculators?.description}
 					</p>
 				</div>
 			</motion.div>
-			<ParticlesBackground
-				className="absolute inset-0"
-				quantity={200}
-				ease={80}
-				color={color}
-				refresh
-			/>
+			<ParticlesBackground className="absolute inset-0" quantity={200} ease={80} color={color} refresh />
 		</section>
 	)
 }

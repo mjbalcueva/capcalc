@@ -5,35 +5,12 @@ import { useAtom } from 'jotai'
 import { useFormContext } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
-import {
-	Card,
-	CardContent,
-	CardFooter,
-	CardHeader,
-	CardTitle
-} from '@/components/ui/card'
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage
-} from '@/components/ui/form'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue
-} from '@/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger
-} from '@/components/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import {
 	effectiveLengthFactorChoices,
 	recommendedOrTheoreticalChoices,
@@ -134,23 +111,18 @@ const InputCard = () => {
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Recomended or Theoretical</FormLabel>
-								<Select
-									onValueChange={field.onChange}
-									defaultValue={field.value}
-								>
+								<Select onValueChange={field.onChange} defaultValue={field.value}>
 									<FormControl>
 										<SelectTrigger>
 											<SelectValue placeholder="Select an option" />
 										</SelectTrigger>
 									</FormControl>
 									<SelectContent>
-										{Object.entries(recommendedOrTheoreticalChoices).map(
-											([key, value]) => (
-												<SelectItem key={key} value={key}>
-													{value}
-												</SelectItem>
-											)
-										)}
+										{Object.entries(recommendedOrTheoreticalChoices).map(([key, value]) => (
+											<SelectItem key={key} value={key}>
+												{value}
+											</SelectItem>
+										))}
 									</SelectContent>
 								</Select>
 								<FormMessage />
@@ -164,23 +136,18 @@ const InputCard = () => {
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Effective Length Factor</FormLabel>
-								<Select
-									onValueChange={field.onChange}
-									defaultValue={field.value}
-								>
+								<Select onValueChange={field.onChange} defaultValue={field.value}>
 									<FormControl>
 										<SelectTrigger>
 											<SelectValue placeholder="Select an option" />
 										</SelectTrigger>
 									</FormControl>
 									<SelectContent>
-										{Object.entries(effectiveLengthFactorChoices).map(
-											([key, value]) => (
-												<SelectItem key={key} value={key}>
-													{value}
-												</SelectItem>
-											)
-										)}
+										{Object.entries(effectiveLengthFactorChoices).map(([key, value]) => (
+											<SelectItem key={key} value={key}>
+												{value}
+											</SelectItem>
+										))}
 									</SelectContent>
 								</Select>
 								<FormMessage />

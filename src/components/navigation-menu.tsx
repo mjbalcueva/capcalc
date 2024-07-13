@@ -8,8 +8,7 @@ import { cn } from '@/lib/utils'
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const NavigationMenu = () => {
-	const { activeSection, setActiveSection, setTimeOfLastClick } =
-		useActiveSectionContext()
+	const { activeSection, setActiveSection, setTimeOfLastClick } = useActiveSectionContext()
 
 	return (
 		<header className="relative z-[999]">

@@ -46,19 +46,11 @@ export const calculatedAtoms = atom((get) => {
 	const Rx = parseFloat(Math.sqrt(get(IxAtom) / get(inputAtom).A).toFixed(3))
 	const Ry = parseFloat(Math.sqrt(get(IyAtom) / get(inputAtom).A).toFixed(3))
 	const rMin = parseFloat(Math.min(Rx, Ry).toFixed(3))
-	const SRx = parseFloat(
-		((get(KValuesAtom).Kx * get(LAtom).Lx) / Rx).toFixed(3)
-	)
-	const SRy = parseFloat(
-		((get(KValuesAtom).Ky * get(LAtom).Ly) / Ry).toFixed(3)
-	)
+	const SRx = parseFloat(((get(KValuesAtom).Kx * get(LAtom).Lx) / Rx).toFixed(3))
+	const SRy = parseFloat(((get(KValuesAtom).Ky * get(LAtom).Ly) / Ry).toFixed(3))
 	const SRmax = parseFloat(Math.max(SRx, SRy).toFixed(3))
-	const AllowableStress = parseFloat(
-		((Math.PI ** 2 * 200000) / SRmax ** 2).toFixed(3)
-	)
-	const AllowableCapacity = parseFloat(
-		((AllowableStress * get(inputAtom).A) / 1000).toFixed(3)
-	)
+	const AllowableStress = parseFloat(((Math.PI ** 2 * 200000) / SRmax ** 2).toFixed(3))
+	const AllowableCapacity = parseFloat(((AllowableStress * get(inputAtom).A) / 1000).toFixed(3))
 
 	return {
 		Rx,

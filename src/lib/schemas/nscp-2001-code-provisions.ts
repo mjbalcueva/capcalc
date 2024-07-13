@@ -6,11 +6,7 @@ const recommendedOrTheoreticalChoices: {
 	[key in RecommendedOrTheoretical]: string
 } = { recommended: 'Recommended', theoretical: 'Theoretical' }
 
-const effectiveLengthFactor = [
-	'fixed-fixed',
-	'fixed-pinned',
-	'pinned-pinned'
-] as const
+const effectiveLengthFactor = ['fixed-fixed', 'fixed-pinned', 'pinned-pinned'] as const
 type EffectiveLengthFactor = (typeof effectiveLengthFactor)[number]
 const effectiveLengthFactorChoices: {
 	[key in EffectiveLengthFactor]: string

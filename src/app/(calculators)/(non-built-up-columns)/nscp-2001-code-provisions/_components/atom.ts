@@ -46,43 +46,19 @@ export const calculatedAtoms = atom((get) => {
 	const Rx = parseFloat(Math.sqrt(get(IxAtom) / get(inputAtom).A).toFixed(3))
 	const Ry = parseFloat(Math.sqrt(get(IyAtom) / get(inputAtom).A).toFixed(3))
 	const rMin = parseFloat(Math.min(Rx, Ry).toFixed(3))
-	const Cc = parseFloat(
-		Math.sqrt((Math.PI ** 2 * (4 * 10 ** 5)) / get(inputAtom).Fy).toFixed(3)
-	)
-	const SRx = parseFloat(
-		((get(KValuesAtom).Kx * get(LAtom).Lx) / Rx).toFixed(3)
-	)
-	const SRy = parseFloat(
-		((get(KValuesAtom).Ky * get(LAtom).Ly) / Ry).toFixed(3)
-	)
+	const Cc = parseFloat(Math.sqrt((Math.PI ** 2 * (4 * 10 ** 5)) / get(inputAtom).Fy).toFixed(3))
+	const SRx = parseFloat(((get(KValuesAtom).Kx * get(LAtom).Lx) / Rx).toFixed(3))
+	const SRy = parseFloat(((get(KValuesAtom).Ky * get(LAtom).Ly) / Ry).toFixed(3))
 	const SRmax = parseFloat(Math.max(SRx, SRy).toFixed(3))
-	const ColumnType = Number.isNaN(SRmax)
-		? 'None'
-		: SRmax > Cc
-			? 'Long'
-			: 'Intermediate'
+	const ColumnType = Number.isNaN(SRmax) ? 'None' : SRmax > Cc ? 'Long' : 'Intermediate'
 
 	const Fs =
-		ColumnType === 'Long'
-			? -1
-			: parseFloat(
-					(5 / 3 + (3 / 8) * (SRmax / Cc) - SRmax ** 3 / (8 * Cc ** 3)).toFixed(
-						3
-					)
-				)
+		ColumnType === 'Long' ? -1 : parseFloat((5 / 3 + (3 / 8) * (SRmax / Cc) - SRmax ** 3 / (8 * Cc ** 3)).toFixed(3))
 	const AllowableStress =
 		ColumnType === 'Intermediate'
-			? parseFloat(
-					((1 - SRmax ** 2 / (2 * Cc ** 2)) * (get(inputAtom).Fy / Fs)).toFixed(
-						3
-					)
-				)
-			: parseFloat(
-					((12 * Math.PI ** 2 * 200000) / (23 * SRmax ** 2)).toFixed(3)
-				)
-	const AllowableCapacity = parseFloat(
-		((AllowableStress * get(inputAtom).A) / 1000).toFixed(3)
-	)
+			? parseFloat(((1 - SRmax ** 2 / (2 * Cc ** 2)) * (get(inputAtom).Fy / Fs)).toFixed(3))
+			: parseFloat(((12 * Math.PI ** 2 * 200000) / (23 * SRmax ** 2)).toFixed(3))
+	const AllowableCapacity = parseFloat(((AllowableStress * get(inputAtom).A) / 1000).toFixed(3))
 
 	return {
 		Rx,

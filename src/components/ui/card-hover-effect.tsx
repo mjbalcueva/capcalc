@@ -5,22 +5,11 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { type CalculatorItemType } from '@/lib/types'
 import { cn, truncateText } from '@/lib/utils'
 
-const CardHoverEffect = ({
-	items,
-	className
-}: {
-	items: CalculatorItemType[]
-	className?: string
-}) => {
+const CardHoverEffect = ({ items, className }: { items: CalculatorItemType[]; className?: string }) => {
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
 	return (
-		<div
-			className={cn(
-				'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1',
-				className
-			)}
-		>
+		<div className={cn('grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1', className)}>
 			{items.map((item, idx) => (
 				<Link
 					href={item?.link}
@@ -48,9 +37,7 @@ const CardHoverEffect = ({
 					</AnimatePresence>
 					<Card>
 						<CardTitle>{item.title}</CardTitle>
-						<CardDescription>
-							{truncateText(item.description, 180)}
-						</CardDescription>
+						<CardDescription>{truncateText(item.description, 180)}</CardDescription>
 					</Card>
 				</Link>
 			))}
@@ -58,13 +45,7 @@ const CardHoverEffect = ({
 	)
 }
 
-const Card = ({
-	className,
-	children
-}: {
-	className?: string
-	children: React.ReactNode
-}) => {
+const Card = ({ className, children }: { className?: string; children: React.ReactNode }) => {
 	return (
 		<div
 			className={cn(
@@ -79,41 +60,13 @@ const Card = ({
 	)
 }
 
-const CardTitle = ({
-	className,
-	children
-}: {
-	className?: string
-	children: React.ReactNode
-}) => {
-	return (
-		<h4
-			className={cn(
-				'mt-4 text-lg font-bold tracking-wide text-card-foreground/75',
-				className
-			)}
-		>
-			{children}
-		</h4>
-	)
+const CardTitle = ({ className, children }: { className?: string; children: React.ReactNode }) => {
+	return <h4 className={cn('mt-4 text-lg font-bold tracking-wide text-card-foreground/75', className)}>{children}</h4>
 }
 
-const CardDescription = ({
-	className,
-	children
-}: {
-	className?: string
-	children: React.ReactNode
-}) => {
+const CardDescription = ({ className, children }: { className?: string; children: React.ReactNode }) => {
 	return (
-		<p
-			className={cn(
-				'mt-6 text-sm leading-relaxed tracking-wide text-muted-foreground/90',
-				className
-			)}
-		>
-			{children}
-		</p>
+		<p className={cn('mt-6 text-sm leading-relaxed tracking-wide text-muted-foreground/90', className)}>{children}</p>
 	)
 }
 

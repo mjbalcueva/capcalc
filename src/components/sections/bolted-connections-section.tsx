@@ -6,11 +6,7 @@ const BoltedConnectionsSection = () => {
 	const { ref } = useSectionInView('#bolted-connections')
 
 	return (
-		<section
-			ref={ref}
-			id="bolted-connections"
-			className="h-full min-h-screen bg-white dark:bg-[#050506]"
-		>
+		<section ref={ref} id="bolted-connections" className="h-full min-h-screen bg-white dark:bg-[#050506]">
 			<h1>Bolted Connections Section</h1>
 		</section>
 	)

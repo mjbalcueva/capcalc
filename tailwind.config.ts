@@ -2,16 +2,12 @@ import svgToDataUri from 'mini-svg-data-uri'
 
 import type { Config } from 'tailwindcss'
 
-const {
-	default: flattenColorPalette
-} = require('tailwindcss/lib/util/flattenColorPalette')
+const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette')
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
 const addVariablesForColors = ({ addBase, theme }: any) => {
 	let allColors = flattenColorPalette(theme('colors'))
-	let newVars = Object.fromEntries(
-		Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-	)
+	let newVars = Object.fromEntries(Object.entries(allColors).map(([key, val]) => [`--${key}`, val]))
 	addBase({ ':root': newVars })
 }
 
@@ -37,12 +33,7 @@ const generateGridDotsBackground = ({ matchUtilities, theme }: any) => {
 
 const config = {
 	darkMode: ['class'],
-	content: [
-		'./pages/**/*.{ts,tsx}',
-		'./components/**/*.{ts,tsx}',
-		'./app/**/*.{ts,tsx}',
-		'./src/**/*.{ts,tsx}'
-	],
+	content: ['./src/**/*.{ts,tsx}'],
 	prefix: '',
 	theme: {
 		container: {
@@ -123,11 +114,7 @@ const config = {
 			}
 		}
 	},
-	plugins: [
-		addVariablesForColors,
-		generateGridDotsBackground,
-		require('tailwindcss-animate')
-	]
+	plugins: [addVariablesForColors, generateGridDotsBackground, require('tailwindcss-animate')]
 } satisfies Config
 
 export default config

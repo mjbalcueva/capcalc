@@ -15,9 +15,7 @@ type ActiveSectionProviderType = {
 	setTimeOfLastClick: React.Dispatch<React.SetStateAction<number>>
 }
 
-const ActiveSectionContext = createContext<ActiveSectionProviderType | null>(
-	null
-)
+const ActiveSectionContext = createContext<ActiveSectionProviderType | null>(null)
 
 const ActiveSectionProvider = ({ children }: ActiveSectionProviderProps) => {
 	const [activeSection, setActiveSection] = useState<HashType>('#home')
@@ -41,9 +39,7 @@ const useActiveSectionContext = () => {
 	const context = useContext(ActiveSectionContext)
 
 	if (context === null) {
-		throw new Error(
-			'useActiveSectionContext must be used within an ActiveSectionContextProvider'
-		)
+		throw new Error('useActiveSectionContext must be used within an ActiveSectionContextProvider')
 	}
 
 	return context

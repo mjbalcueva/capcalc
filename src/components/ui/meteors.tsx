@@ -2,13 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { cn } from '@/lib/utils'
 
-const Meteors = ({
-	number,
-	className
-}: {
-	number?: number
-	className?: string
-}) => {
+const Meteors = ({ number, className }: { number?: number; className?: string }) => {
 	const [meteors, setMeteors] = useState<Array<JSX.Element>>([])
 
 	useEffect(() => {

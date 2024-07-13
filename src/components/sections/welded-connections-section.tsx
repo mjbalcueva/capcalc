@@ -8,9 +8,7 @@ import { useSectionInView } from '@/lib/hooks/useSectionInView'
 
 const WeldedConnectionsSection = () => {
 	const { ref } = useSectionInView('#welded-connections')
-	const nonBuiltUpCalculators = useFindCalculatorWithHash(
-		'#non-built-up-columns'
-	)
+	const nonBuiltUpCalculators = useFindCalculatorWithHash('#non-built-up-columns')
 
 	return (
 		<section

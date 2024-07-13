@@ -16,17 +16,9 @@ export const metadata = {
 	icons: [{ rel: 'icon', url: '/favicon.ico' }]
 }
 
-export default function RootLayout({
-	children
-}: {
-	children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html
-			lang="en"
-			className={`${GeistSans.variable} !scroll-smooth`}
-			suppressHydrationWarning={true}
-		>
+		<html lang="en" className={`${GeistSans.variable} !scroll-smooth`} suppressHydrationWarning={true}>
 			<body>
 				<TooltipProvider>
 					<ThemeProvider attribute="class" defaultTheme="dark">

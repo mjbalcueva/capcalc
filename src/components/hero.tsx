@@ -13,11 +13,7 @@ const Hero = ({ className }: { className?: string }) => {
 			className={className}
 		>
 			<div className="text-center text-4xl font-bold dark:text-white md:text-7xl">
-				Welcome to{' '}
-				<span className="text-cyan-500 underline dark:text-cyan-400">
-					CapCalc
-				</span>
-				.
+				Welcome to <span className="text-cyan-500 underline dark:text-cyan-400">CapCalc</span>.
 			</div>
 			<div className="py-4 text-xl font-extralight dark:text-neutral-200 md:text-4xl">
 				A simple engineering calculator project.
