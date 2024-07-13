@@ -2,26 +2,25 @@
 
 import { useAtom } from 'jotai'
 
-import { Calculator } from '@/components/calculator'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { FormOutput } from '@/components/ui/form'
 import { calculatedAtoms } from './atom'
 
 const ResultCard = () => {
 	const [values] = useAtom(calculatedAtoms)
+
 	return (
 		<Card>
 			<CardHeader>
 				<CardTitle>Results</CardTitle>
 			</CardHeader>
-			<CardContent className="grid grid-cols-2 gap-8">
-				<Calculator.Output
-					label="Allowable Stress (Mpa)"
-					value={values.AllowableStress || 0}
-				/>
-				<Calculator.Output
-					label="Allowable Capacity (kN)"
-					value={values.AllowableCapacity || 0}
-				/>
+			<CardContent className="grid gap-4 text-center sm:grid-cols-2 sm:gap-8 sm:text-start">
+				<FormOutput label="Allowable Stress" symbol="Mpa">
+					{values.AllowableStress || 0}
+				</FormOutput>
+				<FormOutput label="Allowable Capacity" symbol="kN">
+					{values.AllowableCapacity || 0}
+				</FormOutput>
 			</CardContent>
 		</Card>
 	)

@@ -162,6 +162,38 @@ const FormMessage = React.forwardRef<
 })
 FormMessage.displayName = 'FormMessage'
 
+type FormOutputProps = {
+	label: string
+	symbol: string
+} & React.HTMLAttributes<HTMLParagraphElement>
+
+const FormOutput = React.forwardRef<HTMLParagraphElement, FormOutputProps>(
+	({ label, symbol, children, ...props }, ref) => {
+		return (
+			<div>
+				<h2 className="text-lg font-medium">
+					{label}{' '}
+					<span className="text-sm tracking-wide text-muted-foreground">
+						{symbol && `(${symbol})`}
+					</span>
+				</h2>
+				<p
+					ref={ref}
+					className={cn(
+						'font-mono text-4xl font-bold',
+						(children === 0 || children === 'None') &&
+							'text-muted-foreground/40'
+					)}
+					{...props}
+				>
+					{children}
+				</p>
+			</div>
+		)
+	}
+)
+FormOutput.displayName = 'FormOutput'
+
 export {
 	useFormField,
 	Form,
@@ -170,5 +202,6 @@ export {
 	FormControl,
 	FormDescription,
 	FormMessage,
+	FormOutput,
 	FormField
 }

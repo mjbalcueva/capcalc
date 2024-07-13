@@ -5,9 +5,7 @@ import { ResultCard } from './_components/result-card'
 export default function EulersFormulaForColumnsPage() {
 	return (
 		<main className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_2fr]">
-			<section className="flex flex-col">
-				<InputCard />
-			</section>
+			<InputCard />
 			<section className="flex flex-col gap-4">
 				<ResultCard />
 				<ComputationCard />

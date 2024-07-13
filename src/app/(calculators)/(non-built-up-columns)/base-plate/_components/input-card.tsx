@@ -9,17 +9,15 @@ import {
 
 const InputCard = () => {
 	return (
-		<section className="flex flex-col">
-			<Card>
-				<CardHeader>
-					<CardTitle>Input Variables</CardTitle>
-					<CardDescription>Input Description</CardDescription>
-				</CardHeader>
-				<CardFooter className="flex flex-col">
-					<Button className="w-full">Reset</Button>
-				</CardFooter>
-			</Card>
-		</section>
+		<Card>
+			<CardHeader>
+				<CardTitle>Input Variables</CardTitle>
+				<CardDescription>Input Description</CardDescription>
+			</CardHeader>
+			<CardFooter className="flex flex-col">
+				<Button className="w-full">Reset</Button>
+			</CardFooter>
+		</Card>
 	)
 }
 
