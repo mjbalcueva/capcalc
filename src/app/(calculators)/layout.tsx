@@ -18,10 +18,12 @@ import { inputSchema as nscp2001Schema } from '@/lib/schemas/nscp-2001-code-prov
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const pageToSchemaMapping = {
+	// bolted-connections
 	// non-built-up-columns
 	'/nscp-2001-code-provisions': nscp2001Schema,
 	'/eulers-formula-for-columns': eulersFormulaSchema,
 	'/base-plate': basePlateSchema
+	// welded-connections
 }
 type PagePath = keyof typeof pageToSchemaMapping
 

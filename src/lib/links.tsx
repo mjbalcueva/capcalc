@@ -1,5 +1,3 @@
-import { title } from 'process'
-
 import { Icons } from '@/components/shared/icons'
 
 const calculators = [
@@ -8,7 +6,20 @@ const calculators = [
 		title: 'Bolted Connections Calculator',
 		description:
 			'Explore our suite of calculators designed for bolted connections, which are essential structural elements used to join two or more components together.',
-		calculators: []
+		calculators: [
+			{
+				title: 'Concentric Bolted Connection',
+				description:
+					'The concentric bolted connection calculator is used to determine the strength of a bolted connection under concentric loading. The calculator uses the principles of mechanics to calculate the strength of the connection based on the size and shape of the bolts.',
+				link: '/concentric-bolted-connection'
+			},
+			{
+				title: 'Eccentric Bolted Connection',
+				description:
+					'The eccentric bolted connection calculator is used to determine the strength of a bolted connection under eccentric loading. The calculator uses the principles of mechanics to calculate the strength of the connection based on the size and shape of the bolts.',
+				link: '/eccentric-bolted-connection'
+			}
+		]
 	},
 	{
 		hash: '#welded-connections',
