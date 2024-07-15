@@ -11,7 +11,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-import { inputType } from '@/lib/schemas/concentric-bolted-connection'
+import { type inputType } from '@/lib/schemas/concentric-bolted-connection'
 
 const InputCard = () => {
 	const [, setInput] = useAtom(inputAtom)

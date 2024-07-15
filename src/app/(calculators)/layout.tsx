@@ -11,19 +11,31 @@ import { FooterSection } from '@/components/sections/footer-section'
 import { Separator } from '@/components/ui/separator'
 
 import { useFindCalculatorWithPathName } from '@/lib/hooks/useFindCalculator'
+import { inputSchema as balancedWeldGroupSchema } from '@/lib/schemas/balanced-weld-group'
 import { inputSchema as basePlateSchema } from '@/lib/schemas/base-plate'
+import { inputSchema as concentricBoltSchema } from '@/lib/schemas/concentric-bolted-connection'
+import { inputSchema as eccentricBoltSchema } from '@/lib/schemas/eccentric-bolted-connection'
+import { inputSchema as eccentricWeldGroupSchema } from '@/lib/schemas/eccentric-loading'
 import { inputSchema as eulersFormulaSchema } from '@/lib/schemas/eulers-formula-for-columns'
 import { inputSchema as nscp2001Schema } from '@/lib/schemas/nscp-2001-code-provisions'
+import { inputSchema as shearAndBendingSchema } from '@/lib/schemas/shear-and-bending'
+import { inputSchema as tensionForcesOnWeldsSchema } from '@/lib/schemas/tension-forces-on-welded-sections'
 
 import { useActiveSectionContext } from '@/providers/active-section-provider'
 
 const pageToSchemaMapping = {
 	// bolted-connections
+	'/concentric-bolted-connection': concentricBoltSchema,
+	'/eccentric-bolted-connection': eccentricBoltSchema,
 	// non-built-up-columns
 	'/nscp-2001-code-provisions': nscp2001Schema,
 	'/eulers-formula-for-columns': eulersFormulaSchema,
-	'/base-plate': basePlateSchema
+	'/base-plate': basePlateSchema,
 	// welded-connections
+	'/balanced-weld-group': balancedWeldGroupSchema,
+	'/eccentric-weld-group': eccentricWeldGroupSchema,
+	'/shear-and-bending': shearAndBendingSchema,
+	'/tension-forces-on-welded-sections': tensionForcesOnWeldsSchema
 }
 type PagePath = keyof typeof pageToSchemaMapping
 

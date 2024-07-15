@@ -1,6 +1,6 @@
 import { atom } from 'jotai'
 
-import { inputType } from '@/lib/schemas/concentric-bolted-connection'
+import { type inputType } from '@/lib/schemas/concentric-bolted-connection'
 
 export const inputAtom = atom<inputType>({
 	Wg: 0,
@@ -18,4 +18,9 @@ export const calculatedAtoms = atom((get) => {
 	// get(inputAtom).
 	const Ag = parseFloat((get(inputAtom).Wg * get(inputAtom).t).toFixed(3))
 	const P1 = parseFloat((0.6 * get(inputAtom).Fy * Ag).toFixed(3))
+
+	return {
+		Ag,
+		P1
+	}
 })
