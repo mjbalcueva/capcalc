@@ -30,6 +30,8 @@ const InputCard = () => {
 				<CardTitle>Input Variables</CardTitle>
 			</CardHeader>
 
+			<pre>{JSON.stringify(form.watch(), null, 2)}</pre>
+
 			<CardContent className='px-6" flex flex-col space-y-4'>
 				<Form {...form}>
 					<FormField
@@ -40,6 +42,62 @@ const InputCard = () => {
 								<FormLabel>Gross Width</FormLabel>
 								<FormControl>
 									<Input placeholder="mm - Wg" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name="t"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Thickness</FormLabel>
+								<FormControl>
+									<Input placeholder="mm - t" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name="Fy"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Yield Strength</FormLabel>
+								<FormControl>
+									<Input placeholder="MPa - Fy" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name="db"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Bolt Diameter</FormLabel>
+								<FormControl>
+									<Input placeholder="mm - db" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name="n"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Number of Bolts</FormLabel>
+								<FormControl>
+									<Input placeholder="n" type="number" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
