@@ -1,3 +1,5 @@
+import { title } from 'process'
+
 import { Icons } from '@/components/shared/icons'
 
 const calculators = [
@@ -13,7 +15,32 @@ const calculators = [
 		title: 'Welded Connections Calculator',
 		description:
 			'Explore our suite of calculators designed for welded connections, which are essential structural elements used to join two or more components together.',
-		calculators: []
+		calculators: [
+			{
+				title: 'Balanced Weld Group',
+				description:
+					'The balanced weld group calculator is used to determine the strength of a balanced weld group. The calculator uses the principles of mechanics to calculate the strength of the weld group based on the size and shape of the welds.',
+				link: '/balanced-weld-group'
+			},
+			{
+				title: 'Eccentric Loading',
+				description:
+					'The eccentric loading calculator is used to determine the strength of a weld group under eccentric loading. The calculator uses the principles of mechanics to calculate the strength of the weld group based on the size and shape of the welds.',
+				link: '/eccentric-loading'
+			},
+			{
+				title: 'Tension Forces on Welded Sections',
+				description:
+					'The tension forces on welded sections calculator is used to determine the strength of a weld group under tension forces. The calculator uses the principles of mechanics to calculate the strength of the weld group based on the size and shape of the welds.',
+				link: '/tension-forces-on-welded-sections'
+			},
+			{
+				title: 'Shear and Bending',
+				description:
+					'The shear and bending calculator is used to determine the strength of a weld group under shear and bending forces. The calculator uses the principles of mechanics to calculate the strength of the weld group based on the size and shape of the welds.',
+				link: '/shear-and-bending'
+			}
+		]
 	},
 	{
 		hash: '#non-built-up-columns',

@@ -12,7 +12,7 @@ import { useSectionInView } from '@/lib/hooks/useSectionInView'
 
 const WeldedConnectionsSection = () => {
 	const { ref } = useSectionInView('#welded-connections')
-	const nonBuiltUpCalculators = useFindCalculatorWithHash('#non-built-up-columns')
+	const nonBuiltUpCalculators = useFindCalculatorWithHash('#welded-connections')
 
 	const { theme } = useTheme()
 	const [color, setColor] = useState('#ffffff')
