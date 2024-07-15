@@ -11,9 +11,9 @@ export default function HomePage() {
 			<HeroSection />
 			<BoltedConnectionsSection />
 			<Separator />
-			<NonBuiltUpColumnsSection />
-			<Separator />
 			<WeldedConnectionsSection />
+			<Separator />
+			<NonBuiltUpColumnsSection />
 			<FooterSection />
 		</main>
 	)
