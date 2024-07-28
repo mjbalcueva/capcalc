@@ -9,12 +9,13 @@ const CardHoverEffect = ({ items, className }: { items: CalculatorItemType[]; cl
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
 	return (
-		<div className={cn('grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1', className)}>
+		// <div className={cn('grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1', className)}>
+		<div className="flex flex-wrap">
 			{items.map((item, idx) => (
 				<Link
 					href={item?.link}
 					key={item?.link}
-					className="group relative block h-full w-full p-2"
+					className={cn('group relative block h-full p-2', className)}
 					onMouseEnter={() => setHoveredIndex(idx)}
 					onMouseLeave={() => setHoveredIndex(null)}
 				>
