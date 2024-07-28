@@ -53,6 +53,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 	useEffect(() => {
 		if (activeCalculator) setActiveSection(activeCalculator.hash)
+		window.scrollTo(0, 0)
 	}, [activeCalculator, setActiveSection])
 
 	return (
