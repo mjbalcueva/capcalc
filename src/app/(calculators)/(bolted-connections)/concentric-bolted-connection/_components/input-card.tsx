@@ -70,7 +70,7 @@ const InputCard = () => {
 						<Separator />
 					</div>
 
-					{(typeOfConsideration === 'gross' || typeOfConsideration === 'net') && (
+					{(typeOfConsideration === undefined || typeOfConsideration === 'gross' || typeOfConsideration === 'net') && (
 						<FormField
 							control={form.control}
 							name="Wg"
@@ -86,7 +86,10 @@ const InputCard = () => {
 						/>
 					)}
 
-					{(typeOfConsideration === 'gross' || typeOfConsideration === 'net' || typeOfConsideration === 'bearing') && (
+					{(typeOfConsideration === undefined ||
+						typeOfConsideration === 'gross' ||
+						typeOfConsideration === 'net' ||
+						typeOfConsideration === 'bearing') && (
 						<FormField
 							control={form.control}
 							name="t"
@@ -102,7 +105,7 @@ const InputCard = () => {
 						/>
 					)}
 
-					{typeOfConsideration === 'gross' && (
+					{(typeOfConsideration === undefined || typeOfConsideration === 'gross') && (
 						<FormField
 							control={form.control}
 							name="Fy"
