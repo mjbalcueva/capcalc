@@ -3,22 +3,38 @@ import { atom } from 'jotai'
 import { type inputType } from '@/lib/schemas/balanced-weld-group'
 
 export const inputAtom = atom<inputType>({
-	Wg: 0,
-	t: 0,
-	Fy: 0,
-	db: 0,
-	n: 0,
-	An: 0,
-	Fu: 0,
-	Fv: 0
+	useMaximumSize: false,
+	tp: 0,
+	useUltimateStress: false,
+	Fv: 0,
+	La: 0,
+	Lb: 0,
+	Lc: 0
 })
 
 export const calculatedAtoms = atom((get) => {
-	const Ag = parseFloat((get(inputAtom).Wg * get(inputAtom).t).toFixed(3))
-	const P1 = parseFloat((0.6 * get(inputAtom).Fy * Ag).toFixed(3))
+	const Tw = get(inputAtom).useMaximumSize
+		? get(inputAtom).tp
+		: get(inputAtom).tp >= 6
+			? parseFloat((get(inputAtom).tp - 1.6).toFixed(3))
+			: get(inputAtom).tp
+
+	// const Fv = !get(inputAtom).useUltimateStress
+	// 	? get(inputAtom).Fv
+	// 	: get(inputAtom).Fu
+	// 		? parseFloat((0.3 * get(inputAtom).Fv).toFixed(3))
+	// 		: get(inputAtom).Fv
+
+	const Fv = get(inputAtom).useUltimateStress ? parseFloat((0.3 * get(inputAtom).Fv).toFixed(3)) : get(inputAtom).Fv
+
+	const Lt = Number(get(inputAtom).La) + Number(get(inputAtom).Lb) + Number(get(inputAtom).Lc)
+
+	const T = parseFloat((0.707 * Tw * Lt * Fv).toFixed(3))
 
 	return {
-		Ag,
-		P1
+		Tw,
+		Lt,
+		Fv,
+		T
 	}
 })

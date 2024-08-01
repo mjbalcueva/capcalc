@@ -10,12 +10,16 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { Switch } from '@/components/ui/switch'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 import { type inputType } from '@/lib/schemas/balanced-weld-group'
 
 const InputCard = () => {
 	const [, setInput] = useAtom(inputAtom)
 	const form = useFormContext<inputType>()
+
+	const { useMaximumSize, useUltimateStress } = form.watch()
 
 	useEffect(() => {
 		return form.watch((values) => {
@@ -30,102 +34,48 @@ const InputCard = () => {
 				<CardTitle>Input Variables</CardTitle>
 			</CardHeader>
 
+			{/* <pre>{JSON.stringify(form.watch(), null, 2)}</pre> */}
+
 			<CardContent className='px-6" flex flex-col space-y-4'>
 				<Form {...form}>
 					<FormField
 						control={form.control}
-						name="Wg"
+						name="tp"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Gross Width</FormLabel>
+								<FormLabel> {useMaximumSize ? 'Maximum Size of Fillet Weld' : 'Size of Fillet Weld'}</FormLabel>
 								<FormControl>
-									<Input placeholder="mm - Wg" type="number" {...field} />
+									<Input placeholder={useMaximumSize ? 'mm - tw' : 'mm - tp'} type="number" {...field} />
 								</FormControl>
 								<FormMessage />
-							</FormItem>
-						)}
-					/>
 
-					<FormField
-						control={form.control}
-						name="t"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Thickness</FormLabel>
-								<FormControl>
-									<Input placeholder="mm - t" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name="Fy"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Yield Stress</FormLabel>
-								<FormControl>
-									<Input placeholder="MPa - Fy" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name="db"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Diameter of Bolt</FormLabel>
-								<FormControl>
-									<Input placeholder="mm - db" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name="n"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Number of Bolts</FormLabel>
-								<FormControl>
-									<Input placeholder="n" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name="An"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Net Area</FormLabel>
-								<FormControl>
-									<Input placeholder="mm² - An" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name="Fu"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Ultimate Stress</FormLabel>
-								<FormControl>
-									<Input placeholder="MPa - Fu" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
+								<FormField
+									control={form.control}
+									name="useMaximumSize"
+									defaultValue={false}
+									render={({ field }) => (
+										<FormControl>
+											<div className="absolute -top-1.5 right-0">
+												<Tooltip delayDuration={400}>
+													<TooltipTrigger asChild>
+														<div>
+															<Switch
+																checked={field.value}
+																onCheckedChange={field.onChange}
+																className="ring-[#afafaf] ring-offset-[3px] ring-offset-background hover:ring-1"
+															/>
+														</div>
+													</TooltipTrigger>
+													<TooltipContent className="bg-white/10 text-xs font-medium text-gray-500 backdrop-blur-[0.08rem] dark:bg-black/10 dark:text-gray-400">
+														{useMaximumSize
+															? 'Use the size of the fillet weld'
+															: 'Use the maximum size of the fillet weld'}
+													</TooltipContent>
+												</Tooltip>
+											</div>
+										</FormControl>
+									)}
+								/>
 							</FormItem>
 						)}
 					/>
@@ -140,6 +90,73 @@ const InputCard = () => {
 									<Input placeholder="MPa - Fv" type="number" {...field} />
 								</FormControl>
 								<FormMessage />
+								<FormField
+									control={form.control}
+									name="useUltimateStress"
+									defaultValue={false}
+									render={({ field }) => (
+										<FormControl>
+											<div className="absolute -top-1.5 right-0">
+												<Tooltip delayDuration={400}>
+													<TooltipTrigger asChild>
+														<div>
+															<Switch
+																checked={field.value}
+																onCheckedChange={field.onChange}
+																className="ring-[#afafaf] ring-offset-[3px] ring-offset-background hover:ring-1"
+															/>
+														</div>
+													</TooltipTrigger>
+													<TooltipContent className="bg-white/10 text-xs font-medium text-gray-500 backdrop-blur-[0.08rem] dark:bg-black/10 dark:text-gray-400">
+														{useUltimateStress ? 'Disable the ultimate stress' : 'Enable the ultimate stress'}
+													</TooltipContent>
+												</Tooltip>
+											</div>
+										</FormControl>
+									)}
+								/>
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name="La"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Length of Weld A</FormLabel>
+								<FormControl>
+									<Input placeholder="mm - La" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name="Lb"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Length of Weld B</FormLabel>
+								<FormControl>
+									<Input placeholder="mm - Lb" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name="Lc"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Length of Weld C</FormLabel>
+								<FormControl>
+									<Input placeholder="mm - Lc" type="number" {...field} />
+								</FormControl>
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -152,14 +169,13 @@ const InputCard = () => {
 					disabled={form.formState.isSubmitting}
 					onClick={() => {
 						form.reset({
-							Wg: '' as unknown as undefined,
-							t: '' as unknown as undefined,
-							Fy: '' as unknown as undefined,
-							db: '' as unknown as undefined,
-							n: '' as unknown as undefined,
-							An: '' as unknown as undefined,
-							Fu: '' as unknown as undefined,
-							Fv: '' as unknown as undefined
+							useMaximumSize: useMaximumSize,
+							tp: '' as unknown as undefined,
+							useUltimateStress: useUltimateStress,
+							Fv: '' as unknown as undefined,
+							La: '' as unknown as undefined,
+							Lb: '' as unknown as undefined,
+							Lc: '' as unknown as undefined
 						})
 					}}
 				>
