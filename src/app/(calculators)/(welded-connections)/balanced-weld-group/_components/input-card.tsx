@@ -85,9 +85,9 @@ const InputCard = () => {
 						name="Fv"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Shear Stress</FormLabel>
+								<FormLabel>{useUltimateStress ? 'Ultimate Stress' : 'Shear Stress'}</FormLabel>
 								<FormControl>
-									<Input placeholder="MPa - Fv" type="number" {...field} />
+									<Input placeholder={useUltimateStress ? 'MPa - Fu' : 'MPa - Fv'} type="number" {...field} />
 								</FormControl>
 								<FormMessage />
 								<FormField
@@ -108,7 +108,7 @@ const InputCard = () => {
 														</div>
 													</TooltipTrigger>
 													<TooltipContent className="bg-white/10 text-xs font-medium text-gray-500 backdrop-blur-[0.08rem] dark:bg-black/10 dark:text-gray-400">
-														{useUltimateStress ? 'Disable the ultimate stress' : 'Enable the ultimate stress'}
+														{useUltimateStress ? 'Use the shear stress' : 'Use the ultimate stress'}
 													</TooltipContent>
 												</Tooltip>
 											</div>

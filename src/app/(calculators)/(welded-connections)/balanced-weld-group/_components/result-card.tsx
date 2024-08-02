@@ -18,7 +18,7 @@ const ResultCard = () => {
 
 			<CardContent className="gap-4 text-center sm:gap-8 sm:text-start">
 				<div className="flex flex-col">
-					<FormOutput label="Tensile Capacity" symbol="mm">
+					<FormOutput label="Tensile Capacity" symbol="N">
 						{!isFinite(values.T) ? 0 : values.T || 0}
 					</FormOutput>
 				</div>
