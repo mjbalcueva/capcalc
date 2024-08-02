@@ -19,12 +19,6 @@ export const calculatedAtoms = atom((get) => {
 			? parseFloat((get(inputAtom).tp - 1.6).toFixed(3))
 			: get(inputAtom).tp
 
-	// const Fv = !get(inputAtom).useUltimateStress
-	// 	? get(inputAtom).Fv
-	// 	: get(inputAtom).Fu
-	// 		? parseFloat((0.3 * get(inputAtom).Fv).toFixed(3))
-	// 		: get(inputAtom).Fv
-
 	const Fv = get(inputAtom).useUltimateStress ? parseFloat((0.3 * get(inputAtom).Fv).toFixed(3)) : get(inputAtom).Fv
 
 	const Lt = Number(get(inputAtom).La) + Number(get(inputAtom).Lb) + Number(get(inputAtom).Lc)
