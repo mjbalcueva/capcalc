@@ -17,6 +17,8 @@ const InputCard = () => {
 	const [, setInput] = useAtom(inputAtom)
 	const form = useFormContext<inputType>()
 
+	console.log(form.watch())
+
 	useEffect(() => {
 		return form.watch((values) => {
 			setInput(values as inputType)
@@ -32,14 +34,74 @@ const InputCard = () => {
 
 			<CardContent className='px-6" flex flex-col space-y-4'>
 				<Form {...form}>
+					<div className="flex flex-col space-y-2">
+						<h2 className="text-sm font-medium tracking-wider">Applied Loads</h2>
+						<div className="flex space-x-2">
+							<FormField
+								control={form.control}
+								name="Fx"
+								render={({ field }) => (
+									<FormItem className="w-full">
+										<FormControl>
+											<Input placeholder="N - Fx" type="number" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="Fy"
+								render={({ field }) => (
+									<FormItem className="w-full">
+										<FormControl>
+											<Input placeholder="N - Fy" type="number" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+					</div>
+
+					<div className="flex flex-col space-y-2">
+						<h2 className="text-sm font-medium tracking-wider">Length of Weld</h2>
+						<div className="flex space-x-2">
+							<FormField
+								control={form.control}
+								name="La"
+								render={({ field }) => (
+									<FormItem className="w-full">
+										<FormControl>
+											<Input placeholder="mm - La" type="number" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="Lb"
+								render={({ field }) => (
+									<FormItem className="w-full">
+										<FormControl>
+											<Input placeholder="mm - Lb" type="number" {...field} />
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+					</div>
+
 					<FormField
 						control={form.control}
-						name="P"
+						name="x"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Applied Load</FormLabel>
+								<FormLabel>Distance From Weld to Applied Load</FormLabel>
 								<FormControl>
-									<Input placeholder="N - P" type="number" {...field} />
+									<Input placeholder="mm - x" type="number" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -48,26 +110,12 @@ const InputCard = () => {
 
 					<FormField
 						control={form.control}
-						name="e"
+						name="tp"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Eccentricity</FormLabel>
+								<FormLabel>Thickness of Plate</FormLabel>
 								<FormControl>
-									<Input placeholder="mm - e" type="number" {...field} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<FormField
-						control={form.control}
-						name="L"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Length of Weld</FormLabel>
-								<FormControl>
-									<Input placeholder="mm - L" type="number" {...field} />
+									<Input placeholder="mm - tp" type="number" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -82,9 +130,12 @@ const InputCard = () => {
 					disabled={form.formState.isSubmitting}
 					onClick={() => {
 						form.reset({
-							P: '' as unknown as undefined,
-							e: '' as unknown as undefined,
-							L: '' as unknown as undefined
+							Fx: '' as unknown as undefined,
+							Fy: '' as unknown as undefined,
+							La: '' as unknown as undefined,
+							Lb: '' as unknown as undefined,
+							x: '' as unknown as undefined,
+							tp: '' as unknown as undefined
 						})
 					}}
 				>

@@ -1,14 +1,14 @@
 'use client'
 
-import { useAtom } from 'jotai'
+// import { useAtom } from 'jotai'
 
-import { calculatedAtoms } from '@/atoms/eccentric-bolted-connection'
-
+// import { calculatedAtoms } from '@/atoms/eccentric-bolted-connection'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { FormOutput } from '@/components/ui/form'
+
+// import { FormOutput } from '@/components/ui/form'
 
 const ResultCard = () => {
-	const [values] = useAtom(calculatedAtoms)
+	// const [values] = useAtom(calculatedAtoms)
 
 	return (
 		<Card>

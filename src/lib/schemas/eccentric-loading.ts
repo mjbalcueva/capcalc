@@ -1,9 +1,12 @@
 import { z } from 'zod'
 
 const inputSchema = z.object({
-	P: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
-	e: z.coerce.number().positive({ message: 'Input must be greater than 0' }),
-	L: z.coerce.number().positive({ message: 'Input must be greater than 0' })
+	Fy: z.coerce.number().nonnegative(),
+	Fx: z.coerce.number().nonnegative(),
+	La: z.coerce.number().nonnegative(),
+	Lb: z.coerce.number().nonnegative(),
+	x: z.coerce.number().nonnegative(),
+	tp: z.coerce.number().nonnegative()
 })
 
 type inputType = z.infer<typeof inputSchema>
