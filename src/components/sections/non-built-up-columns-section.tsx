@@ -27,10 +27,7 @@ const NonBuiltUpColumnsSection = () => {
 				}}
 			>
 				<div className="mx-2.5 flex h-[97.4%] min-h-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white text-center dark:border-white/[0.2] dark:bg-[#000505]">
-					<h2 className="text-xl font-bold text-card-foreground/75 md:text-4xl">
-						{nonBuiltUpCalculators?.title}
-						Welded Connections Section
-					</h2>
+					<h2 className="text-xl font-bold text-card-foreground/75 md:text-4xl">{nonBuiltUpCalculators?.title}</h2>
 					<p className="mx-auto mt-4 max-w-lg text-muted-foreground/90 md:text-lg">
 						{nonBuiltUpCalculators?.description}
 					</p>
