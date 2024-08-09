@@ -34,12 +34,12 @@ const InputCard = () => {
 				<Form {...form}>
 					<FormField
 						control={form.control}
-						name="P"
+						name="Fx"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Load</FormLabel>
+								<FormLabel>Applied Load (x-direction)</FormLabel>
 								<FormControl>
-									<Input placeholder="kN - P" type="number" {...field} />
+									<Input placeholder="kN - Fx" type="number" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -48,26 +48,86 @@ const InputCard = () => {
 
 					<FormField
 						control={form.control}
-						name="e"
+						name="Fy"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Eccentricity</FormLabel>
+								<FormLabel>Applied Load (y-direction)</FormLabel>
 								<FormControl>
-									<Input placeholder="mm - e" type="number" {...field} />
+									<Input placeholder="kN - Fy" type="number" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
 
+					<div className="flex space-x-2">
+						<FormField
+							control={form.control}
+							name="x1"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>x₁</FormLabel>
+									<FormControl>
+										<Input placeholder="mm - x₁" type="number" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name="x2"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>x₂</FormLabel>
+									<FormControl>
+										<Input placeholder="mm - x₂" type="number" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					</div>
+
+					<div className="flex space-x-2">
+						<FormField
+							control={form.control}
+							name="y1"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>y₁</FormLabel>
+									<FormControl>
+										<Input placeholder="mm - y₁" type="number" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name="y2"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>y₂</FormLabel>
+									<FormControl>
+										<Input placeholder="mm - y₂" type="number" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					</div>
+
 					<FormField
 						control={form.control}
-						name="L"
+						name="db"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Length</FormLabel>
+								<FormLabel>Diameter of Bar</FormLabel>
 								<FormControl>
-									<Input placeholder="mm - L" type="number" {...field} />
+									<Input placeholder="mm - db" type="number" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -82,9 +142,13 @@ const InputCard = () => {
 					disabled={form.formState.isSubmitting}
 					onClick={() => {
 						form.reset({
-							P: '' as unknown as undefined,
-							e: '' as unknown as undefined,
-							L: '' as unknown as undefined
+							Fx: '' as unknown as undefined,
+							Fy: '' as unknown as undefined,
+							x1: '' as unknown as undefined,
+							x2: '' as unknown as undefined,
+							y1: '' as unknown as undefined,
+							y2: '' as unknown as undefined,
+							db: '' as unknown as undefined
 						})
 					}}
 				>

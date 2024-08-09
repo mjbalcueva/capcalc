@@ -17,8 +17,6 @@ const InputCard = () => {
 	const [, setInput] = useAtom(inputAtom)
 	const form = useFormContext<inputType>()
 
-	console.log(form.watch())
-
 	useEffect(() => {
 		return form.watch((values) => {
 			setInput(values as inputType)
