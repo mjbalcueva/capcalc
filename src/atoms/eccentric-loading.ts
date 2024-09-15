@@ -3,12 +3,12 @@ import { atom } from 'jotai'
 import { type inputType } from '@/lib/schemas/eccentric-loading'
 
 export const inputAtom = atom<inputType>({
-	Fx: 10000,
-	Fy: 15000,
-	La: 100,
-	Lb: 200,
-	x: 100,
-	tp: 7
+	Fx: 0,
+	Fy: 0,
+	La: 0,
+	Lb: 0,
+	x: 0,
+	tp: 0
 })
 
 export const calculatedAtoms = atom((get) => {

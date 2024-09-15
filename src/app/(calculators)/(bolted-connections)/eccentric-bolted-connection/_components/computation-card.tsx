@@ -115,10 +115,10 @@ const ComputationTableCustom = ({
 				{data.map((item, index) => (
 					<TableRow key={index} className="font-medium">
 						<TableCell className="font-medium">{item.label}</TableCell>
-						<TableCell className="text-right font-normal">{item.bolt1}</TableCell>
-						<TableCell className="text-right font-normal">{item.bolt2}</TableCell>
-						<TableCell className="text-right font-normal">{item.bolt3}</TableCell>
-						<TableCell className="text-right font-normal">{item.bolt4}</TableCell>
+						<TableCell className="text-right font-normal">{item.bolt1 || 0}</TableCell>
+						<TableCell className="text-right font-normal">{item.bolt2 || 0}</TableCell>
+						<TableCell className="text-right font-normal">{item.bolt3 || 0}</TableCell>
+						<TableCell className="text-right font-normal">{item.bolt4 || 0}</TableCell>
 						<TableCell className="w-[40px] text-right font-normal text-muted-foreground">{item.unit}</TableCell>
 					</TableRow>
 				))}
@@ -149,7 +149,7 @@ const ComputationTable = ({
 						<TableCell className="font-medium">{item.label}</TableCell>
 						<TableCell className="w-1/4 font-normal">{item.variable}</TableCell>
 						<TableCell className="flex w-[130px] justify-end text-right font-normal">
-							<span>{item.value}</span>
+							<span>{item.value || 0}</span>
 							<span className="flex-grow text-muted-foreground">{item.unit}</span>
 						</TableCell>
 					</TableRow>
