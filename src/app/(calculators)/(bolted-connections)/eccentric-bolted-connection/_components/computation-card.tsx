@@ -10,35 +10,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 const ComputationCard = () => {
 	const [values] = useAtom(calculatedAtoms)
 
-	// const tableData = [
-	// 	{ label: 'Eccentricity along x-axis', variable: 'ex', value: values.ex, unit: 'mm' },
-	// 	{ label: 'Eccentricity along y-axis', variable: 'ey', value: values.ey, unit: 'mm' },
-	// 	{ label: 'Torque', variable: 'T', value: values.T, unit: 'kN-mm' },
-	// 	{ label: 'Polar Moment of Inertia', variable: 'J', value: values.J, unit: 'mm^4' },
-	// 	{ label: 'Load Due to Torque (x-direction)', variable: 'PTx1', value: values.PTx.PTx1, unit: 'kN' },
-	// 	{ label: 'Load Due to Torque (x-direction)', variable: 'PTx2', value: values.PTx.PTx2, unit: 'kN' },
-	// 	{ label: 'Load Due to Torque (x-direction)', variable: 'PTx3', value: values.PTx.PTx3, unit: 'kN' },
-	// 	{ label: 'Load Due to Torque (x-direction)', variable: 'PTx4', value: values.PTx.PTx4, unit: 'kN' },
-	// 	{ label: 'Load Due to Torque (y-direction)', variable: 'PTy1', value: values.PTy.PTy1, unit: 'kN' },
-	// 	{ label: 'Load Due to Torque (y-direction)', variable: 'PTy2', value: values.PTy.PTy2, unit: 'kN' },
-	// 	{ label: 'Load Due to Torque (y-direction)', variable: 'PTy3', value: values.PTy.PTy3, unit: 'kN' },
-	// 	{ label: 'Load Due to Torque (y-direction)', variable: 'PTy4', value: values.PTy.PTy4, unit: 'kN' },
-	// 	{ label: 'Direct Load (x-direction)', variable: 'PDx', value: values.PDx, unit: 'kN' },
-	// 	{ label: 'Direct Load (y-direction)', variable: 'PDy', value: values.PDy, unit: 'kN' },
-	// 	{ label: 'Load Along x-axis', variable: 'Px1', value: values.Px.Px1, unit: 'kN' },
-	// 	{ label: 'Load Along x-axis', variable: 'Px2', value: values.Px.Px2, unit: 'kN' },
-	// 	{ label: 'Load Along x-axis', variable: 'Px3', value: values.Px.Px3, unit: 'kN' },
-	// 	{ label: 'Load Along x-axis', variable: 'Px4', value: values.Px.Px4, unit: 'kN' },
-	// 	{ label: 'Load Along y-axis', variable: 'Py1', value: values.Py.Py1, unit: 'kN' },
-	// 	{ label: 'Load Along y-axis', variable: 'Py2', value: values.Py.Py2, unit: 'kN' },
-	// 	{ label: 'Load Along y-axis', variable: 'Py3', value: values.Py.Py3, unit: 'kN' },
-	// 	{ label: 'Load Along y-axis', variable: 'Py4', value: values.Py.Py4, unit: 'kN' },
-	// 	{ label: 'Total Load', variable: 'P1', value: values.P.P1, unit: 'kN' },
-	// 	{ label: 'Total Load', variable: 'P2', value: values.P.P2, unit: 'kN' },
-	// 	{ label: 'Total Load', variable: 'P3', value: values.P.P3, unit: 'kN' },
-	// 	{ label: 'Total Load', variable: 'P4', value: values.P.P4, unit: 'kN' }
-	// ]
-
 	const eccentricity = [
 		{ label: 'Eccentricity along x-axis', variable: 'ex', value: values.ex, unit: 'mm' },
 		{ label: 'Eccentricity along y-axis', variable: 'ey', value: values.ey, unit: 'mm' }
@@ -46,7 +17,7 @@ const ComputationCard = () => {
 
 	const torque = [{ label: 'Torque', variable: 'T', value: values.T, unit: 'kN-mm' }]
 
-	const polarMomentOfInertia = [{ label: 'Polar Moment of Inertia', variable: 'J', value: values.J, unit: 'mm^4' }]
+	const polarMomentOfInertia = [{ label: 'Polar Moment of Inertia', variable: 'J', value: values.J, unit: 'mm⁴' }]
 
 	const loadDueToTorque = [
 		{ label: 'Load Due to Torque (x-direction)', variable: '1', value: values.PTx.PTx1, unit: 'kN' },
