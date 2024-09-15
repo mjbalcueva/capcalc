@@ -19,44 +19,63 @@ const ComputationCard = () => {
 
 	const polarMomentOfInertia = [{ label: 'Polar Moment of Inertia', variable: 'J', value: values.J, unit: 'mm⁴' }]
 
-	const loadDueToTorque = [
-		{ label: 'Load Due to Torque (x-direction)', variable: '1', value: values.PTx.PTx1, unit: 'kN' },
-		{ label: 'Load Due to Torque (x-direction)', variable: '2', value: values.PTx.PTx2, unit: 'kN' },
-		{ label: 'Load Due to Torque (x-direction)', variable: '3', value: values.PTx.PTx3, unit: 'kN' },
-		{ label: 'Load Due to Torque (x-direction)', variable: '4', value: values.PTx.PTx4, unit: 'kN' }
-	]
-
-	const loadDueToTorqueY = [
-		{ label: 'Load Due to Torque (y-direction)', variable: '1', value: values.PTy.PTy1, unit: 'kN' },
-		{ label: 'Load Due to Torque (y-direction)', variable: '2', value: values.PTy.PTy2, unit: 'kN' },
-		{ label: 'Load Due to Torque (y-direction)', variable: '3', value: values.PTy.PTy3, unit: 'kN' },
-		{ label: 'Load Due to Torque (y-direction)', variable: '4', value: values.PTy.PTy4, unit: 'kN' }
-	]
-
-	const directLoad = [
-		{ label: 'Direct Load (x-direction)', variable: 'All bolts', value: values.PDx, unit: 'kN' },
-		{ label: 'Direct Load (y-direction)', variable: 'All bolts', value: values.PDy, unit: 'kN' }
-	]
-
-	const loadAlongX = [
-		{ label: 'Load Along x-axis', variable: '1', value: values.Px.Px1, unit: 'kN' },
-		{ label: 'Load Along x-axis', variable: '2', value: values.Px.Px2, unit: 'kN' },
-		{ label: 'Load Along x-axis', variable: '3', value: values.Px.Px3, unit: 'kN' },
-		{ label: 'Load Along x-axis', variable: '4', value: values.Px.Px4, unit: 'kN' }
-	]
-
-	const loadAlongY = [
-		{ label: 'Load Along y-axis', variable: '1', value: values.Py.Py1, unit: 'kN' },
-		{ label: 'Load Along y-axis', variable: '2', value: values.Py.Py2, unit: 'kN' },
-		{ label: 'Load Along y-axis', variable: '3', value: values.Py.Py3, unit: 'kN' },
-		{ label: 'Load Along y-axis', variable: '4', value: values.Py.Py4, unit: 'kN' }
-	]
-
-	const totalLoad = [
-		{ label: 'Total Load', variable: '1', value: values.P.P1, unit: 'kN' },
-		{ label: 'Total Load', variable: '2', value: values.P.P2, unit: 'kN' },
-		{ label: 'Total Load', variable: '3', value: values.P.P3, unit: 'kN' },
-		{ label: 'Total Load', variable: '4', value: values.P.P4, unit: 'kN' }
+	const customTable = [
+		{
+			label: 'Load Due to Torque (x-direction)',
+			bolt1: values.PTx.PTx1,
+			bolt2: values.PTx.PTx2,
+			bolt3: values.PTx.PTx3,
+			bolt4: values.PTx.PTx4,
+			unit: 'kN'
+		},
+		{
+			label: 'Load Due to Torque (y-direction)',
+			bolt1: values.PTy.PTy1,
+			bolt2: values.PTy.PTy2,
+			bolt3: values.PTy.PTy3,
+			bolt4: values.PTy.PTy4,
+			unit: 'kN'
+		},
+		{
+			label: 'Direct Load (x-direction)',
+			bolt1: values.PDx,
+			bolt2: values.PDx,
+			bolt3: values.PDx,
+			bolt4: values.PDx,
+			unit: 'kN'
+		},
+		{
+			label: 'Direct Load (y-direction)',
+			bolt1: values.PDy,
+			bolt2: values.PDy,
+			bolt3: values.PDy,
+			bolt4: values.PDy,
+			unit: 'kN'
+		},
+		{
+			label: 'Load X',
+			bolt1: values.Px.Px1,
+			bolt2: values.Px.Px2,
+			bolt3: values.Px.Px3,
+			bolt4: values.Px.Px4,
+			unit: 'kN'
+		},
+		{
+			label: 'Load Y',
+			bolt1: values.Py.Py1,
+			bolt2: values.Py.Py2,
+			bolt3: values.Py.Py3,
+			bolt4: values.Py.Py4,
+			unit: 'kN'
+		},
+		{
+			label: 'Total Load',
+			bolt1: values.P.P1,
+			bolt2: values.P.P2,
+			bolt3: values.P.P3,
+			bolt4: values.P.P4,
+			unit: 'kN'
+		}
 	]
 
 	return (
@@ -69,14 +88,42 @@ const ComputationCard = () => {
 				<ComputationTable data={eccentricity} />
 				<ComputationTable data={torque} />
 				<ComputationTable data={polarMomentOfInertia} />
-				<ComputationTable isBolt data={loadDueToTorque} />
-				<ComputationTable isBolt data={loadDueToTorqueY} />
-				<ComputationTable isBolt data={directLoad} />
-				<ComputationTable isBolt data={loadAlongX} />
-				<ComputationTable isBolt data={loadAlongY} />
-				<ComputationTable isBolt data={totalLoad} />
+				<ComputationTableCustom data={customTable} />
 			</CardContent>
 		</Card>
+	)
+}
+
+const ComputationTableCustom = ({
+	data
+}: {
+	data: { label: string; bolt1: number; bolt2: number; bolt3: number; bolt4: number; unit: string }[]
+}) => {
+	return (
+		<Table className="rounded-xl border border-border">
+			<TableHeader className="bg-muted text-muted-foreground">
+				<TableRow>
+					<TableHead></TableHead>
+					<TableHead className="text-right font-normal">Bolt 1</TableHead>
+					<TableHead className="text-right font-normal">Bolt 2</TableHead>
+					<TableHead className="text-right font-normal">Bolt 3</TableHead>
+					<TableHead className="text-right font-normal">Bolt 4</TableHead>
+					<TableHead className="w-[40px]"></TableHead>
+				</TableRow>
+			</TableHeader>
+			<TableBody>
+				{data.map((item, index) => (
+					<TableRow key={index} className="font-medium">
+						<TableCell className="font-medium">{item.label}</TableCell>
+						<TableCell className="text-right font-normal">{item.bolt1}</TableCell>
+						<TableCell className="text-right font-normal">{item.bolt2}</TableCell>
+						<TableCell className="text-right font-normal">{item.bolt3}</TableCell>
+						<TableCell className="text-right font-normal">{item.bolt4}</TableCell>
+						<TableCell className="w-[40px] text-right font-normal text-muted-foreground">{item.unit}</TableCell>
+					</TableRow>
+				))}
+			</TableBody>
+		</Table>
 	)
 }
 

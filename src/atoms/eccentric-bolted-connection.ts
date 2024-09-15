@@ -3,13 +3,13 @@ import { atom } from 'jotai'
 import { type inputType } from '@/lib/schemas/eccentric-bolted-connection'
 
 export const inputAtom = atom<inputType>({
-	Fx: 0,
-	Fy: 0,
-	x1: 0,
-	x2: 0,
-	y1: 0,
-	y2: 0,
-	db: 0
+	Fx: 90,
+	Fy: 100,
+	x1: 100,
+	x2: 100,
+	y1: 100,
+	y2: 100,
+	db: 22
 })
 
 export const calculatedAtoms = atom((get) => {
