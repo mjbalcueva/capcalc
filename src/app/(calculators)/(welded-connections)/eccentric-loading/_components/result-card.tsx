@@ -20,8 +20,7 @@ const ResultCard = () => {
 			<Separator />
 
 			<CardContent>
-				<CardTitle className="py-4">Shearing Stress</CardTitle>
-				<div className="grid gap-4 text-center sm:grid-cols-2 sm:gap-8 sm:text-start">
+				<div className="grid gap-4 pt-4 text-center sm:grid-cols-2 sm:gap-8 sm:text-start">
 					<div className="flex flex-col gap-4">
 						<FormOutput label="Shearing Stress" symbol="fv 1">
 							{!isFinite(values.fv.fv1) ? 0 : values.fv.fv1 || 0}
